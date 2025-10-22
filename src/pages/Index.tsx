@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import ParticlesBackground from "@/components/ParticlesBackground";
+import AnimatedCard from "@/components/AnimatedCard";
 import { useEffect, useState } from "react";
 
 const Index = () => {
@@ -84,21 +85,27 @@ const Index = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all">
-              <Icon name="MessageSquare" className="text-primary mb-4" size={32} />
-              <h3 className="text-xl font-bold mb-2">Обсуждения</h3>
-              <p className="text-foreground/70">Последние темы и горячие обсуждения сообщества</p>
-            </Card>
-            <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all">
-              <Icon name="HelpCircle" className="text-accent mb-4" size={32} />
-              <h3 className="text-xl font-bold mb-2">Помощь</h3>
-              <p className="text-foreground/70">Получи ответы на вопросы от опытных игроков</p>
-            </Card>
-            <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all">
-              <Icon name="Trophy" className="text-primary mb-4" size={32} />
-              <h3 className="text-xl font-bold mb-2">Достижения</h3>
-              <p className="text-foreground/70">Делись своими успехами и историями</p>
-            </Card>
+            <AnimatedCard delay={0}>
+              <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all h-full">
+                <Icon name="MessageSquare" className="text-primary mb-4" size={32} />
+                <h3 className="text-xl font-bold mb-2">Обсуждения</h3>
+                <p className="text-foreground/70">Последние темы и горячие обсуждения сообщества</p>
+              </Card>
+            </AnimatedCard>
+            <AnimatedCard delay={100}>
+              <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all h-full">
+                <Icon name="HelpCircle" className="text-accent mb-4" size={32} />
+                <h3 className="text-xl font-bold mb-2">Помощь</h3>
+                <p className="text-foreground/70">Получи ответы на вопросы от опытных игроков</p>
+              </Card>
+            </AnimatedCard>
+            <AnimatedCard delay={200}>
+              <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all h-full">
+                <Icon name="Trophy" className="text-primary mb-4" size={32} />
+                <h3 className="text-xl font-bold mb-2">Достижения</h3>
+                <p className="text-foreground/70">Делись своими успехами и историями</p>
+              </Card>
+            </AnimatedCard>
           </div>
         </div>
       </section>
@@ -114,45 +121,55 @@ const Index = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 transition-transform">
-              <Icon name="Book" className="text-primary mb-4" size={32} />
-              <h3 className="text-xl font-bold mb-2">Квесты</h3>
-              <p className="text-foreground/70">Гайды по прохождению сюжетных заданий</p>
-            </Card>
-            <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/5 backdrop-blur border-border/50 hover:scale-105 transition-transform">
-              <Icon name="Users" className="text-accent mb-4" size={32} />
-              <h3 className="text-xl font-bold mb-2">Персонажи</h3>
-              <p className="text-foreground/70">Информация о героях и их историях</p>
-            </Card>
-            <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 transition-transform">
-              <Icon name="Map" className="text-primary mb-4" size={32} />
-              <h3 className="text-xl font-bold mb-2">Мир</h3>
-              <p className="text-foreground/70">Карты локаций и описание территорий</p>
-            </Card>
-            <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/5 backdrop-blur border-border/50 hover:scale-105 transition-transform">
-              <Icon name="Sword" className="text-accent mb-4" size={32} />
-              <h3 className="text-xl font-bold mb-2">Механики</h3>
-              <p className="text-foreground/70">Правила и особенности геймплея</p>
-            </Card>
+            <AnimatedCard delay={0}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 transition-transform h-full">
+                <Icon name="Book" className="text-primary mb-4" size={32} />
+                <h3 className="text-xl font-bold mb-2">Квесты</h3>
+                <p className="text-foreground/70">Гайды по прохождению сюжетных заданий</p>
+              </Card>
+            </AnimatedCard>
+            <AnimatedCard delay={100}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/5 backdrop-blur border-border/50 hover:scale-105 transition-transform h-full">
+                <Icon name="Users" className="text-accent mb-4" size={32} />
+                <h3 className="text-xl font-bold mb-2">Персонажи</h3>
+                <p className="text-foreground/70">Информация о героях и их историях</p>
+              </Card>
+            </AnimatedCard>
+            <AnimatedCard delay={200}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 transition-transform h-full">
+                <Icon name="Map" className="text-primary mb-4" size={32} />
+                <h3 className="text-xl font-bold mb-2">Мир</h3>
+                <p className="text-foreground/70">Карты локаций и описание территорий</p>
+              </Card>
+            </AnimatedCard>
+            <AnimatedCard delay={300}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/5 backdrop-blur border-border/50 hover:scale-105 transition-transform h-full">
+                <Icon name="Sword" className="text-accent mb-4" size={32} />
+                <h3 className="text-xl font-bold mb-2">Механики</h3>
+                <p className="text-foreground/70">Правила и особенности геймплея</p>
+              </Card>
+            </AnimatedCard>
           </div>
         </div>
       </section>
 
       <section id="discord" className="py-20 bg-card/30">
         <div className="container mx-auto px-4">
-          <Card className="p-12 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 backdrop-blur border-primary/30">
-            <div className="text-center space-y-6">
-              <Icon name="MessageCircle" className="text-primary mx-auto" size={64} />
-              <h2 className="text-4xl font-bold">Присоединяйся к Discord</h2>
-              <p className="text-foreground/80 text-lg max-w-2xl mx-auto">
-                Общайся с игроками в реальном времени, участвуй в событиях и получай актуальную информацию
-              </p>
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8">
-                <Icon name="ExternalLink" className="mr-2" size={20} />
-                Открыть Discord
-              </Button>
-            </div>
-          </Card>
+          <AnimatedCard>
+            <Card className="p-12 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 backdrop-blur border-primary/30">
+              <div className="text-center space-y-6">
+                <Icon name="MessageCircle" className="text-primary mx-auto" size={64} />
+                <h2 className="text-4xl font-bold">Присоединяйся к Discord</h2>
+                <p className="text-foreground/80 text-lg max-w-2xl mx-auto">
+                  Общайся с игроками в реальном времени, участвуй в событиях и получай актуальную информацию
+                </p>
+                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8">
+                  <Icon name="ExternalLink" className="mr-2" size={20} />
+                  Открыть Discord
+                </Button>
+              </div>
+            </Card>
+          </AnimatedCard>
         </div>
       </section>
 
@@ -167,51 +184,57 @@ const Index = () => {
             </p>
           </div>
           <div className="max-w-3xl mx-auto space-y-6">
-            <Card className="p-6 bg-card/50 backdrop-blur border-l-4 border-l-primary hover:bg-card/70 transition-all">
-              <div className="flex items-start gap-4">
-                <div className="bg-primary/20 p-3 rounded-lg">
-                  <Icon name="Sparkles" className="text-primary" size={24} />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-xl font-bold">Новый сюжетный квест</h3>
-                    <span className="text-sm text-primary bg-primary/20 px-2 py-1 rounded">Новое</span>
+            <AnimatedCard delay={0}>
+              <Card className="p-6 bg-card/50 backdrop-blur border-l-4 border-l-primary hover:bg-card/70 transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="bg-primary/20 p-3 rounded-lg">
+                    <Icon name="Sparkles" className="text-primary" size={24} />
                   </div>
-                  <p className="text-foreground/70 mb-2">
-                    Открыта новая цепочка заданий "Тайны древних" с уникальными наградами
-                  </p>
-                  <span className="text-sm text-foreground/50">15 октября 2025</span>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-xl font-bold">Новый сюжетный квест</h3>
+                      <span className="text-sm text-primary bg-primary/20 px-2 py-1 rounded">Новое</span>
+                    </div>
+                    <p className="text-foreground/70 mb-2">
+                      Открыта новая цепочка заданий "Тайны древних" с уникальными наградами
+                    </p>
+                    <span className="text-sm text-foreground/50">15 октября 2025</span>
+                  </div>
                 </div>
-              </div>
-            </Card>
-            <Card className="p-6 bg-card/50 backdrop-blur border-l-4 border-l-accent hover:bg-card/70 transition-all">
-              <div className="flex items-start gap-4">
-                <div className="bg-accent/20 p-3 rounded-lg">
-                  <Icon name="Settings" className="text-accent" size={24} />
+              </Card>
+            </AnimatedCard>
+            <AnimatedCard delay={100}>
+              <Card className="p-6 bg-card/50 backdrop-blur border-l-4 border-l-accent hover:bg-card/70 transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="bg-accent/20 p-3 rounded-lg">
+                    <Icon name="Settings" className="text-accent" size={24} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-2">Обновление механик</h3>
+                    <p className="text-foreground/70 mb-2">
+                      Улучшена система прокачки навыков и добавлены новые возможности для персонажей
+                    </p>
+                    <span className="text-sm text-foreground/50">10 октября 2025</span>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">Обновление механик</h3>
-                  <p className="text-foreground/70 mb-2">
-                    Улучшена система прокачки навыков и добавлены новые возможности для персонажей
-                  </p>
-                  <span className="text-sm text-foreground/50">10 октября 2025</span>
+              </Card>
+            </AnimatedCard>
+            <AnimatedCard delay={200}>
+              <Card className="p-6 bg-card/50 backdrop-blur border-l-4 border-l-primary hover:bg-card/70 transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="bg-primary/20 p-3 rounded-lg">
+                    <Icon name="Zap" className="text-primary" size={24} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-2">Оптимизация производительности</h3>
+                    <p className="text-foreground/70 mb-2">
+                      Улучшена стабильность сервера и снижена задержка
+                    </p>
+                    <span className="text-sm text-foreground/50">5 октября 2025</span>
+                  </div>
                 </div>
-              </div>
-            </Card>
-            <Card className="p-6 bg-card/50 backdrop-blur border-l-4 border-l-primary hover:bg-card/70 transition-all">
-              <div className="flex items-start gap-4">
-                <div className="bg-primary/20 p-3 rounded-lg">
-                  <Icon name="Zap" className="text-primary" size={24} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">Оптимизация производительности</h3>
-                  <p className="text-foreground/70 mb-2">
-                    Улучшена стабильность сервера и снижена задержка
-                  </p>
-                  <span className="text-sm text-foreground/50">5 октября 2025</span>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </AnimatedCard>
           </div>
         </div>
       </section>
@@ -233,13 +256,15 @@ const Index = () => {
               { name: "DragonSlayer", role: "Модератор", icon: "Shield" },
               { name: "LunarGuard", role: "Модератор", icon: "Shield" }
             ].map((admin, i) => (
-              <Card key={i} className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all text-center">
+              <AnimatedCard key={i} delay={i * 100}>
+                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all text-center h-full">
                 <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
                   <Icon name={admin.icon as any} className="text-white" size={32} />
                 </div>
                 <h3 className="text-xl font-bold mb-1">{admin.name}</h3>
                 <p className="text-foreground/70 text-sm">{admin.role}</p>
               </Card>
+              </AnimatedCard>
             ))}
           </div>
         </div>
