@@ -7,25 +7,30 @@ import { useEffect, useState } from "react";
 
 const Index = () => {
   const [onlinePlayers, setOnlinePlayers] = useState(0);
-  const targetPlayers = 347;
+  const [serverStatus, setServerStatus] = useState<'loading' | 'online' | 'offline'>('loading');
 
   useEffect(() => {
-    const duration = 2000;
-    const steps = 60;
-    const increment = targetPlayers / steps;
-    let current = 0;
-    
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= targetPlayers) {
-        setOnlinePlayers(targetPlayers);
-        clearInterval(timer);
-      } else {
-        setOnlinePlayers(Math.floor(current));
+    const fetchServerStatus = async () => {
+      try {
+        const response = await fetch('https://functions.poehali.dev/97b19ffd-bf8c-421a-9ae5-ee754557f899');
+        const data = await response.json();
+        
+        if (data.status === 'online') {
+          setOnlinePlayers(data.online);
+          setServerStatus('online');
+        } else {
+          setServerStatus('offline');
+        }
+      } catch (error) {
+        console.error('Failed to fetch server status:', error);
+        setServerStatus('offline');
       }
-    }, duration / steps);
+    };
 
-    return () => clearInterval(timer);
+    fetchServerStatus();
+    const interval = setInterval(fetchServerStatus, 30000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -67,10 +72,26 @@ const Index = () => {
             </p>
             <div className="flex items-center justify-center gap-2 text-lg">
               <div className="flex items-center gap-2 px-4 py-2 bg-card/50 backdrop-blur border border-primary/30 rounded-full">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-foreground/90">
-                  <span className="font-bold text-primary">{onlinePlayers}</span> игроков онлайн
-                </span>
+                {serverStatus === 'loading' && (
+                  <>
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+                    <span className="text-foreground/90">Проверка сервера...</span>
+                  </>
+                )}
+                {serverStatus === 'online' && (
+                  <>
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-foreground/90">
+                      <span className="font-bold text-primary">{onlinePlayers}</span> игроков онлайн
+                    </span>
+                  </>
+                )}
+                {serverStatus === 'offline' && (
+                  <>
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span className="text-foreground/90">Сервер оффлайн</span>
+                  </>
+                )}
               </div>
             </div>
             <div className="flex gap-4 justify-center flex-wrap">
