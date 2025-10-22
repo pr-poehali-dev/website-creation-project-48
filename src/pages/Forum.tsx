@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import AnimatedCard from "@/components/AnimatedCard";
+import MobileMenu from "@/components/MobileMenu";
 
 const Forum = () => {
   return (
@@ -24,9 +25,12 @@ const Forum = () => {
             <a href="/updates" className="text-foreground/80 hover:text-primary transition-colors">Обнова</a>
             <a href="/admin" className="text-foreground/80 hover:text-primary transition-colors">Администрация</a>
           </div>
-          <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-            Играть
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button className="hidden md:block bg-gradient-to-r from-primary to-accent hover:opacity-90">
+              Играть
+            </Button>
+            <MobileMenu currentPath="/forum" />
+          </div>
         </div>
       </nav>
 
