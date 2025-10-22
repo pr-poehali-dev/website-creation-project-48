@@ -99,9 +99,11 @@ const Index = () => {
                 <Icon name="Play" className="mr-2" size={20} />
                 Начать игру
               </Button>
-              <Button size="lg" variant="outline" className="border-primary/50 hover:bg-primary/10 text-lg px-8">
-                <Icon name="Users" className="mr-2" size={20} />
-                Сообщество
+              <Button size="lg" variant="outline" className="border-primary/50 hover:bg-primary/10 text-lg px-8" asChild>
+                <a href="https://t.me/imunns" target="_blank" rel="noopener noreferrer">
+                  <Icon name="Users" className="mr-2" size={20} />
+                  Сообщество
+                </a>
               </Button>
             </div>
           </div>
