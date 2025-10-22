@@ -19,7 +19,7 @@ const Index = () => {
             <a href="#forum" className="text-foreground/80 hover:text-primary transition-colors">Форум</a>
             <a href="#wiki" className="text-foreground/80 hover:text-primary transition-colors">Вики</a>
             <a href="#discord" className="text-foreground/80 hover:text-primary transition-colors">Discord</a>
-            <a href="#updates" className="text-foreground/80 hover:text-primary transition-colors">Обновления</a>
+            <a href="#updates" className="text-foreground/80 hover:text-primary transition-colors">Обнова</a>
             <a href="#admin" className="text-foreground/80 hover:text-primary transition-colors">Администрация</a>
           </div>
           <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
@@ -140,7 +140,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Обновления
+              Обнова
             </h2>
             <p className="text-foreground/70 text-lg">
               Следи за новыми функциями и улучшениями сервера
@@ -245,7 +245,7 @@ const Index = () => {
                 <a href="#forum" className="block text-foreground/70 hover:text-primary transition-colors">Форум</a>
                 <a href="#wiki" className="block text-foreground/70 hover:text-primary transition-colors">Вики</a>
                 <a href="#discord" className="block text-foreground/70 hover:text-primary transition-colors">Discord</a>
-                <a href="#updates" className="block text-foreground/70 hover:text-primary transition-colors">Обновления</a>
+                <a href="#updates" className="block text-foreground/70 hover:text-primary transition-colors">Обнова</a>
               </div>
             </div>
             <div>
