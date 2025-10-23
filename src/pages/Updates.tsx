@@ -6,7 +6,7 @@ import AnimatedCard from "@/components/AnimatedCard";
 
 const Updates = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900/30 via-background to-purple-600/20 animate-gradient relative">
+    <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative">
       <ParticlesBackground />
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
