@@ -7,11 +7,11 @@ import MobileMenu from "@/components/MobileMenu";
 
 const Stats = () => {
   const topPlayers = [
-    { rank: 1, name: "ProGamer2024", playerKills: 2847, mobKills: 45230, deaths: 892, playtime: "520ч 15м" },
-    { rank: 2, name: "MegaWarrior", playerKills: 2156, mobKills: 38940, deaths: 743, playtime: "492ч 40м" },
-    { rank: 3, name: "ShadowHunter", playerKills: 1923, mobKills: 35680, deaths: 658, playtime: "438ч 22м" },
-    { rank: 4, name: "DragonSlayer", playerKills: 1764, mobKills: 32450, deaths: 612, playtime: "408ч 55м" },
-    { rank: 5, name: "NightRider", playerKills: 1598, mobKills: 29870, deaths: 581, playtime: "384ч 18м" },
+    { rank: 1, name: "Artemon228", playerKills: 2847, mobKills: 45230, deaths: 892, playtime: "520ч 15м" },
+    { rank: 2, name: "JloM", playerKills: 2156, mobKills: 38940, deaths: 743, playtime: "492ч 40м" },
+    { rank: 3, name: "Gitilu", playerKills: 1923, mobKills: 35680, deaths: 658, playtime: "438ч 22м" },
+    { rank: 4, name: "demidbrins", playerKills: 1764, mobKills: 32450, deaths: 612, playtime: "408ч 55м" },
+    { rank: 5, name: "den_master", playerKills: 1598, mobKills: 29870, deaths: 581, playtime: "384ч 18м" },
     { rank: 6, name: "StormBringer", playerKills: 1432, mobKills: 27340, deaths: 554, playtime: "354ч 33м" },
     { rank: 7, name: "FireMage", playerKills: 1289, mobKills: 25120, deaths: 523, playtime: "333ч 47м" },
     { rank: 8, name: "IceQueen", playerKills: 1156, mobKills: 22890, deaths: 498, playtime: "317ч 29м" },
