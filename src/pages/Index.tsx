@@ -47,10 +47,10 @@ const Index = () => {
             </span>
           </div>
           <div className="hidden md:flex items-center gap-6">
-            <a href="/forum" className="text-foreground/80 hover:text-primary transition-colors">Форум</a>
-            <a href="/wiki" className="text-foreground/80 hover:text-primary transition-colors">Вики</a>
-            <a href="/updates" className="text-foreground/80 hover:text-primary transition-colors">Обнова</a>
-            <a href="/admin" className="text-foreground/80 hover:text-primary transition-colors">Администрация</a>
+            <a href="/forum" className="font-bold text-purple-300 hover:text-primary transition-colors">Форум</a>
+            <a href="/wiki" className="font-bold text-purple-300 hover:text-primary transition-colors">Вики</a>
+            <a href="/updates" className="font-bold text-purple-300 hover:text-primary transition-colors">Обнова</a>
+            <a href="/admin" className="font-bold text-purple-300 hover:text-primary transition-colors">Администрация</a>
           </div>
           <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
             Играть
