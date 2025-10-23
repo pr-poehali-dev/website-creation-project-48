@@ -51,16 +51,20 @@ const Stats = () => {
 
       <section className="py-20">
         <div className="container mx-auto px-4">
-
+          <div className="text-center mb-12">
+            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Топ игроков
+            </h1>
+            <p className="text-foreground/70 text-lg mb-4">
+              Лучшие игроки сервера по статистике
+            </p>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-full">
+              <Icon name="Calendar" size={16} className="text-primary" />
+              <span className="text-sm text-foreground/70">Обновляется каждую неделю</span>
+            </div>
+          </div>
 
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-3">Топ-10 игроков сервера</h2>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-full">
-                <Icon name="Calendar" size={16} className="text-primary" />
-                <span className="text-sm text-foreground/70">Обновляется каждую неделю</span>
-              </div>
-            </div>
             <div className="space-y-4">
               {topPlayers.map((player, index) => (
                 <AnimatedCard key={index} delay={index * 30}>
