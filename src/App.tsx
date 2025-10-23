@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Forum from "./pages/Forum";
 import Wiki from "./pages/Wiki";
-import Updates from "./pages/Updates";
 import Admin from "./pages/Admin";
 import AdminProfile from "./pages/AdminProfile";
 import NotFound from "./pages/NotFound";
@@ -24,7 +23,6 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/forum" element={<Forum />} />
           <Route path="/wiki" element={<Wiki />} />
-          <Route path="/updates" element={<Updates />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/:username" element={<AdminProfile />} />
           <Route path="*" element={<NotFound />} />
