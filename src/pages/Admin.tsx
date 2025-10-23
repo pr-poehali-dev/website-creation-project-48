@@ -61,8 +61,8 @@ const Admin = () => {
             {[
               { name: "Artemon228", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true, description: "" },
               { name: "JloM", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true, description: "" },
-              { name: "Gitilu", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: false, description: "Поддерживает развитие сервера" },
-              { name: "demidbrins", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: false, description: "Помогает проекту расти" },
+              { name: "Gitilu", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: false, description: "Финансово поддерживает проект, помогая с оплатой хостинга и развитием новых возможностей. Активный игрок и участник сообщества." },
+              { name: "demidbrins", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: false, description: "Вкладывает средства в улучшение сервера и проведение ивентов. Один из первых спонсоров проекта." },
             ].map((member, index) => (
               <AnimatedCard key={index} delay={(index + 1) * 100}>
                 {member.hasProfile ? (
