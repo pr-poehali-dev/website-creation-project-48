@@ -59,10 +59,10 @@ const Admin = () => {
             </AnimatedCard>
 
             {[
-              { name: "Artemon228", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true },
-              { name: "JloM", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true },
-              { name: "Gitilu", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: false },
-              { name: "demidbrins", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: false },
+              { name: "Artemon228", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true, description: "" },
+              { name: "JloM", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true, description: "" },
+              { name: "Gitilu", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: false, description: "Поддерживает развитие сервера" },
+              { name: "demidbrins", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: false, description: "Помогает проекту расти" },
             ].map((member, index) => (
               <AnimatedCard key={index} delay={(index + 1) * 100}>
                 {member.hasProfile ? (
@@ -86,7 +86,10 @@ const Admin = () => {
                       </div>
                       <span className={`px-3 py-1 bg-${member.color}/20 text-${member.color} text-xs font-bold rounded-full mb-2`}>{member.badge}</span>
                       <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                      <p className="text-foreground/70 text-sm">{member.role}</p>
+                      <p className="text-foreground/70 text-sm mb-2">{member.role}</p>
+                      {member.description && (
+                        <p className="text-foreground/60 text-xs italic">{member.description}</p>
+                      )}
                     </div>
                   </Card>
                 )}
