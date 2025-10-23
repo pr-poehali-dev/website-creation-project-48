@@ -210,73 +210,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="updates" className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Обнова
-            </h2>
-            <p className="text-foreground/70 text-lg">
-              Следи за новыми функциями и улучшениями сервера
-            </p>
-          </div>
-          <div className="max-w-3xl mx-auto space-y-6">
-            <AnimatedCard delay={0}>
-              <Card className="p-6 bg-card/50 backdrop-blur border-l-4 border-l-primary hover:bg-card/70 transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary/20 p-3 rounded-lg">
-                    <Icon name="Sparkles" className="text-primary" size={24} />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold">Новый сюжетный квест</h3>
-                      <span className="text-sm text-primary bg-primary/20 px-2 py-1 rounded">Новое</span>
-                    </div>
-                    <p className="text-foreground/70 mb-2">
-                      Открыта новая цепочка заданий "Тайны древних" с уникальными наградами
-                    </p>
-                    <span className="text-sm text-foreground/50">15 октября 2025</span>
-                  </div>
-                </div>
-              </Card>
-            </AnimatedCard>
-            <AnimatedCard delay={100}>
-              <Card className="p-6 bg-card/50 backdrop-blur border-l-4 border-l-accent hover:bg-card/70 transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="bg-accent/20 p-3 rounded-lg">
-                    <Icon name="Settings" className="text-accent" size={24} />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2">Обновление механик</h3>
-                    <p className="text-foreground/70 mb-2">
-                      Улучшена система прокачки навыков и добавлены новые возможности для персонажей
-                    </p>
-                    <span className="text-sm text-foreground/50">10 октября 2025</span>
-                  </div>
-                </div>
-              </Card>
-            </AnimatedCard>
-            <AnimatedCard delay={200}>
-              <Card className="p-6 bg-card/50 backdrop-blur border-l-4 border-l-primary hover:bg-card/70 transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary/20 p-3 rounded-lg">
-                    <Icon name="Zap" className="text-primary" size={24} />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2">Оптимизация производительности</h3>
-                    <p className="text-foreground/70 mb-2">
-                      Улучшена стабильность сервера и снижена задержка
-                    </p>
-                    <span className="text-sm text-foreground/50">5 октября 2025</span>
-                  </div>
-                </div>
-              </Card>
-            </AnimatedCard>
-          </div>
-        </div>
-      </section>
-
-      <section id="admin" className="py-20 bg-card/30">
+      <section id="admin" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -286,23 +220,36 @@ const Index = () => {
               Команда, которая делает сервер лучше каждый день
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-8">
             {[
-              { name: "ShadowMaster", role: "Главный администратор", icon: "Crown" },
-              { name: "MysticWizard", role: "Разработчик квестов", icon: "Wand2" },
-              { name: "DragonSlayer", role: "Модератор", icon: "Shield" },
-              { name: "LunarGuard", role: "Модератор", icon: "Shield" }
-            ].map((admin, i) => (
+              { name: "Artemon228", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", link: "/admin/Artemon228" },
+              { name: "JloM", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", link: "/admin/JloM" },
+              { name: "Gitilu", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", link: "/admin/Gitilu" },
+              { name: "demidbrins", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", link: "/admin/demidbrins" }
+            ].map((member, i) => (
               <AnimatedCard key={i} delay={i * 100}>
-                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all text-center h-full">
-                <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
-                  <Icon name={admin.icon as any} className="text-white" size={32} />
-                </div>
-                <h3 className="text-xl font-bold mb-1">{admin.name}</h3>
-                <p className="text-foreground/70 text-sm">{admin.role}</p>
-              </Card>
+                <a href={member.link}>
+                  <Card className={`p-6 bg-card/50 backdrop-blur border-border/50 hover:border-${member.color}/50 hover:shadow-[0_0_30px_rgba(${member.color === 'primary' ? '168,85,247' : '236,72,153'},0.4)] transition-all text-center h-full cursor-pointer`}>
+                    <div className={`w-20 h-20 mx-auto mb-4 bg-${member.color}/20 rounded-full flex items-center justify-center`}>
+                      <Icon name={member.icon as any} className={`text-${member.color}`} size={36} />
+                    </div>
+                    <span className={`inline-block px-3 py-1 bg-${member.color}/20 text-${member.color} text-xs font-bold rounded-full mb-2`}>
+                      {member.badge}
+                    </span>
+                    <h3 className="text-xl font-bold mb-1">{member.name}</h3>
+                    <p className="text-foreground/70 text-sm">{member.role}</p>
+                  </Card>
+                </a>
               </AnimatedCard>
             ))}
+          </div>
+          <div className="text-center">
+            <a href="/admin">
+              <Button size="lg" variant="outline" className="border-primary/50 hover:bg-primary/10">
+                <Icon name="Users" className="mr-2" size={20} />
+                Вся команда
+              </Button>
+            </a>
           </div>
         </div>
       </section>
