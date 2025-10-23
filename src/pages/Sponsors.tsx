@@ -10,12 +10,7 @@ export default function Sponsors() {
       icon: "Heart",
       badge: "SPONSOR",
       color: "accent",
-      description: "Финансово поддерживает проект, помогая с оплатой хостинга и развитием новых возможностей. Активный игрок и участник сообщества.",
-      contributions: [
-        "Оплата хостинга сервера",
-        "Поддержка новых возможностей",
-        "Активное участие в сообществе"
-      ]
+      description: "Финансово поддерживает проект, помогая с оплатой хостинга и развитием новых возможностей."
     },
     {
       name: "demidbrins",
@@ -23,12 +18,7 @@ export default function Sponsors() {
       icon: "Heart",
       badge: "SPONSOR",
       color: "accent",
-      description: "Вкладывает средства в улучшение сервера и проведение ивентов. Один из первых спонсоров проекта.",
-      contributions: [
-        "Финансирование ивентов",
-        "Улучшение инфраструктуры",
-        "Один из первых спонсоров"
-      ]
+      description: "Вкладывает средства в улучшение сервера и проведение ивентов. Один из первых спонсоров проекта."
     }
   ];
 
@@ -52,36 +42,23 @@ export default function Sponsors() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {sponsors.map((sponsor, index) => (
             <AnimatedCard key={index} delay={(index + 1) * 100}>
-              <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all">
-                <div className="flex flex-col items-center text-center mb-6">
-                  <div className="w-24 h-24 bg-accent/20 rounded-full flex items-center justify-center mb-4 shadow-lg">
-                    <Icon name={sponsor.icon as any} className="text-accent" size={48} />
+              <a href={`/sponsors/${sponsor.name}`}>
+                <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all cursor-pointer">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-24 h-24 bg-accent/20 rounded-full flex items-center justify-center mb-4 shadow-lg">
+                      <Icon name={sponsor.icon as any} className="text-accent" size={48} />
+                    </div>
+                    <span className="px-4 py-1.5 bg-accent/20 text-accent text-sm font-bold rounded-full mb-3">
+                      {sponsor.badge}
+                    </span>
+                    <h2 className="text-2xl font-bold mb-2">{sponsor.name}</h2>
+                    <p className="text-foreground/70 mb-4">{sponsor.role}</p>
+                    <p className="text-foreground/60 text-sm leading-relaxed">
+                      {sponsor.description}
+                    </p>
                   </div>
-                  <span className="px-4 py-1.5 bg-accent/20 text-accent text-sm font-bold rounded-full mb-3">
-                    {sponsor.badge}
-                  </span>
-                  <h2 className="text-2xl font-bold mb-2">{sponsor.name}</h2>
-                  <p className="text-foreground/70 mb-4">{sponsor.role}</p>
-                </div>
-
-                <div className="border-t border-border/50 pt-6">
-                  <p className="text-foreground/80 mb-6 text-center leading-relaxed">
-                    {sponsor.description}
-                  </p>
-                  
-                  <div className="space-y-3">
-                    <h3 className="text-sm font-bold text-accent uppercase tracking-wider text-center mb-4">
-                      Вклад в проект
-                    </h3>
-                    {sponsor.contributions.map((contribution, idx) => (
-                      <div key={idx} className="flex items-center gap-3 bg-accent/10 p-3 rounded-lg">
-                        <Icon name="Check" className="text-accent flex-shrink-0" size={20} />
-                        <span className="text-foreground/80 text-sm">{contribution}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              </a>
             </AnimatedCard>
           ))}
         </div>
