@@ -7,17 +7,20 @@ import MobileMenu from "@/components/MobileMenu";
 
 const Stats = () => {
   const topPlayers = [
-    { rank: 1, name: "ProGamer2024", level: 95, points: 15420, hours: 1250 },
-    { rank: 2, name: "MegaWarrior", level: 92, points: 14890, hours: 1180 },
-    { rank: 3, name: "ShadowHunter", level: 89, points: 13560, hours: 1050 },
-    { rank: 4, name: "DragonSlayer", level: 87, points: 12340, hours: 980 },
-    { rank: 5, name: "NightRider", level: 85, points: 11920, hours: 920 },
-    { rank: 6, name: "StormBringer", level: 82, points: 10850, hours: 850 },
-    { rank: 7, name: "FireMage", level: 80, points: 10230, hours: 800 },
-    { rank: 8, name: "IceQueen", level: 78, points: 9640, hours: 760 },
-    { rank: 9, name: "ThunderGod", level: 76, points: 9120, hours: 720 },
-    { rank: 10, name: "WindWalker", level: 74, points: 8590, hours: 680 },
-  ];
+    { rank: 1, name: "ProGamer2024", playerKills: 2847, mobKills: 45230, deaths: 892, playtime: "520ч 15м" },
+    { rank: 2, name: "MegaWarrior", playerKills: 2156, mobKills: 38940, deaths: 743, playtime: "492ч 40м" },
+    { rank: 3, name: "ShadowHunter", playerKills: 1923, mobKills: 35680, deaths: 658, playtime: "438ч 22м" },
+    { rank: 4, name: "DragonSlayer", playerKills: 1764, mobKills: 32450, deaths: 612, playtime: "408ч 55м" },
+    { rank: 5, name: "NightRider", playerKills: 1598, mobKills: 29870, deaths: 581, playtime: "384ч 18м" },
+    { rank: 6, name: "StormBringer", playerKills: 1432, mobKills: 27340, deaths: 554, playtime: "354ч 33м" },
+    { rank: 7, name: "FireMage", playerKills: 1289, mobKills: 25120, deaths: 523, playtime: "333ч 47м" },
+    { rank: 8, name: "IceQueen", playerKills: 1156, mobKills: 22890, deaths: 498, playtime: "317ч 29м" },
+    { rank: 9, name: "ThunderGod", playerKills: 1045, mobKills: 20650, deaths: 472, playtime: "300ч 14м" },
+    { rank: 10, name: "WindWalker", playerKills: 942, mobKills: 18420, deaths: 448, playtime: "284ч 52м" },
+  ].map(player => ({
+    ...player,
+    kd: (player.playerKills / player.deaths).toFixed(2)
+  }));
 
   const serverStats = [
     { label: "Всего игроков", value: "12,847", icon: "Users", color: "primary" },
@@ -82,50 +85,78 @@ const Stats = () => {
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Топ-10 игроков</h2>
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Топ-10 игроков сервера</h2>
             <div className="space-y-4">
               {topPlayers.map((player, index) => (
                 <AnimatedCard key={index} delay={index * 30}>
                   <Card className={`p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all ${
                     player.rank <= 3 ? 'bg-gradient-to-r from-card/50 to-primary/10' : ''
                   }`}>
-                    <div className="flex items-center gap-6">
-                      <div className={`w-16 h-16 flex items-center justify-center rounded-full font-bold text-2xl ${
-                        player.rank === 1 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-white shadow-lg shadow-yellow-500/50' :
-                        player.rank === 2 ? 'bg-gradient-to-br from-gray-300 to-gray-500 text-white shadow-lg shadow-gray-400/50' :
-                        player.rank === 3 ? 'bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-lg shadow-orange-500/50' :
-                        'bg-primary/20 text-primary'
-                      }`}>
-                        #{player.rank}
+                    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6">
+                      <div className="flex items-center gap-4">
+                        <div className={`w-16 h-16 flex items-center justify-center rounded-full font-bold text-2xl flex-shrink-0 ${
+                          player.rank === 1 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-white shadow-lg shadow-yellow-500/50' :
+                          player.rank === 2 ? 'bg-gradient-to-br from-gray-300 to-gray-500 text-white shadow-lg shadow-gray-400/50' :
+                          player.rank === 3 ? 'bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-lg shadow-orange-500/50' :
+                          'bg-primary/20 text-primary'
+                        }`}>
+                          #{player.rank}
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-xl font-bold mb-1">{player.name}</h3>
+                          <div className="flex items-center gap-2 text-sm text-foreground/60">
+                            <Icon name="Clock" size={14} />
+                            <span>{player.playtime}</span>
+                          </div>
+                        </div>
                       </div>
                       
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold mb-1">{player.name}</h3>
-                        <div className="flex items-center gap-4 text-sm text-foreground/60">
-                          <span className="flex items-center gap-1">
-                            <Icon name="Trophy" size={14} />
-                            Уровень {player.level}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Star" size={14} />
-                            {player.points.toLocaleString()} очков
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={14} />
-                            {player.hours}ч
-                          </span>
+                      <div className="flex-1 w-full lg:w-auto">
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                          <div className="bg-primary/10 rounded-lg p-3 border border-primary/20">
+                            <div className="flex items-center gap-2 mb-1">
+                              <Icon name="Sword" size={14} className="text-primary" />
+                              <span className="text-xs text-foreground/60">Убийств игроков</span>
+                            </div>
+                            <div className="text-lg font-bold">{player.playerKills.toLocaleString()}</div>
+                          </div>
+                          
+                          <div className="bg-accent/10 rounded-lg p-3 border border-accent/20">
+                            <div className="flex items-center gap-2 mb-1">
+                              <Icon name="Target" size={14} className="text-accent" />
+                              <span className="text-xs text-foreground/60">Убийств мобов</span>
+                            </div>
+                            <div className="text-lg font-bold">{player.mobKills.toLocaleString()}</div>
+                          </div>
+                          
+                          <div className="bg-red-500/10 rounded-lg p-3 border border-red-500/20">
+                            <div className="flex items-center gap-2 mb-1">
+                              <Icon name="Skull" size={14} className="text-red-400" />
+                              <span className="text-xs text-foreground/60">Смертей</span>
+                            </div>
+                            <div className="text-lg font-bold">{player.deaths.toLocaleString()}</div>
+                          </div>
+                          
+                          <div className="bg-yellow-500/10 rounded-lg p-3 border border-yellow-500/20">
+                            <div className="flex items-center gap-2 mb-1">
+                              <Icon name="Trophy" size={14} className="text-yellow-400" />
+                              <span className="text-xs text-foreground/60">K/D</span>
+                            </div>
+                            <div className="text-lg font-bold">{player.kd}</div>
+                          </div>
                         </div>
                       </div>
 
                       {player.rank <= 3 && (
                         <Icon 
                           name="Crown" 
-                          className={
+                          className={`flex-shrink-0 ${
                             player.rank === 1 ? 'text-yellow-400' :
                             player.rank === 2 ? 'text-gray-400' :
                             'text-orange-400'
-                          }
+                          }`}
                           size={32}
                         />
                       )}
