@@ -9,6 +9,7 @@ import Forum from "./pages/Forum";
 import Wiki from "./pages/Wiki";
 import Updates from "./pages/Updates";
 import Admin from "./pages/Admin";
+import AdminProfile from "./pages/AdminProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/wiki" element={<Wiki />} />
           <Route path="/updates" element={<Updates />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/:username" element={<AdminProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
