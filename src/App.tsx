@@ -11,8 +11,6 @@ import Stats from "./pages/Stats";
 import Jobs from "./pages/Jobs";
 import Admin from "./pages/Admin";
 import AdminProfile from "./pages/AdminProfile";
-import Sponsors from "./pages/Sponsors";
-import SponsorProfile from "./pages/SponsorProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,8 +29,6 @@ const App = () => (
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/:username" element={<AdminProfile />} />
-          <Route path="/sponsors" element={<Sponsors />} />
-          <Route path="/sponsors/:username" element={<SponsorProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

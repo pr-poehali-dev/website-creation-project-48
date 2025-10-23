@@ -61,8 +61,8 @@ const Admin = () => {
             {[
               { name: "Artemon228", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true, link: `/admin/Artemon228` },
               { name: "JloM", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true, link: `/admin/JloM` },
-              { name: "Gitilu", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: true, link: `/sponsors/Gitilu` },
-              { name: "demidbrins", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: true, link: `/sponsors/demidbrins` },
+              { name: "Gitilu", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: true, link: `/admin/Gitilu` },
+              { name: "demidbrins", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: true, link: `/admin/demidbrins` },
             ].map((member, index) => (
               <AnimatedCard key={index} delay={(index + 1) * 100}>
                 <a href={member.link}>
