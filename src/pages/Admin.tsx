@@ -59,40 +59,24 @@ const Admin = () => {
             </AnimatedCard>
 
             {[
-              { name: "Artemon228", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true, description: "" },
-              { name: "JloM", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true, description: "" },
-              { name: "Gitilu", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: false, description: "Финансово поддерживает проект, помогая с оплатой хостинга и развитием новых возможностей. Активный игрок и участник сообщества." },
-              { name: "demidbrins", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: false, description: "Вкладывает средства в улучшение сервера и проведение ивентов. Один из первых спонсоров проекта." },
+              { name: "Artemon228", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true, link: `/admin/Artemon228` },
+              { name: "JloM", role: "Администратор", icon: "Shield", badge: "ADMIN", color: "primary", hasProfile: true, link: `/admin/JloM` },
+              { name: "Gitilu", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: true, link: `/sponsors` },
+              { name: "demidbrins", role: "Спонсор", icon: "Heart", badge: "SPONSOR", color: "accent", hasProfile: true, link: `/sponsors` },
             ].map((member, index) => (
               <AnimatedCard key={index} delay={(index + 1) * 100}>
-                {member.hasProfile ? (
-                  <a href={`/admin/${member.name}`}>
-                    <Card className={`p-6 bg-card/50 backdrop-blur border-border/50 hover:border-${member.color}/50 hover:shadow-[0_0_30px_rgba(${member.color === 'primary' ? '168,85,247' : '236,72,153'},0.4)] transition-all cursor-pointer`}>
-                      <div className="flex flex-col items-center text-center">
-                        <div className={`w-20 h-20 bg-${member.color}/20 rounded-full flex items-center justify-center mb-4 shadow-lg`}>
-                          <Icon name={member.icon as any} className={`text-${member.color}`} size={36} />
-                        </div>
-                        <span className={`px-3 py-1 bg-${member.color}/20 text-${member.color} text-xs font-bold rounded-full mb-2`}>{member.badge}</span>
-                        <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                        <p className="text-foreground/70 text-sm">{member.role}</p>
-                      </div>
-                    </Card>
-                  </a>
-                ) : (
-                  <Card className={`p-6 bg-card/50 backdrop-blur border-border/50 hover:border-${member.color}/50 hover:shadow-[0_0_30px_rgba(${member.color === 'primary' ? '168,85,247' : '236,72,153'},0.4)] transition-all`}>
+                <a href={member.link}>
+                  <Card className={`p-6 bg-card/50 backdrop-blur border-border/50 hover:border-${member.color}/50 hover:shadow-[0_0_30px_rgba(${member.color === 'primary' ? '168,85,247' : '236,72,153'},0.4)] transition-all cursor-pointer`}>
                     <div className="flex flex-col items-center text-center">
                       <div className={`w-20 h-20 bg-${member.color}/20 rounded-full flex items-center justify-center mb-4 shadow-lg`}>
                         <Icon name={member.icon as any} className={`text-${member.color}`} size={36} />
                       </div>
                       <span className={`px-3 py-1 bg-${member.color}/20 text-${member.color} text-xs font-bold rounded-full mb-2`}>{member.badge}</span>
                       <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                      <p className="text-foreground/70 text-sm mb-2">{member.role}</p>
-                      {member.description && (
-                        <p className="text-foreground/60 text-xs italic">{member.description}</p>
-                      )}
+                      <p className="text-foreground/70 text-sm">{member.role}</p>
                     </div>
                   </Card>
-                )}
+                </a>
               </AnimatedCard>
             ))}
           </div>
