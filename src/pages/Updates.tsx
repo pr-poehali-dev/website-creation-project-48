@@ -77,7 +77,7 @@ const Updates = () => {
             </AnimatedCard>
 
             <AnimatedCard delay={100}>
-              <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all">
+              <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all">
                 <div className="flex items-start gap-4">
                   <div className="w-16 h-16 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Icon name="Wrench" className="text-accent" size={32} />
@@ -107,7 +107,7 @@ const Updates = () => {
             </AnimatedCard>
 
             <AnimatedCard delay={200}>
-              <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all">
+              <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all">
                 <div className="flex items-start gap-4">
                   <div className="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Icon name="Calendar" className="text-primary" size={32} />

@@ -57,14 +57,14 @@ const Wiki = () => {
               </Card>
             </AnimatedCard>
             <AnimatedCard delay={200}>
-              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 transition-transform h-full cursor-pointer">
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full cursor-pointer">
                 <Icon name="MapPin" className="text-primary mb-4" size={32} />
                 <h3 className="text-xl font-bold mb-2">Локации</h3>
                 <p className="text-foreground/70">Карты и описания игровых территорий</p>
               </Card>
             </AnimatedCard>
             <AnimatedCard delay={300}>
-              <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/5 backdrop-blur border-border/50 hover:scale-105 transition-transform h-full cursor-pointer">
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all h-full cursor-pointer">
                 <Icon name="Gamepad2" className="text-accent mb-4" size={32} />
                 <h3 className="text-xl font-bold mb-2">Механики</h3>
                 <p className="text-foreground/70">Правила и особенности геймплея</p>
@@ -82,7 +82,7 @@ const Wiki = () => {
                 { icon: "Crown", title: "Легендарные персонажи сервера", category: "Персонажи" },
               ].map((article, index) => (
                 <AnimatedCard key={index} delay={index * 50}>
-                  <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all cursor-pointer">
+                  <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                         <Icon name={article.icon as any} className="text-primary" size={24} />

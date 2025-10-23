@@ -63,7 +63,7 @@ const Admin = () => {
               { name: "HelperName1", role: "Хелпер", icon: "HelpCircle" },
             ].map((admin, index) => (
               <AnimatedCard key={index} delay={(index + 1) * 50}>
-                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all">
+                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all">
                   <div className="flex flex-col items-center text-center">
                     <div className="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mb-4">
                       <Icon name={admin.icon as any} className="text-accent" size={32} />
@@ -80,7 +80,7 @@ const Admin = () => {
             <h2 className="text-3xl font-bold mb-8 text-center">Связаться с администрацией</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <AnimatedCard delay={0}>
-                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all cursor-pointer">
+                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Icon name="MessageSquare" className="text-primary" size={24} />
@@ -93,7 +93,7 @@ const Admin = () => {
                 </Card>
               </AnimatedCard>
               <AnimatedCard delay={100}>
-                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all cursor-pointer">
+                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Icon name="Mail" className="text-accent" size={24} />

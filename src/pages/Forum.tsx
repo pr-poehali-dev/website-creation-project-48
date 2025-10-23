@@ -86,7 +86,7 @@ const Forum = () => {
               { title: "Поиск гильдии для рейдов", author: "NewPlayer", replies: 12, views: 340 },
             ].map((topic, index) => (
               <AnimatedCard key={index} delay={index * 50}>
-                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all cursor-pointer">
+                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold mb-2 hover:text-primary transition-colors">{topic.title}</h3>
