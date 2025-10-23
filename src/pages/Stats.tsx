@@ -22,13 +22,6 @@ const Stats = () => {
     kd: (player.playerKills / player.deaths).toFixed(2)
   }));
 
-  const serverStats = [
-    { label: "Всего игроков", value: "12,847", icon: "Users", color: "primary" },
-    { label: "Активных сегодня", value: "3,421", icon: "Activity", color: "accent" },
-    { label: "Квестов завершено", value: "45,829", icon: "CheckCircle", color: "primary" },
-    { label: "Часов наиграно", value: "287,942", icon: "Clock", color: "accent" },
-  ];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative">
       <ParticlesBackground />
@@ -58,32 +51,7 @@ const Stats = () => {
 
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Статистика сервера
-            </h1>
-            <p className="text-foreground/70 text-lg">
-              Рейтинги игроков и достижения сообщества
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {serverStats.map((stat, index) => (
-              <AnimatedCard key={index} delay={index * 50}>
-                <Card className={`p-6 bg-card/50 backdrop-blur border-border/50 hover:border-${stat.color}/50 hover:shadow-[0_0_30px_rgba(${stat.color === 'primary' ? '168,85,247' : '236,72,153'},0.4)] transition-all`}>
-                  <div className="flex items-center gap-4">
-                    <div className={`w-14 h-14 bg-${stat.color}/20 rounded-full flex items-center justify-center`}>
-                      <Icon name={stat.icon as any} className={`text-${stat.color}`} size={28} />
-                    </div>
-                    <div>
-                      <div className="text-3xl font-bold">{stat.value}</div>
-                      <div className="text-foreground/60 text-sm">{stat.label}</div>
-                    </div>
-                  </div>
-                </Card>
-              </AnimatedCard>
-            ))}
-          </div>
 
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-8">
