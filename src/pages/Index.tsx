@@ -52,6 +52,7 @@ const Index = () => {
             <a href="/stats" className="font-bold text-purple-300 hover:text-primary transition-colors">Топ игроков</a>
             <a href="/jobs" className="font-bold text-purple-300 hover:text-primary transition-colors">Работа</a>
             <a href="/admin" className="font-bold text-purple-300 hover:text-primary transition-colors">Администрация</a>
+            <a href="/rules" className="font-bold text-purple-300 hover:text-primary transition-colors">Правила</a>
           </div>
           <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
             Играть

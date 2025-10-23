@@ -11,6 +11,7 @@ import Stats from "./pages/Stats";
 import Jobs from "./pages/Jobs";
 import Admin from "./pages/Admin";
 import AdminProfile from "./pages/AdminProfile";
+import Rules from "./pages/Rules";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/:username" element={<AdminProfile />} />
+          <Route path="/rules" element={<Rules />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
