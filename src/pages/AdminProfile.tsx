@@ -29,15 +29,15 @@ const adminsData: Record<string, AdminData> = {
     icon: "Crown",
     color: "primary",
     stats: [
-      { label: "На сервере с", value: "2020 года", icon: "Calendar" },
-      { label: "Онлайн часов", value: "10000+", icon: "Clock" },
-      { label: "Создано контента", value: "500+", icon: "FileText" },
+      { label: "На сервере с", value: "2025 года", icon: "Calendar" },
+      { label: "Discord", value: "@den_master", icon: "MessageCircle" },
+      { label: "Telegram", value: "@denmaster_rp", icon: "Send" },
     ],
     achievements: [
-      "Создал сервер с нуля",
-      "Развил активное комьюнити 1000+ игроков",
-      "Организовал 50+ крупных ивентов",
-      "Внедрил уникальные игровые механики",
+      "Discord: @den_master",
+      "Telegram: @denmaster_rp",
+      "VK: vk.com/denmaster",
+      "Email: den@imunns.ru",
     ],
   },
   Artemon228: {
@@ -210,8 +210,8 @@ const AdminProfile = () => {
           <AnimatedCard delay={250}>
             <Card className="p-8 bg-card/50 backdrop-blur border-border/50">
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <Icon name="Trophy" className="text-accent" size={28} />
-                Достижения
+                <Icon name={adminData.name === "den_master" ? "MessageSquare" : "Trophy"} className="text-accent" size={28} />
+                {adminData.name === "den_master" ? "Связь" : "Достижения"}
               </h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {adminData.achievements.map((achievement, index) => (
