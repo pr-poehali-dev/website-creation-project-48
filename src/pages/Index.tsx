@@ -279,7 +279,7 @@ const Index = () => {
             <div>
               <h4 className="font-bold mb-4">Контакты</h4>
               <div className="space-y-2">
-                <p className="text-foreground/70">Email: admin@imunns.ru</p>
+                <p className="text-foreground/70">Email: imunns@yandex.ru</p>
                 <p className="text-foreground/70">Discord: imunns.gg</p>
               </div>
             </div>
