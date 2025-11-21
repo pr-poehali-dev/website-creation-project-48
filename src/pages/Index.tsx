@@ -158,28 +158,28 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <AnimatedCard delay={0}>
-              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full cursor-pointer" onClick={() => window.open('https://wiki.example.com/quests', '_blank')}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full">
                 <Icon name="Book" className="text-primary mb-4" size={32} />
                 <h3 className="text-xl font-bold mb-2">Квесты</h3>
                 <p className="text-foreground/70">Гайды по прохождению сюжетных заданий</p>
               </Card>
             </AnimatedCard>
             <AnimatedCard delay={100}>
-              <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all h-full cursor-pointer" onClick={() => window.open('https://wiki.example.com/characters', '_blank')}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all h-full">
                 <Icon name="Users" className="text-accent mb-4" size={32} />
                 <h3 className="text-xl font-bold mb-2">Персонажи</h3>
                 <p className="text-foreground/70">Информация о героях и их историях</p>
               </Card>
             </AnimatedCard>
             <AnimatedCard delay={200}>
-              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full cursor-pointer" onClick={() => window.open('https://wiki.example.com/world', '_blank')}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full">
                 <Icon name="Map" className="text-primary mb-4" size={32} />
                 <h3 className="text-xl font-bold mb-2">Мир</h3>
                 <p className="text-foreground/70">Карты локаций и описание территорий</p>
               </Card>
             </AnimatedCard>
             <AnimatedCard delay={300}>
-              <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all h-full cursor-pointer" onClick={() => window.open('https://wiki.example.com/mechanics', '_blank')}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all h-full">
                 <Icon name="Sword" className="text-accent mb-4" size={32} />
                 <h3 className="text-xl font-bold mb-2">Механики</h3>
                 <p className="text-foreground/70">Правила и особенности геймплея</p>
