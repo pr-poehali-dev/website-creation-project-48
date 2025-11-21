@@ -165,41 +165,6 @@ const AdminProfile = () => {
             Назад к команде
           </Button>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button 
-              variant="outline" 
-              className="bg-gradient-to-r from-blue-500/20 to-blue-600/20 border-blue-500/50 hover:bg-blue-500/30"
-              onClick={() => window.open('https://discord.gg/server1', '_blank')}
-            >
-              <Icon name="Server" className="mr-2" size={18} />
-              Сервер #1
-            </Button>
-            <Button 
-              variant="outline" 
-              className="bg-gradient-to-r from-green-500/20 to-green-600/20 border-green-500/50 hover:bg-green-500/30"
-              onClick={() => window.open('https://discord.gg/server2', '_blank')}
-            >
-              <Icon name="Server" className="mr-2" size={18} />
-              Сервер #2
-            </Button>
-            <Button 
-              variant="outline" 
-              className="bg-gradient-to-r from-orange-500/20 to-orange-600/20 border-orange-500/50 hover:bg-orange-500/30"
-              onClick={() => window.open('https://discord.gg/server3', '_blank')}
-            >
-              <Icon name="Server" className="mr-2" size={18} />
-              Сервер #3
-            </Button>
-            <Button 
-              variant="outline" 
-              className="bg-gradient-to-r from-red-500/20 to-red-600/20 border-red-500/50 hover:bg-red-500/30"
-              onClick={() => window.open('https://discord.gg/server4', '_blank')}
-            >
-              <Icon name="Server" className="mr-2" size={18} />
-              Сервер #4
-            </Button>
-          </div>
-
           <AnimatedCard delay={0}>
             <Card className="p-8 md:p-12 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-primary/30 shadow-[0_0_40px_rgba(168,85,247,0.3)] mb-8">
               <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
