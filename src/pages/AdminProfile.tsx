@@ -169,6 +169,7 @@ const AdminProfile = () => {
             <Button 
               variant="outline" 
               className="bg-gradient-to-r from-blue-500/20 to-blue-600/20 border-blue-500/50 hover:bg-blue-500/30"
+              onClick={() => window.open('https://discord.gg/server1', '_blank')}
             >
               <Icon name="Server" className="mr-2" size={18} />
               Сервер #1
@@ -176,6 +177,7 @@ const AdminProfile = () => {
             <Button 
               variant="outline" 
               className="bg-gradient-to-r from-green-500/20 to-green-600/20 border-green-500/50 hover:bg-green-500/30"
+              onClick={() => window.open('https://discord.gg/server2', '_blank')}
             >
               <Icon name="Server" className="mr-2" size={18} />
               Сервер #2
@@ -183,6 +185,7 @@ const AdminProfile = () => {
             <Button 
               variant="outline" 
               className="bg-gradient-to-r from-orange-500/20 to-orange-600/20 border-orange-500/50 hover:bg-orange-500/30"
+              onClick={() => window.open('https://discord.gg/server3', '_blank')}
             >
               <Icon name="Server" className="mr-2" size={18} />
               Сервер #3
@@ -190,6 +193,7 @@ const AdminProfile = () => {
             <Button 
               variant="outline" 
               className="bg-gradient-to-r from-red-500/20 to-red-600/20 border-red-500/50 hover:bg-red-500/30"
+              onClick={() => window.open('https://discord.gg/server4', '_blank')}
             >
               <Icon name="Server" className="mr-2" size={18} />
               Сервер #4
