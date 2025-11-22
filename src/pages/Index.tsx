@@ -53,8 +53,8 @@ const Index = () => {
             <a href="/admin" className="font-bold text-purple-300 hover:text-primary transition-colors">Администрация</a>
             <a href="/rules" className="font-bold text-purple-300 hover:text-primary transition-colors">Правила</a>
           </div>
-          <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-            Играть
+          <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90" onClick={() => window.location.href = '/login'}>
+            Вход
           </Button>
         </div>
       </nav>
@@ -95,9 +95,9 @@ const Index = () => {
               </div>
             </div>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8">
-                <Icon name="Play" className="mr-2" size={20} />
-                Начать игру
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8" onClick={() => window.location.href = '/login'}>
+                <Icon name="LogIn" className="mr-2" size={20} />
+                Вход
               </Button>
               <Button size="lg" variant="outline" className="border-primary/50 hover:bg-primary/10 text-lg px-8" asChild>
                 <a href="https://t.me/imunns" target="_blank" rel="noopener noreferrer">

@@ -1,0 +1,36 @@
+{
+  "tests": [
+    {
+      "name": "Register new user successfully",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "username": "testuser",
+        "email": "test@example.com",
+        "password": "password123"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "message": "string",
+        "user_id": "number",
+        "username": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Reject registration with short password",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "username": "testuser2",
+        "email": "test2@example.com",
+        "password": "123"
+      },
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
