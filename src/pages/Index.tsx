@@ -59,9 +59,9 @@ const Index = () => {
         </div>
       </nav>
 
-      <section className="relative py-32 overflow-hidden bg-gradient-to-br from-purple-700 via-purple-800 to-purple-900">
-        <div className="absolute inset-0 bg-[url('https://cdn.poehali.dev/files/dcf1cba3-9e07-46fe-b42b-0c4da2f135f9.jpg')] bg-contain bg-no-repeat bg-[center_top_20%] opacity-50"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background"></div>
+      <section className="relative py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://cdn.poehali.dev/files/dcf1cba3-9e07-46fe-b42b-0c4da2f135f9.jpg')] bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center space-y-6 max-w-4xl mx-auto">
             <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-pulse">
