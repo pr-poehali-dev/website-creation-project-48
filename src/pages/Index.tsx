@@ -59,7 +59,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section className="relative py-32 overflow-hidden bg-purple-700">
+      <section className="relative py-32 overflow-hidden bg-gradient-to-br from-purple-700 via-purple-800 to-purple-900">
         <div className="absolute inset-0 bg-[url('https://cdn.poehali.dev/files/dcf1cba3-9e07-46fe-b42b-0c4da2f135f9.jpg')] bg-contain bg-no-repeat bg-[center_top_20%] opacity-50"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background"></div>
         <div className="container mx-auto px-4 relative z-10">
