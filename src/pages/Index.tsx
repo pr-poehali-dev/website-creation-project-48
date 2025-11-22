@@ -39,9 +39,11 @@ const Index = () => {
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-              <Icon name="Sparkles" className="text-white" size={24} />
-            </div>
+            <img 
+              src="https://cdn.poehali.dev/files/86dae784-6703-4fe7-a13f-5b81a21139c1.jpg" 
+              alt="Imunns RolePlay Logo" 
+              className="w-10 h-10 rounded-lg object-cover"
+            />
             <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Imunns RolePlay
             </span>
