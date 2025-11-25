@@ -158,55 +158,91 @@ const Index = () => {
               </TooltipProvider>
             </AnimatedCard>
             <AnimatedCard delay={100}>
-              <Card 
-                className="p-6 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all h-full cursor-pointer"
-                onClick={() => window.location.href = '/login'}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <Icon name="Server" className="text-accent" size={32} />
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                </div>
-                <h3 className="text-2xl font-bold mb-2">ISWAR</h3>
-                <p className="text-foreground/70 mb-4">PvP арена и турниры</p>
-                <div className="flex items-center gap-2 text-sm">
-                  <Icon name="Users" size={16} className="text-accent" />
-                  <span className="text-foreground/80">Онлайн: 189</span>
-                </div>
-              </Card>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Card 
+                      className="p-6 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all h-full cursor-pointer"
+                      onClick={() => window.location.href = '/login'}
+                    >
+                      <div className="flex items-center justify-between mb-4">
+                        <Icon name="Server" className="text-accent" size={32} />
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      </div>
+                      <h3 className="text-2xl font-bold mb-2">ISWAR</h3>
+                      <p className="text-foreground/70 mb-4">PvP арена и турниры</p>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Icon name="Users" size={16} className="text-accent" />
+                        <span className="text-foreground/80">Онлайн: 189</span>
+                      </div>
+                    </Card>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="max-w-xs bg-card/95 backdrop-blur border-accent/50 shadow-[0_0_20px_rgba(236,72,153,0.4)]">
+                    <p className="font-semibold mb-1">⚔️ PvP Сервер</p>
+                    <p className="text-sm text-foreground/80">IP: pvp.imunns.ru</p>
+                    <p className="text-sm text-foreground/80">Версия: 1.20.1</p>
+                    <p className="text-sm text-foreground/80">Режим: PvP Arena</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </AnimatedCard>
             <AnimatedCard delay={200}>
-              <Card 
-                className="p-6 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] transition-all h-full cursor-pointer"
-                onClick={() => window.location.href = '/login'}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <Icon name="Server" className="text-primary" size={32} />
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                </div>
-                <h3 className="text-2xl font-bold mb-2">Сервер #3</h3>
-                <p className="text-foreground/70 mb-4">Ролевой сервер</p>
-                <div className="flex items-center gap-2 text-sm">
-                  <Icon name="Users" size={16} className="text-primary" />
-                  <span className="text-foreground/80">Онлайн: 156</span>
-                </div>
-              </Card>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Card 
+                      className="p-6 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] transition-all h-full cursor-pointer"
+                      onClick={() => window.location.href = '/login'}
+                    >
+                      <div className="flex items-center justify-between mb-4">
+                        <Icon name="Server" className="text-primary" size={32} />
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      </div>
+                      <h3 className="text-2xl font-bold mb-2">Сервер #3</h3>
+                      <p className="text-foreground/70 mb-4">Ролевой сервер</p>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Icon name="Users" size={16} className="text-primary" />
+                        <span className="text-foreground/80">Онлайн: 156</span>
+                      </div>
+                    </Card>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="max-w-xs bg-card/95 backdrop-blur border-primary/50 shadow-[0_0_20px_rgba(168,85,247,0.4)]">
+                    <p className="font-semibold mb-1">🎭 Ролевой Сервер</p>
+                    <p className="text-sm text-foreground/80">IP: rp.imunns.ru</p>
+                    <p className="text-sm text-foreground/80">Версия: 1.19.4</p>
+                    <p className="text-sm text-foreground/80">Режим: Hardcore RP</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </AnimatedCard>
             <AnimatedCard delay={300}>
-              <Card 
-                className="p-6 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all h-full cursor-pointer"
-                onClick={() => window.location.href = '/login'}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <Icon name="Server" className="text-accent" size={32} />
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
-                </div>
-                <h3 className="text-2xl font-bold mb-2">Сервер #4</h3>
-                <p className="text-foreground/70 mb-4">Тестовый сервер</p>
-                <div className="flex items-center gap-2 text-sm">
-                  <Icon name="Users" size={16} className="text-accent" />
-                  <span className="text-foreground/80">Онлайн: 43</span>
-                </div>
-              </Card>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Card 
+                      className="p-6 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all h-full cursor-pointer"
+                      onClick={() => window.location.href = '/login'}
+                    >
+                      <div className="flex items-center justify-between mb-4">
+                        <Icon name="Server" className="text-accent" size={32} />
+                        <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+                      </div>
+                      <h3 className="text-2xl font-bold mb-2">Сервер #4</h3>
+                      <p className="text-foreground/70 mb-4">Тестовый сервер</p>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Icon name="Users" size={16} className="text-accent" />
+                        <span className="text-foreground/80">Онлайн: 43</span>
+                      </div>
+                    </Card>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="max-w-xs bg-card/95 backdrop-blur border-accent/50 shadow-[0_0_20px_rgba(236,72,153,0.4)]">
+                    <p className="font-semibold mb-1">🧪 Тестовый Сервер</p>
+                    <p className="text-sm text-foreground/80">IP: test.imunns.ru</p>
+                    <p className="text-sm text-foreground/80">Версия: 1.21-snapshot</p>
+                    <p className="text-sm text-foreground/80">Режим: Experimental</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </AnimatedCard>
           </div>
           <div className="text-center mb-12">
