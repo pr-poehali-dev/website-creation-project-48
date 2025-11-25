@@ -30,7 +30,7 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
   return (
     <Card className="p-8 bg-card/80 backdrop-blur border-primary/20 shadow-2xl">
       <div className="flex flex-col md:flex-row gap-8 items-start">
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-3">
           <div className="relative group cursor-pointer" onClick={onEditAvatar}>
             <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary shadow-lg group-hover:scale-105 transition-transform">
               <img src={user.avatar} alt={user.username} className="w-full h-full object-cover" />
@@ -39,10 +39,32 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
               <Icon name="Camera" size={32} className="text-white" />
             </div>
           </div>
-          <Button onClick={onEditAvatar} variant="outline" className="w-full">
-            <Icon name="Camera" size={16} className="mr-2" />
-            Изменить аватар
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              onClick={onEditAvatar} 
+              variant="ghost" 
+              size="icon"
+              className="h-8 w-8 hover:bg-primary/10"
+            >
+              <Icon name="Camera" size={16} />
+            </Button>
+            <Button 
+              onClick={onShowSettings} 
+              variant="ghost" 
+              size="icon"
+              className="h-8 w-8 hover:bg-primary/10"
+            >
+              <Icon name="Settings" size={16} />
+            </Button>
+            <Button 
+              onClick={onDeleteProfile} 
+              variant="ghost" 
+              size="icon"
+              className="h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10"
+            >
+              <Icon name="Trash2" size={16} />
+            </Button>
+          </div>
         </div>
 
         <div className="flex-1 space-y-6">
@@ -52,22 +74,6 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
               <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-semibold">
                 ID: {user.userId}
               </span>
-              <Button 
-                onClick={onShowSettings} 
-                variant="ghost" 
-                size="icon"
-                className="h-8 w-8 hover:bg-primary/10"
-              >
-                <Icon name="Settings" size={16} />
-              </Button>
-              <Button 
-                onClick={onDeleteProfile} 
-                variant="ghost" 
-                size="icon"
-                className="h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10"
-              >
-                <Icon name="Trash2" size={16} />
-              </Button>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Icon name="Calendar" size={16} />
