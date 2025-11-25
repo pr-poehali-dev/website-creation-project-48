@@ -88,10 +88,22 @@ const Profile = () => {
   };
 
   const handleServerChange = (serverNum: number) => {
-    // Звуковой эффект
-    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZUQ4NVKzo7aVXEwxKpOPxv2whBzKJ0vPThTQHImvA7eacTxANUqvm7aVXEgxIot/ut2MdBjaO1vLMeSgGI3fG7dmNPwkVXrPq7KdUEwtGoN/xt2QdBzaP1fPOeiYGJHnG7NqPQQoVXbTp66pVFAtGoN/xs2MeBjaP1fPOficHJHnG7NqQQQoVXrTp66hWFQtFoN/xsmEbBzaQ1fPOfygGJHrF7duRQwoVX7Pp7KlWEgtFoN/ysmIcBjaQ1vPPfykFJHzF7dyRRAoVYLPq66hWEgtGoODysmEbBjiQ1fPQgCkGI3vF7dyRRAkVYbPq66hWEgtGoODys2EbBjiQ1vPQfykFI3zF7t2SRAoVYLTq66hWEgtGoODys2EbBziR1fPRfykGI3zF7t2SRQoWYLTq7KlXEwtGoODytGIcBziR1fPRfysFJH3F7N6TSAoWX7Xq7KlXEgtFn+DytGIcBzmR1vPRgCsFJH3E7d6USAoWYLXp7KpYFAxFn+DytWMdBzmS1vPSgCwGJH7E7d+USQsWYLXp7KpYFAxFn+DytWMdBzmS1vPSgSwGJH/E7eCVSgsWYLbq7KtYEwtGn+HzsmQeBjmT1vPSgSwGI4DE7eCVSgsWYLbq7KtZEwtFn+HzsmQeBzmT1vPSgCwGI4HE7eGVSwsWYLbq7KpZEgtFn+HzsmUfBzmT1vPTgCwGJIHE7eGWSgsWX7fq7apZEgtFn+HztGUeBjqT1vPTfy0FJIHE7eGWSgsWX7fq7atZEwtGn+HztGUeBjqT1/PTfy0FJIHE7eKXSwsWX7fq7atZEwtGn+HztGYfBzqU1/PTgC0FJYHf7+OWSgsWX7fq7axaEgtGoOH0tWYfBzqU1/PUgC0FJYHf7+OWSgsWYLjq7axaEgtGoOH0tWYfBzqU1/PUgS4FJYLf7+SXSwsWYLjq7axaEwtGoOH0tmYfBzqU2PPUgS4FJYLf8OSYSwsWYLjq7q1aEwtGoOL0tmYgBzqV2PPUgi4FJYLf8OSYTAsWYLnq7q1aEwtHoeL0t2YgBzqV2PPVgi4FJYPf8OSYTAsWYLnq7q1bEwtHoeL0t2YgBzqV2PPVgi8GJYPf8OSYTAsWYLnq7q1bEwtHoeL0uGYgBzqV2PPVgi8GJYPf8OWYTAsWYLnq7q1cFAtHoeL0uGYhBzqW2PPVgi8GJYPf8OWYTAsWYLrq7q1cFAtHoeP0uGYhBzqW2PPWgi8GJYPf8OWYTAsWYLrq7q1cFAtIouP0uGYhBzqW2PPWgi8GJYTf8OWYTQsWYLrq7q1cFAtIouP0uWchBzqW2PPWgjAGJYTf8OWZTQsWYLrq761cFAtIouP0uWchBzqW2PPWgjAGJYTf8OWZTQsWYLvq761dFQtIouP0umciB0CX2PPWgjAGJYXf8OaZTQsWYLvq761dFQtJo+P0umciB0CX2PPWgjAHJYXf8OaZTQsWYLvq761dFQtJo+P0umciB0CY2PPXgjAHJYXf8OaZTgsWYLzq761dFQtJo+P0u2ciB0CY2PPXgjAHJYXf8OaaUAsWYbzq761eFgtKpOP0u2ciB0CY2PPXgjAHJYbf8OaaUAsWYbzq8K1eFgtKpOP0vGciB0CY2PPXgzAHJYbf8OaaUAsWYbzq8K1eFgtKpOP0vGciB0CZ2PPXgzAHJYbf8OaaUAsWYb3q8K1fFgtKpOP0vGgiB0CZ2PPXgzAHJYff8OaaUQsWYb3q8K1fFgtKpOP0vGgiB0CZ2PPYgzAHJ... [truncated]
-    audio.volume = 0.3;
-    audio.play().catch(() => {}); // Игнорируем ошибки если браузер блокирует автовоспроизведение
+    // Звуковой эффект (короткий клик)
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.value = 800;
+    oscillator.type = 'sine';
+    
+    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.1);
     
     setSelectedServer(serverNum);
     localStorage.setItem('selectedServer', serverNum.toString());
