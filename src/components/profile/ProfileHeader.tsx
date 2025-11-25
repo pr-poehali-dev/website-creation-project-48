@@ -29,7 +29,6 @@ const ProfileHeader = ({ showServerNotification, serverNotificationText }: Profi
           <div className="hidden md:flex items-center gap-6">
             <a href="/profile" className="text-primary font-bold transition-colors">Профиль</a>
             <a href="/forum" className="font-bold text-purple-300 hover:text-primary transition-colors">Форум</a>
-            <a href="/assistant" className="font-bold text-purple-300 hover:text-primary transition-colors">Ассистент</a>
           </div>
         </div>
       </nav>
