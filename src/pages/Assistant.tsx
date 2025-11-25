@@ -2,26 +2,54 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface Message {
   id: string;
   type: 'user' | 'assistant';
   content: string;
-  timestamp: Date;
+  timestamp: string;
 }
 
+const STORAGE_KEY = 'ai_assistant_chat_history';
+
 const Assistant = () => {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      type: 'assistant',
-      content: 'Привет! 👋 Я ИИ-помощник сервера Imunns RolePlay. Задавай любые вопросы о сервере, правилах или игровых механиках!',
-      timestamp: new Date()
+  const [messages, setMessages] = useState<Message[]>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return [
+          {
+            id: '1',
+            type: 'assistant',
+            content: 'Привет! 👋 Я ИИ-помощник сервера Imunns RolePlay. Задавай любые вопросы о сервере, правилах или игровых механиках!',
+            timestamp: new Date().toISOString()
+          }
+        ];
+      }
     }
-  ]);
+    return [
+      {
+        id: '1',
+        type: 'assistant',
+        content: 'Привет! 👋 Я ИИ-помощник сервера Imunns RolePlay. Задавай любые вопросы о сервере, правилах или игровых механиках!',
+        timestamp: new Date().toISOString()
+      }
+    ];
+  });
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+  }, [messages]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   const handleSend = async () => {
     if (!input.trim() || loading) return;
@@ -30,7 +58,7 @@ const Assistant = () => {
       id: Date.now().toString(),
       type: 'user',
       content: input,
-      timestamp: new Date()
+      timestamp: new Date().toISOString()
     };
 
     setMessages(prev => [...prev, userMessage]);
@@ -53,7 +81,7 @@ const Assistant = () => {
           id: (Date.now() + 1).toString(),
           type: 'assistant',
           content: data.answer,
-          timestamp: new Date()
+          timestamp: new Date().toISOString()
         };
         setMessages(prev => [...prev, assistantMessage]);
       } else {
@@ -61,7 +89,7 @@ const Assistant = () => {
           id: (Date.now() + 1).toString(),
           type: 'assistant',
           content: `Ошибка: ${data.error || 'Не удалось получить ответ'}`,
-          timestamp: new Date()
+          timestamp: new Date().toISOString()
         };
         setMessages(prev => [...prev, errorMessage]);
       }
@@ -70,11 +98,24 @@ const Assistant = () => {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
         content: 'Произошла ошибка при отправке запроса. Попробуйте позже.',
-        timestamp: new Date()
+        timestamp: new Date().toISOString()
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleClearHistory = () => {
+    const confirmClear = window.confirm('Вы уверены, что хотите очистить историю чата?');
+    if (confirmClear) {
+      const initialMessage: Message = {
+        id: '1',
+        type: 'assistant',
+        content: 'Привет! 👋 Я ИИ-помощник сервера Imunns RolePlay. Задавай любые вопросы о сервере, правилах или игровых механиках!',
+        timestamp: new Date().toISOString()
+      };
+      setMessages([initialMessage]);
     }
   };
 
@@ -125,13 +166,23 @@ const Assistant = () => {
 
       <section className="py-8 min-h-[calc(100vh-80px)]">
         <div className="container mx-auto px-4 max-w-5xl h-full">
-          <div className="mb-6">
-            <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              ИИ Помощник
-            </h1>
-            <p className="text-foreground/70 text-lg">
-              Задавайте вопросы и получайте мгновенные ответы
-            </p>
+          <div className="mb-6 flex items-center justify-between">
+            <div>
+              <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                ИИ Помощник
+              </h1>
+              <p className="text-foreground/70 text-lg">
+                Задавайте вопросы и получайте мгновенные ответы
+              </p>
+            </div>
+            <Button
+              variant="outline"
+              className="border-destructive/50 hover:bg-destructive/10"
+              onClick={handleClearHistory}
+            >
+              <Icon name="Trash2" className="mr-2" size={18} />
+              Очистить историю
+            </Button>
           </div>
 
           <div className="grid lg:grid-cols-4 gap-6 h-[calc(100vh-280px)]">
@@ -157,7 +208,7 @@ const Assistant = () => {
                       >
                         <p className="whitespace-pre-wrap">{message.content}</p>
                         <p className="text-xs mt-2 opacity-60">
-                          {message.timestamp.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}
+                          {new Date(message.timestamp).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}
                         </p>
                       </div>
                       {message.type === 'user' && (
@@ -181,6 +232,7 @@ const Assistant = () => {
                       </div>
                     </div>
                   )}
+                  <div ref={messagesEndRef} />
                 </div>
 
                 <div className="flex gap-2 border-t border-border/50 pt-4">
