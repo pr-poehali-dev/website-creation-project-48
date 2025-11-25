@@ -7,30 +7,30 @@
     --background: 270 60% 8%;
     --foreground: 280 20% 98%;
 
-    --card: 270 50% 12%;
+    --card: 270 50% 15%;
     --card-foreground: 280 20% 98%;
 
-    --popover: 270 50% 12%;
+    --popover: 270 50% 15%;
     --popover-foreground: 280 20% 98%;
 
-    --primary: 280 100% 70%;
+    --primary: 268 85% 66%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 270 50% 20%;
+    --secondary: 270 50% 25%;
     --secondary-foreground: 280 20% 98%;
 
-    --muted: 270 40% 18%;
-    --muted-foreground: 280 10% 80%;
+    --muted: 270 40% 20%;
+    --muted-foreground: 280 10% 85%;
 
-    --accent: 285 100% 75%;
+    --accent: 332 72% 65%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 270 60% 35%;
-    --input: 270 60% 35%;
-    --ring: 280 100% 70%;
+    --border: 270 50% 30%;
+    --input: 270 50% 30%;
+    --ring: 268 85% 66%;
 
     --radius: 0.75rem;
 
@@ -38,7 +38,7 @@
 
     --sidebar-foreground: 280 20% 98%;
 
-    --sidebar-primary: 280 100% 70%;
+    --sidebar-primary: 268 85% 66%;
 
     --sidebar-primary-foreground: 0 0% 100%;
 
@@ -48,45 +48,45 @@
 
     --sidebar-border: 270 40% 20%;
 
-    --sidebar-ring: 280 100% 70%;
+    --sidebar-ring: 268 85% 66%;
   }
 
   .dark {
     --background: 270 60% 8%;
     --foreground: 280 20% 98%;
 
-    --card: 270 50% 12%;
+    --card: 270 50% 15%;
     --card-foreground: 280 20% 98%;
 
-    --popover: 270 50% 12%;
+    --popover: 270 50% 15%;
     --popover-foreground: 280 20% 98%;
 
-    --primary: 280 100% 70%;
+    --primary: 268 85% 66%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 270 50% 20%;
+    --secondary: 270 50% 25%;
     --secondary-foreground: 280 20% 98%;
 
-    --muted: 270 40% 18%;
-    --muted-foreground: 280 10% 80%;
+    --muted: 270 40% 20%;
+    --muted-foreground: 280 10% 85%;
 
-    --accent: 285 100% 75%;
+    --accent: 332 72% 65%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 270 60% 35%;
-    --input: 270 60% 35%;
-    --ring: 280 100% 70%;
+    --border: 270 50% 30%;
+    --input: 270 50% 30%;
+    --ring: 268 85% 66%;
     --sidebar-background: 270 55% 10%;
     --sidebar-foreground: 280 20% 98%;
-    --sidebar-primary: 280 100% 70%;
+    --sidebar-primary: 268 85% 66%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 270 50% 18%;
     --sidebar-accent-foreground: 280 20% 98%;
     --sidebar-border: 270 40% 20%;
-    --sidebar-ring: 280 100% 70%;
+    --sidebar-ring: 268 85% 66%;
   }
 }
 
