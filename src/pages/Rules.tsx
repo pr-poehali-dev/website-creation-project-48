@@ -72,7 +72,7 @@ const Rules = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-              <Icon name="Sparkles" className="text-white" size={24} />
+              <Icon name="Crown" className="text-white" size={24} />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Imunns RolePlay
