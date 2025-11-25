@@ -175,13 +175,12 @@ const Profile = () => {
             setShowBioDialog(true);
           }}
           onShowRewards={() => setShowRewardsDialog(true)}
+          onDeleteProfile={() => setShowDeleteDialog(true)}
         />
 
         <ProfileStats 
-          stats={stats}
           selectedServer={selectedServer}
           onServerChange={handleServerChange}
-          onDeleteProfile={() => setShowDeleteDialog(true)}
         />
       </main>
 

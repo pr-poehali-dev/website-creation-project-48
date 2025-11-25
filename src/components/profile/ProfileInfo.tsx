@@ -22,9 +22,10 @@ interface ProfileInfoProps {
   onEditAvatar: () => void;
   onEditBio: () => void;
   onShowRewards: () => void;
+  onDeleteProfile: () => void;
 }
 
-const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onShowRewards }: ProfileInfoProps) => {
+const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onShowRewards, onDeleteProfile }: ProfileInfoProps) => {
   return (
     <Card className="p-8 bg-card/80 backdrop-blur border-primary/20 shadow-2xl">
       <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -50,6 +51,14 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
               <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-semibold">
                 ID: {user.userId}
               </span>
+              <Button 
+                onClick={onDeleteProfile} 
+                variant="ghost" 
+                size="icon"
+                className="h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10"
+              >
+                <Icon name="Trash2" size={16} />
+              </Button>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Icon name="Calendar" size={16} />
@@ -62,20 +71,25 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
           </div>
 
           <div className="space-y-4">
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium text-muted-foreground">Уровень {user.level} / {maxLevel}</span>
-                <span className="text-sm font-medium text-primary">{user.exp % 1000} / 1000 XP</span>
+            <div className="flex items-center gap-2">
+              <div className="flex-1">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-sm font-medium text-muted-foreground">Уровень {user.level}</span>
+                  <span className="text-xs text-muted-foreground">{user.exp % 1000} / 1000 XP</span>
+                </div>
+                <div className="h-2 bg-muted/50 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500"
+                    style={{ width: `${expProgress}%` }}
+                  />
+                </div>
               </div>
-              <div className="h-3 bg-muted rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500"
-                  style={{ width: `${expProgress}%` }}
-                />
-              </div>
+              <Button onClick={onShowRewards} variant="ghost" size="icon" className="h-8 w-8 flex-shrink-0">
+                <Icon name="Gift" size={16} />
+              </Button>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <div className="flex-1 bg-primary/10 rounded-lg p-4 text-center">
                 <div className="flex items-center justify-center gap-2 mb-1">
                   <Icon name="Gem" size={20} className="text-primary" />
@@ -83,9 +97,9 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
                 </div>
                 <p className="text-sm text-muted-foreground">Кристаллов</p>
               </div>
-              <Button onClick={onShowRewards} variant="outline" className="flex-1">
-                <Icon name="Gift" size={16} className="mr-2" />
-                Награды
+              <Button onClick={() => window.location.href = '/achievements'} variant="outline" className="flex-1">
+                <Icon name="Trophy" size={16} className="mr-2" />
+                Достижения
               </Button>
             </div>
           </div>
