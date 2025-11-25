@@ -41,20 +41,20 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
           </div>
           <div className="flex gap-2">
             <Button 
-              onClick={onEditAvatar} 
-              variant="ghost" 
-              size="icon"
-              className="h-8 w-8 hover:bg-primary/10"
-            >
-              <Icon name="Camera" size={16} />
-            </Button>
-            <Button 
               onClick={onShowSettings} 
               variant="ghost" 
               size="icon"
               className="h-8 w-8 hover:bg-primary/10"
             >
               <Icon name="Settings" size={16} />
+            </Button>
+            <Button 
+              onClick={onEditAvatar} 
+              variant="ghost" 
+              size="icon"
+              className="h-8 w-8 hover:bg-primary/10"
+            >
+              <Icon name="Camera" size={16} />
             </Button>
             <Button 
               onClick={onDeleteProfile} 
