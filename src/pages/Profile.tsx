@@ -77,12 +77,20 @@ const Profile = () => {
   const [showRewardsDialog, setShowRewardsDialog] = useState(false);
   const [showBioDialog, setShowBioDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [showSettingsDialog, setShowSettingsDialog] = useState(false);
   const [bioText, setBioText] = useState(user.bio);
   const [selectedServer, setSelectedServer] = useState(() => {
     return parseInt(user.selectedServer);
   });
   const [showServerNotification, setShowServerNotification] = useState(false);
   const [serverNotificationText, setServerNotificationText] = useState('');
+  const [settingsData, setSettingsData] = useState({
+    username: user.username,
+    email: localStorage.getItem(getProfileKey('email')) || '',
+    password: '',
+    birthdate: localStorage.getItem(getProfileKey('birthdate')) || '',
+    bio: user.bio
+  });
 
   const maxLevel = 100;
   const expToNextLevel = 1000;
@@ -136,6 +144,42 @@ const Profile = () => {
     setShowBioDialog(false);
   };
 
+  const handleSettingsDataChange = (field: string, value: string) => {
+    setSettingsData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSettingsSave = () => {
+    if (settingsData.username !== user.username) {
+      const oldUsername = user.username;
+      localStorage.setItem('username', settingsData.username);
+      
+      const keysToMigrate = ['level', 'exp', 'gems', 'joinDate', 'playTime', 'avatar', 'bio', 'selectedServer', 'userId', 'email', 'birthdate', 'playTimeMinutes'];
+      keysToMigrate.forEach(key => {
+        const value = localStorage.getItem(`${oldUsername}_${key}`);
+        if (value) {
+          localStorage.setItem(`${settingsData.username}_${key}`, value);
+          localStorage.removeItem(`${oldUsername}_${key}`);
+        }
+      });
+      
+      setUser(prev => ({ ...prev, username: settingsData.username }));
+    }
+    
+    saveProfileData('email', settingsData.email);
+    saveProfileData('birthdate', settingsData.birthdate);
+    saveProfileData('bio', settingsData.bio);
+    setUser(prev => ({ ...prev, bio: settingsData.bio }));
+    
+    if (settingsData.password) {
+      saveProfileData('password', settingsData.password);
+    }
+    
+    setShowSettingsDialog(false);
+    setServerNotificationText('Настройки сохранены');
+    setShowServerNotification(true);
+    setTimeout(() => setShowServerNotification(false), 2000);
+  };
+
   const playMinecraftDoorSound = () => {
     const audio = new Audio('https://minecraft.wiki/images/Wooden_Door_open3.ogg?57bae');
     audio.volume = 0.5;
@@ -176,6 +220,16 @@ const Profile = () => {
           }}
           onShowRewards={() => setShowRewardsDialog(true)}
           onDeleteProfile={() => setShowDeleteDialog(true)}
+          onShowSettings={() => {
+            setSettingsData({
+              username: user.username,
+              email: localStorage.getItem(getProfileKey('email')) || '',
+              password: '',
+              birthdate: localStorage.getItem(getProfileKey('birthdate')) || '',
+              bio: user.bio
+            });
+            setShowSettingsDialog(true);
+          }}
         />
 
         <ProfileStats 
@@ -189,18 +243,23 @@ const Profile = () => {
         showRewardsDialog={showRewardsDialog}
         showBioDialog={showBioDialog}
         showDeleteDialog={showDeleteDialog}
+        showSettingsDialog={showSettingsDialog}
         user={user}
         avatarStyles={avatarStyles}
         allLevelRewards={allLevelRewards}
         bioText={bioText}
+        settingsData={settingsData}
         onCloseAvatarDialog={() => setShowAvatarDialog(false)}
         onCloseRewardsDialog={() => setShowRewardsDialog(false)}
         onCloseBioDialog={() => setShowBioDialog(false)}
         onCloseDeleteDialog={() => setShowDeleteDialog(false)}
+        onCloseSettingsDialog={() => setShowSettingsDialog(false)}
         onAvatarChange={handleAvatarChange}
         onBioTextChange={setBioText}
         onBioSave={handleBioSave}
         onDeleteProfile={deleteProfile}
+        onSettingsDataChange={handleSettingsDataChange}
+        onSettingsSave={handleSettingsSave}
       />
     </div>
   );

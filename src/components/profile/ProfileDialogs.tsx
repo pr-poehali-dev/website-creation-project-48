@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import Icon from "@/components/ui/icon";
 import {
   Dialog,
@@ -33,18 +35,29 @@ interface ProfileDialogsProps {
   showRewardsDialog: boolean;
   showBioDialog: boolean;
   showDeleteDialog: boolean;
+  showSettingsDialog: boolean;
   user: User;
   avatarStyles: AvatarStyle[];
   allLevelRewards: LevelReward[];
   bioText: string;
+  settingsData: {
+    username: string;
+    email: string;
+    password: string;
+    birthdate: string;
+    bio: string;
+  };
   onCloseAvatarDialog: () => void;
   onCloseRewardsDialog: () => void;
   onCloseBioDialog: () => void;
   onCloseDeleteDialog: () => void;
+  onCloseSettingsDialog: () => void;
   onAvatarChange: (style: string, url: string) => void;
   onBioTextChange: (text: string) => void;
   onBioSave: () => void;
   onDeleteProfile: () => void;
+  onSettingsDataChange: (field: string, value: string) => void;
+  onSettingsSave: () => void;
 }
 
 const ProfileDialogs = ({
@@ -52,18 +65,23 @@ const ProfileDialogs = ({
   showRewardsDialog,
   showBioDialog,
   showDeleteDialog,
+  showSettingsDialog,
   user,
   avatarStyles,
   allLevelRewards,
   bioText,
+  settingsData,
   onCloseAvatarDialog,
   onCloseRewardsDialog,
   onCloseBioDialog,
   onCloseDeleteDialog,
+  onCloseSettingsDialog,
   onAvatarChange,
   onBioTextChange,
   onBioSave,
   onDeleteProfile,
+  onSettingsDataChange,
+  onSettingsSave,
 }: ProfileDialogsProps) => {
   return (
     <>
@@ -184,6 +202,77 @@ const ProfileDialogs = ({
             <Button onClick={onDeleteProfile} variant="destructive" className="flex-1">
               Удалить
             </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showSettingsDialog} onOpenChange={onCloseSettingsDialog}>
+        <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Настройки профиля</DialogTitle>
+            <DialogDescription>
+              Измените информацию о вашем аккаунте
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div className="space-y-2">
+              <Label htmlFor="username">Имя пользователя</Label>
+              <Input
+                id="username"
+                value={settingsData.username}
+                onChange={(e) => onSettingsDataChange('username', e.target.value)}
+                placeholder="Ваше имя"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Электронная почта</Label>
+              <Input
+                id="email"
+                type="email"
+                value={settingsData.email}
+                onChange={(e) => onSettingsDataChange('email', e.target.value)}
+                placeholder="your@email.com"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Новый пароль</Label>
+              <Input
+                id="password"
+                type="password"
+                value={settingsData.password}
+                onChange={(e) => onSettingsDataChange('password', e.target.value)}
+                placeholder="Оставьте пустым, чтобы не менять"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="birthdate">Дата рождения</Label>
+              <Input
+                id="birthdate"
+                type="date"
+                value={settingsData.birthdate}
+                onChange={(e) => onSettingsDataChange('birthdate', e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="settings-bio">Описание аккаунта</Label>
+              <textarea
+                id="settings-bio"
+                value={settingsData.bio}
+                onChange={(e) => onSettingsDataChange('bio', e.target.value)}
+                className="w-full min-h-[100px] p-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                placeholder="Расскажите о себе..."
+                maxLength={500}
+              />
+              <span className="text-xs text-muted-foreground">{settingsData.bio.length}/500</span>
+            </div>
+            <div className="flex gap-2 pt-4">
+              <Button onClick={onCloseSettingsDialog} variant="outline" className="flex-1">
+                Отмена
+              </Button>
+              <Button onClick={onSettingsSave} className="flex-1">
+                Сохранить
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>

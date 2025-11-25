@@ -23,9 +23,10 @@ interface ProfileInfoProps {
   onEditBio: () => void;
   onShowRewards: () => void;
   onDeleteProfile: () => void;
+  onShowSettings: () => void;
 }
 
-const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onShowRewards, onDeleteProfile }: ProfileInfoProps) => {
+const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onShowRewards, onDeleteProfile, onShowSettings }: ProfileInfoProps) => {
   return (
     <Card className="p-8 bg-card/80 backdrop-blur border-primary/20 shadow-2xl">
       <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -51,6 +52,14 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
               <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-semibold">
                 ID: {user.userId}
               </span>
+              <Button 
+                onClick={onShowSettings} 
+                variant="ghost" 
+                size="icon"
+                className="h-8 w-8 hover:bg-primary/10"
+              >
+                <Icon name="Settings" size={16} />
+              </Button>
               <Button 
                 onClick={onDeleteProfile} 
                 variant="ghost" 
