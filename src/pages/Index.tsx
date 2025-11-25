@@ -132,7 +132,7 @@ const Index = () => {
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Imunns rolep play</h3>
-                <p className="text-foreground/70 mb-4">Основной игровой мир</p>
+                <p className="text-foreground/70 mb-4">Добро пожаловать на наш уникальный Minecraft-сервер с роле-плей системой! Здесь у вас есть возможность стать кем угодно — будь то могущественный маг, отважный воин, талантливый фермер или бизнесмен. Создавайте свою историю, развивайте персонажа и взаимодействуйте с другими игроками в реалистичной и захватывающей среде. Наш сервер предлагает богатую ролевую систему, кастомные механики и увлекательные задания, которые сделают ваш игровой опыт незабываемым. Присоединяйтесь и воплощайте свои самые смелые фантазии!</p>
                 <div className="flex items-center gap-2 text-sm">
                   <Icon name="Users" size={16} className="text-primary" />
                   <span className="text-foreground/80">Онлайн: 247</span>
