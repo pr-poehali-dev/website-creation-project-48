@@ -424,7 +424,10 @@ const Index = () => {
       <section className="py-20 relative z-10">
         <div className="container mx-auto px-4">
           <AnimatedCard delay={0}>
-            <Card className="p-8 bg-gradient-to-br from-card/80 to-primary/5 backdrop-blur border-primary/30 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all">
+            <Card 
+              className="p-8 bg-gradient-to-br from-card/80 to-primary/5 backdrop-blur border-primary/30 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
+              onClick={() => window.open('https://t.me/homa_boba_rostov', '_blank')}
+            >
               <div className="flex items-center gap-4 mb-4">
                 <Icon name="Coffee" className="text-primary" size={40} />
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
