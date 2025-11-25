@@ -423,10 +423,13 @@ const Index = () => {
 
       <section className="py-12 relative z-10">
         <div className="container mx-auto px-4 max-w-2xl">
-          <AnimatedCard delay={0}>
-            <Card className="p-6 bg-gradient-to-br from-card/80 to-primary/5 backdrop-blur border-primary/30 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all">
-              <div className="flex items-center justify-between gap-6">
-                <div className="flex items-center gap-3 flex-1">
+          <div className="flex gap-4">
+            <AnimatedCard delay={0}>
+              <Card 
+                className="p-4 bg-gradient-to-br from-card/80 to-primary/5 backdrop-blur border-primary/30 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all cursor-pointer flex-1"
+                onClick={() => window.open('https://t.me/HOMARND', '_blank')}
+              >
+                <div className="flex items-center gap-3">
                   <img 
                     src="https://cdn.poehali.dev/files/779479cb-ccce-408d-887a-17cced37dcfb.jpg" 
                     alt="Homa-Boba logo" 
@@ -436,9 +439,13 @@ const Index = () => {
                     Homa-Boba bubble tea Rostov
                   </h2>
                 </div>
-                <div className="h-20 w-px bg-border/50"></div>
+              </Card>
+            </AnimatedCard>
+            
+            <AnimatedCard delay={100}>
+              <Card className="p-4 bg-gradient-to-br from-card/80 to-primary/5 backdrop-blur border-primary/30 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all">
                 <div className="flex flex-col gap-2">
-                  <p className="text-sm text-foreground/70 font-semibold text-center mb-1">Наши соцсети</p>
+                  <p className="text-sm text-foreground/70 font-semibold text-center">Наши соцсети</p>
                   <div className="grid grid-cols-2 gap-2">
                     <a 
                       href="https://t.me/HOMARND" 
@@ -474,9 +481,9 @@ const Index = () => {
                     </a>
                   </div>
                 </div>
-              </div>
-            </Card>
-          </AnimatedCard>
+              </Card>
+            </AnimatedCard>
+          </div>
         </div>
       </section>
 
