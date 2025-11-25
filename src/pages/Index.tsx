@@ -53,10 +53,10 @@ const Index = () => {
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 from-primary to-accent rounded-lg flex items-center justify-center bg-purple-500">
               <Icon name="Sparkles" className="text-white" size={24} />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-purple-500">
               Imunns RolePlay
             </span>
           </div>
@@ -97,9 +97,7 @@ const Index = () => {
       <section className="relative py-32 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center space-y-6 max-w-4xl mx-auto">
-            <h1 className="text-6xl md:text-7xl font-bold text-white">
-              Imunns RolePlay
-            </h1>
+            <h1 className="md:text-7xl bg-gradient-to-r from-primary via-accent to-primary bg-clip-text animate-pulse font-black text-8xl text-purple-500">ImunnS RolePlay</h1>
             <p className="text-xl md:text-2xl text-foreground/90">
               Погрузись в мир ролевой игры с уникальными квестами и персонажами
             </p>
