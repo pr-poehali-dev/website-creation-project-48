@@ -110,8 +110,74 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="forum" className="py-20 bg-card/30">
+      <section className="py-20 bg-card/30">
         <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Наши Сервера
+            </h2>
+            <p className="text-foreground/70 text-lg">
+              Выбери свой сервер и начни приключение
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+            <AnimatedCard delay={0}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] transition-all h-full cursor-pointer">
+                <div className="flex items-center justify-between mb-4">
+                  <Icon name="Server" className="text-primary" size={32} />
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Сервер #1</h3>
+                <p className="text-foreground/70 mb-4">Основной игровой мир</p>
+                <div className="flex items-center gap-2 text-sm">
+                  <Icon name="Users" size={16} className="text-primary" />
+                  <span className="text-foreground/80">Онлайн: 247</span>
+                </div>
+              </Card>
+            </AnimatedCard>
+            <AnimatedCard delay={100}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all h-full cursor-pointer">
+                <div className="flex items-center justify-between mb-4">
+                  <Icon name="Server" className="text-accent" size={32} />
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Сервер #2</h3>
+                <p className="text-foreground/70 mb-4">PvP арена и турниры</p>
+                <div className="flex items-center gap-2 text-sm">
+                  <Icon name="Users" size={16} className="text-accent" />
+                  <span className="text-foreground/80">Онлайн: 189</span>
+                </div>
+              </Card>
+            </AnimatedCard>
+            <AnimatedCard delay={200}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] transition-all h-full cursor-pointer">
+                <div className="flex items-center justify-between mb-4">
+                  <Icon name="Server" className="text-primary" size={32} />
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Сервер #3</h3>
+                <p className="text-foreground/70 mb-4">Ролевой сервер</p>
+                <div className="flex items-center gap-2 text-sm">
+                  <Icon name="Users" size={16} className="text-primary" />
+                  <span className="text-foreground/80">Онлайн: 156</span>
+                </div>
+              </Card>
+            </AnimatedCard>
+            <AnimatedCard delay={300}>
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all h-full cursor-pointer">
+                <div className="flex items-center justify-between mb-4">
+                  <Icon name="Server" className="text-accent" size={32} />
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Сервер #4</h3>
+                <p className="text-foreground/70 mb-4">Тестовый сервер</p>
+                <div className="flex items-center gap-2 text-sm">
+                  <Icon name="Users" size={16} className="text-accent" />
+                  <span className="text-foreground/80">Онлайн: 43</span>
+                </div>
+              </Card>
+            </AnimatedCard>
+          </div>
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Форум
