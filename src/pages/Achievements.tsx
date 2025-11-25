@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 
 import AnimatedCard from "@/components/AnimatedCard";
+import SpaceBackground from "@/components/SpaceBackground";
 
 const Achievements = () => {
   const achievements = [
@@ -312,6 +313,7 @@ const Achievements = () => {
           </div>
         </div>
       </section>
+      <SpaceBackground />
     </div>
   );
 };

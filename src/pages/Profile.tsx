@@ -4,6 +4,7 @@ import ProfileInfo from "@/components/profile/ProfileInfo";
 import ProfileStats from "@/components/profile/ProfileStats";
 import ProfileDialogs from "@/components/profile/ProfileDialogs";
 import { useState, useEffect } from "react";
+import SpaceBackground from "@/components/SpaceBackground";
 
 const Profile = () => {
   const getProfileKey = (key: string) => {
@@ -226,6 +227,7 @@ const Profile = () => {
         onBioSave={handleBioSave}
         onDeleteProfile={deleteProfile}
       />
+      <SpaceBackground />
     </div>
   );
 };

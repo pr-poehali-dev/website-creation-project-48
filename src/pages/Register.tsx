@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import { useNavigate } from "react-router-dom";
+import SpaceBackground from "@/components/SpaceBackground";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -158,6 +159,7 @@ const Register = () => {
           </p>
         </div>
       </Card>
+      <SpaceBackground />
     </div>
   );
 };

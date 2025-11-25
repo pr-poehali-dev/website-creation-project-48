@@ -4,6 +4,7 @@ import Icon from "@/components/ui/icon";
 
 import AnimatedCard from "@/components/AnimatedCard";
 import VirtualAssistant from "@/components/VirtualAssistant";
+import SpaceBackground from "@/components/SpaceBackground";
 import {
   Tooltip,
   TooltipContent,
@@ -462,6 +463,7 @@ const Index = () => {
           </div>
         </div>
       </footer>
+      <SpaceBackground />
       <VirtualAssistant />
     </div>
   );

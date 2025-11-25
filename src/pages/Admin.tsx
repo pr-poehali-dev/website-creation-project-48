@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 
 import AnimatedCard from "@/components/AnimatedCard";
+import SpaceBackground from "@/components/SpaceBackground";
 
 const Admin = () => {
   return (
@@ -113,6 +114,7 @@ const Admin = () => {
           </div>
         </div>
       </section>
+      <SpaceBackground />
     </div>
   );
 };

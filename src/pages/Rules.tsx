@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 
 import AnimatedCard from "@/components/AnimatedCard";
+import SpaceBackground from "@/components/SpaceBackground";
 
 const Rules = () => {
   const rulesCategories = [
@@ -183,6 +184,7 @@ const Rules = () => {
           </AnimatedCard>
         </div>
       </section>
+      <SpaceBackground />
     </div>
   );
 };

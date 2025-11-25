@@ -4,6 +4,7 @@ import Icon from "@/components/ui/icon";
 
 import AnimatedCard from "@/components/AnimatedCard";
 import MobileMenu from "@/components/MobileMenu";
+import SpaceBackground from "@/components/SpaceBackground";
 
 const Stats = () => {
   const topPlayers = [
@@ -157,6 +158,7 @@ const Stats = () => {
           </div>
         </div>
       </section>
+      <SpaceBackground />
     </div>
   );
 };

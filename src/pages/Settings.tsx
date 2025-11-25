@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import SpaceBackground from "@/components/SpaceBackground";
 
 
 const Settings = () => {
@@ -276,6 +277,7 @@ const Settings = () => {
           )}
         </div>
       </section>
+      <SpaceBackground />
     </div>
   );
 };

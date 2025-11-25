@@ -4,6 +4,7 @@ import Icon from "@/components/ui/icon";
 
 import AnimatedCard from "@/components/AnimatedCard";
 import MobileMenu from "@/components/MobileMenu";
+import SpaceBackground from "@/components/SpaceBackground";
 
 const Jobs = () => {
   const openPositions = [
@@ -231,6 +232,7 @@ const Jobs = () => {
           </div>
         </div>
       </section>
+      <SpaceBackground />
     </div>
   );
 };

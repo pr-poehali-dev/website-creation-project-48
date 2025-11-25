@@ -4,6 +4,7 @@ import Icon from "@/components/ui/icon";
 
 import AnimatedCard from "@/components/AnimatedCard";
 import { useParams, useNavigate } from "react-router-dom";
+import SpaceBackground from "@/components/SpaceBackground";
 
 interface AdminData {
   name: string;
@@ -225,6 +226,7 @@ const AdminProfile = () => {
           </AnimatedCard>
         </div>
       </section>
+      <SpaceBackground />
     </div>
   );
 };
