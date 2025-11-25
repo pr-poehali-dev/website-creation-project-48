@@ -50,17 +50,16 @@ const Profile = () => {
   ];
 
   const getLevelRewards = (level: number) => {
-    if (level % 25 === 0) return { gems: 500, title: "Легендарная награда" };
-    if (level % 10 === 0) return { gems: 200, title: "Эпическая награда" };
-    if (level % 5 === 0) return { gems: 100, title: "Редкая награда" };
-    return null;
+    if (level % 25 === 0) return { gems: 500, exp: 0, title: "Легендарная награда" };
+    if (level % 10 === 0) return { gems: 200, exp: 0, title: "Эпическая награда" };
+    if (level % 5 === 0) return { gems: 100, exp: 0, title: "Редкая награда" };
+    return { gems: 50, exp: 0, title: "Обычная награда" };
   };
 
-  const allLevelRewards = Array.from({ length: 20 }, (_, i) => (i + 1) * 5)
-    .filter(lvl => lvl <= maxLevel)
+  const allLevelRewards = Array.from({ length: maxLevel }, (_, i) => i + 1)
     .map(lvl => ({
       level: lvl,
-      ...getLevelRewards(lvl)!
+      ...getLevelRewards(lvl)
     }));
 
   const handleAvatarChange = (style: string) => {
@@ -142,7 +141,7 @@ const Profile = () => {
                         <Icon name="TrendingUp" className="text-primary" size={20} />
                       </div>
                       <div>
-                        <p className="text-2xl font-bold">{user.level} <span className="text-sm text-foreground/50">/ {maxLevel}</span></p>
+                        <p className="text-2xl font-bold">{user.level}</p>
                         <p className="text-sm text-foreground/60">Уровень</p>
                       </div>
                     </div>
@@ -303,14 +302,14 @@ const Profile = () => {
               Награды за уровни
             </DialogTitle>
             <DialogDescription>
-              Получайте награды каждые 5 уровней. Максимальный уровень: {maxLevel}
+              Получайте награды за каждый достигнутый уровень
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-3 py-4">
             {allLevelRewards.map((reward) => {
               const isUnlocked = user.level >= reward.level;
-              const rewardType = reward.level % 25 === 0 ? 'legendary' : reward.level % 10 === 0 ? 'epic' : 'rare';
-              const borderColor = rewardType === 'legendary' ? 'border-accent' : rewardType === 'epic' ? 'border-primary' : 'border-primary/50';
+              const rewardType = reward.level % 25 === 0 ? 'legendary' : reward.level % 10 === 0 ? 'epic' : reward.level % 5 === 0 ? 'rare' : 'common';
+              const borderColor = rewardType === 'legendary' ? 'border-accent' : rewardType === 'epic' ? 'border-primary' : rewardType === 'rare' ? 'border-primary/50' : 'border-border/50';
               
               return (
                 <Card
@@ -324,10 +323,10 @@ const Profile = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                        rewardType === 'legendary' ? 'bg-accent/20' : 'bg-primary/20'
+                        rewardType === 'legendary' ? 'bg-accent/20' : rewardType === 'epic' ? 'bg-primary/20' : rewardType === 'rare' ? 'bg-primary/10' : 'bg-card/50'
                       }`}>
                         <Icon 
-                          name={rewardType === 'legendary' ? 'Crown' : rewardType === 'epic' ? 'Award' : 'Star'} 
+                          name={rewardType === 'legendary' ? 'Crown' : rewardType === 'epic' ? 'Award' : rewardType === 'rare' ? 'Star' : 'Gift'} 
                           className={rewardType === 'legendary' ? 'text-accent' : 'text-primary'} 
                           size={24} 
                         />
