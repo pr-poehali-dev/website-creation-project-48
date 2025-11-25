@@ -8,19 +8,19 @@ const Profile = () => {
   const [user] = useState({
     username: "Player123",
     email: "player@example.com",
-    level: 15,
-    coins: 2450,
-    gems: 89,
+    level: 0,
+    coins: 0,
+    gems: 0,
     joinDate: "15 января 2025",
-    playTime: "127 часов",
+    playTime: "0 часов",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Player123"
   });
 
   const [stats] = useState({
-    kills: 234,
-    deaths: 89,
-    quests: 45,
-    achievements: 23
+    kills: 0,
+    deaths: 0,
+    quests: 0,
+    achievements: 0
   });
 
   return (
@@ -142,7 +142,7 @@ const Profile = () => {
                     <div className="flex items-center justify-between">
                       <span className="text-foreground/70">K/D Ratio</span>
                       <span className="font-bold text-lg text-primary">
-                        {(stats.kills / stats.deaths).toFixed(2)}
+                        {stats.deaths > 0 ? (stats.kills / stats.deaths).toFixed(2) : '0.00'}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">

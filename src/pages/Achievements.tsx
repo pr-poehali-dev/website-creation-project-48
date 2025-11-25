@@ -12,9 +12,10 @@ const Achievements = () => {
       description: "Убей первого игрока",
       icon: "Sword",
       color: "primary",
-      unlocked: true,
-      progress: 100,
-      category: "PvP"
+      unlocked: false,
+      progress: 0,
+      category: "PvP",
+      reward: { coins: 100, gems: 5 }
     },
     {
       id: 2,
@@ -22,9 +23,10 @@ const Achievements = () => {
       description: "Достигни 10 уровня",
       icon: "Star",
       color: "accent",
-      unlocked: true,
-      progress: 100,
-      category: "Прогресс"
+      unlocked: false,
+      progress: 0,
+      category: "Прогресс",
+      reward: { coins: 250, gems: 10 }
     },
     {
       id: 3,
@@ -32,9 +34,10 @@ const Achievements = () => {
       description: "Вступи в гильдию",
       icon: "Users",
       color: "primary",
-      unlocked: true,
-      progress: 100,
-      category: "Социальное"
+      unlocked: false,
+      progress: 0,
+      category: "Социальное",
+      reward: { coins: 150, gems: 8 }
     },
     {
       id: 4,
@@ -43,8 +46,9 @@ const Achievements = () => {
       icon: "Award",
       color: "accent",
       unlocked: false,
-      progress: 30,
-      category: "Прогресс"
+      progress: 0,
+      category: "Прогресс",
+      reward: { coins: 500, gems: 25 }
     },
     {
       id: 5,
@@ -53,8 +57,9 @@ const Achievements = () => {
       icon: "Skull",
       color: "primary",
       unlocked: false,
-      progress: 45,
-      category: "PvP"
+      progress: 0,
+      category: "PvP",
+      reward: { coins: 300, gems: 15 }
     },
     {
       id: 6,
@@ -63,8 +68,9 @@ const Achievements = () => {
       icon: "Coins",
       color: "accent",
       unlocked: false,
-      progress: 24,
-      category: "Экономика"
+      progress: 0,
+      category: "Экономика",
+      reward: { coins: 400, gems: 20 }
     },
     {
       id: 7,
@@ -73,8 +79,9 @@ const Achievements = () => {
       icon: "Map",
       color: "primary",
       unlocked: false,
-      progress: 60,
-      category: "Исследование"
+      progress: 0,
+      category: "Исследование",
+      reward: { coins: 350, gems: 18 }
     },
     {
       id: 8,
@@ -83,8 +90,9 @@ const Achievements = () => {
       icon: "CheckCircle",
       color: "accent",
       unlocked: false,
-      progress: 45,
-      category: "Квесты"
+      progress: 0,
+      category: "Квесты",
+      reward: { coins: 600, gems: 30 }
     },
     {
       id: 9,
@@ -93,8 +101,9 @@ const Achievements = () => {
       icon: "DollarSign",
       color: "primary",
       unlocked: false,
-      progress: 12,
-      category: "Экономика"
+      progress: 0,
+      category: "Экономика",
+      reward: { coins: 5000, gems: 100 }
     },
     {
       id: 10,
@@ -103,8 +112,9 @@ const Achievements = () => {
       icon: "Crown",
       color: "accent",
       unlocked: false,
-      progress: 15,
-      category: "Прогресс"
+      progress: 0,
+      category: "Прогресс",
+      reward: { coins: 10000, gems: 200 }
     },
     {
       id: 11,
@@ -114,7 +124,8 @@ const Achievements = () => {
       color: "primary",
       unlocked: false,
       progress: 0,
-      category: "PvP"
+      category: "PvP",
+      reward: { coins: 450, gems: 22 }
     },
     {
       id: 12,
@@ -123,8 +134,9 @@ const Achievements = () => {
       icon: "Package",
       color: "accent",
       unlocked: false,
-      progress: 35,
-      category: "Коллекции"
+      progress: 0,
+      category: "Коллекции",
+      reward: { coins: 800, gems: 40 }
     },
     {
       id: 13,
@@ -133,8 +145,9 @@ const Achievements = () => {
       icon: "Heart",
       color: "primary",
       unlocked: false,
-      progress: 50,
-      category: "Социальное"
+      progress: 0,
+      category: "Социальное",
+      reward: { coins: 200, gems: 12 }
     },
     {
       id: 14,
@@ -143,8 +156,9 @@ const Achievements = () => {
       icon: "Home",
       color: "accent",
       unlocked: false,
-      progress: 28,
-      category: "Строительство"
+      progress: 0,
+      category: "Строительство",
+      reward: { coins: 550, gems: 28 }
     },
     {
       id: 15,
@@ -153,8 +167,9 @@ const Achievements = () => {
       icon: "Wrench",
       color: "primary",
       unlocked: false,
-      progress: 42,
-      category: "Крафт"
+      progress: 0,
+      category: "Крафт",
+      reward: { coins: 700, gems: 35 }
     }
   ];
 
@@ -255,8 +270,24 @@ const Achievements = () => {
                     </div>
                   </div>
                   
+                  <div className="mt-4 pt-4 border-t border-border/30">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-foreground/70">Награда:</span>
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-1">
+                          <Icon name="Coins" className="text-accent" size={16} />
+                          <span className="font-semibold text-sm">{achievement.reward.coins}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Icon name="Gem" className="text-primary" size={16} />
+                          <span className="font-semibold text-sm">{achievement.reward.gems}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   {!achievement.unlocked && (
-                    <div className="mt-4">
+                    <div className="mt-3">
                       <div className="flex items-center justify-between text-sm mb-2">
                         <span className="text-foreground/60">Прогресс</span>
                         <span className="font-semibold">{achievement.progress}%</span>
