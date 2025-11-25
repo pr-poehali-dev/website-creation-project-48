@@ -20,7 +20,8 @@ const Profile = () => {
     gems: 0,
     joinDate: "15 января 2025",
     playTime: "0 часов",
-    avatar: localStorage.getItem('userAvatar') || "https://api.dicebear.com/7.x/avataaars/svg?seed=Player123"
+    avatar: localStorage.getItem('userAvatar') || "https://api.dicebear.com/7.x/avataaars/svg?seed=Player123",
+    bio: localStorage.getItem('userBio') || ""
   });
 
   useEffect(() => {
@@ -45,6 +46,8 @@ const Profile = () => {
 
   const [showAvatarDialog, setShowAvatarDialog] = useState(false);
   const [showRewardsDialog, setShowRewardsDialog] = useState(false);
+  const [showBioDialog, setShowBioDialog] = useState(false);
+  const [bioText, setBioText] = useState(user.bio);
   const [selectedServer, setSelectedServer] = useState(() => {
     const saved = localStorage.getItem('selectedServer');
     return saved ? parseInt(saved) : 1;
@@ -85,6 +88,12 @@ const Profile = () => {
     setUser({ ...user, avatar: url });
     localStorage.setItem('userAvatar', url);
     setShowAvatarDialog(false);
+  };
+
+  const handleBioSave = () => {
+    setUser({ ...user, bio: bioText });
+    localStorage.setItem('userBio', bioText);
+    setShowBioDialog(false);
   };
 
   const handleServerChange = (serverNum: number) => {
@@ -169,11 +178,28 @@ const Profile = () => {
                   </button>
                 </div>
                 <div className="flex-1">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                    <div className="flex-1">
                       <h1 className="text-3xl font-bold mb-1">{user.username}</h1>
                       <p className="text-foreground/60">{user.email}</p>
-                      <p className="text-sm text-foreground/50">Играет с {user.joinDate}</p>
+                      <p className="text-sm text-foreground/50 mb-3">Играет с {user.joinDate}</p>
+                      
+                      <div className="bg-card/50 rounded-lg p-3 border border-border/30 relative group">
+                        {user.bio ? (
+                          <p className="text-sm text-foreground/80">{user.bio}</p>
+                        ) : (
+                          <p className="text-sm text-foreground/50 italic">Нет описания профиля</p>
+                        )}
+                        <button
+                          onClick={() => {
+                            setBioText(user.bio);
+                            setShowBioDialog(true);
+                          }}
+                          className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-primary/10 rounded"
+                        >
+                          <Icon name="Pencil" size={14} className="text-primary" />
+                        </button>
+                      </div>
                     </div>
                     <Button 
                       className="bg-gradient-to-r from-primary to-accent hover:opacity-90"
@@ -422,6 +448,45 @@ const Profile = () => {
                 <span className="text-xs text-foreground/70">{style.name}</span>
               </button>
             ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showBioDialog} onOpenChange={setShowBioDialog}>
+        <DialogContent className="bg-card/95 backdrop-blur border-primary/50 max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Редактировать описание профиля
+            </DialogTitle>
+            <DialogDescription>
+              Расскажите о себе другим игрокам
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4">
+            <textarea
+              value={bioText}
+              onChange={(e) => setBioText(e.target.value)}
+              maxLength={200}
+              placeholder="Напишите что-нибудь о себе..."
+              className="w-full h-32 px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary transition-colors resize-none"
+            />
+            <p className="text-xs text-foreground/50 mt-2 text-right">
+              {bioText.length} / 200 символов
+            </p>
+          </div>
+          <div className="flex gap-2 justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setShowBioDialog(false)}
+            >
+              Отмена
+            </Button>
+            <Button
+              className="bg-gradient-to-r from-primary to-accent"
+              onClick={handleBioSave}
+            >
+              Сохранить
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
