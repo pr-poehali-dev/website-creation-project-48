@@ -52,24 +52,14 @@ const Index = () => {
       <SpaceBackground />
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50 relative">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
-            <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center" style={{
-              background: 'linear-gradient(135deg, hsl(268, 85%, 66%) 0%, hsl(332, 72%, 65%) 100%)',
-              padding: '4px'
-            }}>
-              <img 
-                src="https://cdn.poehali.dev/files/ce1c135d-ab0f-475e-af6f-5e9f5526be8a.jpg" 
-                alt="Imunns RolePlay Crown" 
-                className="w-full h-full object-cover rounded-full"
-                style={{
-                  filter: 'brightness(1.1) saturate(1.2) hue-rotate(-5deg)'
-                }}
-              />
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+              <Icon name="Sparkles" className="text-white" size={24} />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Imunns RolePlay
             </span>
-          </a>
+          </div>
           <div className="hidden md:flex items-center gap-2">
             <a href="/forum" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Форум</a>
             <a href="/stats" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Топ игроков</a>
