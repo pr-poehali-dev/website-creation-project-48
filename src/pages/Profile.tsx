@@ -143,8 +143,6 @@ const Profile = () => {
   };
 
   const handleServerChange = (serverNum: number) => {
-    playMinecraftDoorSound();
-    
     setSelectedServer(serverNum);
     saveProfileData('selectedServer', serverNum);
     setUser(prev => ({ ...prev, selectedServer: serverNum.toString() }));
