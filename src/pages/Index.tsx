@@ -61,6 +61,7 @@ const Index = () => {
           </div>
           <div className="hidden md:flex items-center gap-6">
             <a href="/forum" className="font-bold text-purple-300 hover:text-primary transition-colors">Форум</a>
+            <a href="/assistant" className="font-bold text-purple-300 hover:text-primary transition-colors">ИИ Помощник</a>
             <a href="/stats" className="font-bold text-purple-300 hover:text-primary transition-colors">Топ игроков</a>
             <a href="/jobs" className="font-bold text-purple-300 hover:text-primary transition-colors">Работа</a>
             <a href="/admin" className="font-bold text-purple-300 hover:text-primary transition-colors">Администрация</a>

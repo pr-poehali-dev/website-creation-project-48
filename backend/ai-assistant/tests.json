@@ -1,0 +1,37 @@
+{
+  "tests": [
+    {
+      "name": "Test OPTIONS request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": "",
+      "bodyMatcher": "exact"
+    },
+    {
+      "name": "Test POST with question",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "question": "Как начать играть на сервере?"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "answer": "string",
+        "question": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test POST without question",
+      "method": "POST",
+      "path": "/",
+      "body": {},
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
