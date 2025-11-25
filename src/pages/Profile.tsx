@@ -18,7 +18,6 @@ const Profile = () => {
     level: 0,
     exp: 0,
     gems: 0,
-    balance: 50000,
     joinDate: "15 января 2025",
     playTime: "0 часов",
     avatar: localStorage.getItem('userAvatar') || "https://api.dicebear.com/7.x/avataaars/svg?seed=Player123"
@@ -297,17 +296,8 @@ const Profile = () => {
                 </Card>
 
                 <Card className="lg:col-span-2 p-3 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2 pb-2 border-b border-border/30">
-                      <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
-                        <Icon name="DollarSign" className="text-green-500" size={18} />
-                      </div>
-                      <div>
-                        <p className="text-xl font-bold text-green-500">{user.balance.toLocaleString('ru-RU')} ₽</p>
-                        <p className="text-xs text-foreground/60">Баланс</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 pb-2 border-b border-border/30">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 pb-3 border-b border-border/30">
                       <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
                         <Icon name="Gem" className="text-primary" size={18} />
                       </div>
