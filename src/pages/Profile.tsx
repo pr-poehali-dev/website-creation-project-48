@@ -9,6 +9,7 @@ const Profile = () => {
     username: "Player123",
     email: "player@example.com",
     level: 0,
+    exp: 0,
     gems: 0,
     joinDate: "15 января 2025",
     playTime: "0 часов",
@@ -21,6 +22,10 @@ const Profile = () => {
     quests: 0,
     achievements: 0
   });
+
+  const expToNextLevel = 1000;
+  const currentLevelExp = user.exp % expToNextLevel;
+  const expProgress = (currentLevelExp / expToNextLevel) * 100;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative">
@@ -79,18 +84,34 @@ const Profile = () => {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-4 mb-8">
-                <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
+              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50 mb-8">
+                <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-                      <Icon name="Award" className="text-primary" size={20} />
+                    <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Icon name="TrendingUp" className="text-primary" size={24} />
                     </div>
                     <div>
-                      <p className="text-2xl font-bold">{user.level}</p>
                       <p className="text-sm text-foreground/60">Уровень</p>
+                      <p className="text-2xl font-bold">{user.level}</p>
                     </div>
                   </div>
-                </Card>
+                  <div className="text-right">
+                    <p className="text-sm text-foreground/60">Опыт</p>
+                    <p className="text-lg font-semibold text-primary">{currentLevelExp} / {expToNextLevel}</p>
+                  </div>
+                </div>
+                <div className="w-full bg-background rounded-full h-3 overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500"
+                    style={{ width: `${expProgress}%` }}
+                  ></div>
+                </div>
+                <p className="text-xs text-foreground/50 mt-2">
+                  До следующего уровня: {expToNextLevel - currentLevelExp} опыта
+                </p>
+              </Card>
+
+              <div className="grid md:grid-cols-2 gap-4 mb-8">
                 <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">

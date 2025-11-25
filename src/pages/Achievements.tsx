@@ -15,7 +15,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "PvP",
-      reward: { gems: 5 }
+      reward: { gems: 5, exp: 50 }
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Прогресс",
-      reward: { gems: 10 }
+      reward: { gems: 10, exp: 100 }
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Социальное",
-      reward: { gems: 8 }
+      reward: { gems: 8, exp: 75 }
     },
     {
       id: 4,
@@ -48,7 +48,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Прогресс",
-      reward: { gems: 25 }
+      reward: { gems: 25, exp: 250 }
     },
     {
       id: 5,
@@ -59,7 +59,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "PvP",
-      reward: { gems: 15 }
+      reward: { gems: 15, exp: 150 }
     },
     {
       id: 6,
@@ -70,7 +70,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Экономика",
-      reward: { gems: 20 }
+      reward: { gems: 20, exp: 200 }
     },
     {
       id: 7,
@@ -81,7 +81,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Исследование",
-      reward: { gems: 18 }
+      reward: { gems: 18, exp: 180 }
     },
     {
       id: 8,
@@ -92,7 +92,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Квесты",
-      reward: { gems: 30 }
+      reward: { gems: 30, exp: 300 }
     },
     {
       id: 9,
@@ -103,7 +103,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Экономика",
-      reward: { gems: 100 }
+      reward: { gems: 100, exp: 500 }
     },
     {
       id: 10,
@@ -114,7 +114,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Прогресс",
-      reward: { gems: 200 }
+      reward: { gems: 200, exp: 1000 }
     },
     {
       id: 11,
@@ -125,7 +125,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "PvP",
-      reward: { gems: 22 }
+      reward: { gems: 22, exp: 220 }
     },
     {
       id: 12,
@@ -136,7 +136,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Коллекции",
-      reward: { gems: 40 }
+      reward: { gems: 40, exp: 400 }
     },
     {
       id: 13,
@@ -147,7 +147,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Социальное",
-      reward: { gems: 12 }
+      reward: { gems: 12, exp: 120 }
     },
     {
       id: 14,
@@ -158,7 +158,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Строительство",
-      reward: { gems: 28 }
+      reward: { gems: 28, exp: 280 }
     },
     {
       id: 15,
@@ -169,7 +169,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Крафт",
-      reward: { gems: 35 }
+      reward: { gems: 35, exp: 350 }
     }
   ];
 
@@ -271,11 +271,23 @@ const Achievements = () => {
                   </div>
                   
                   <div className="mt-4 pt-4 border-t border-border/30">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-foreground/70">Награда:</span>
-                      <div className="flex items-center gap-1">
-                        <Icon name="Gem" className="text-primary" size={16} />
-                        <span className="font-semibold text-sm">{achievement.reward.gems} кристаллов</span>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-foreground/70">Награда:</span>
+                      </div>
+                      <div className="flex items-center justify-between bg-primary/10 px-3 py-2 rounded-lg">
+                        <div className="flex items-center gap-2">
+                          <Icon name="Zap" className="text-accent" size={16} />
+                          <span className="text-sm">Опыт</span>
+                        </div>
+                        <span className="font-semibold text-sm">+{achievement.reward.exp}</span>
+                      </div>
+                      <div className="flex items-center justify-between bg-primary/10 px-3 py-2 rounded-lg">
+                        <div className="flex items-center gap-2">
+                          <Icon name="Gem" className="text-primary" size={16} />
+                          <span className="text-sm">Кристаллы</span>
+                        </div>
+                        <span className="font-semibold text-sm">+{achievement.reward.gems}</span>
                       </div>
                     </div>
                   </div>
