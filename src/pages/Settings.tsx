@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
@@ -8,9 +8,20 @@ const Settings = () => {
   const [activeTab, setActiveTab] = useState<'account' | 'security'>('account');
   
   const [accountData, setAccountData] = useState({
-    username: "Player123",
-    email: "player@example.com"
+    username: localStorage.getItem('username') || "Player123",
+    email: localStorage.getItem('userEmail') || "player@example.com"
   });
+
+  useEffect(() => {
+    const savedUsername = localStorage.getItem('username');
+    const savedEmail = localStorage.getItem('userEmail');
+    if (savedUsername || savedEmail) {
+      setAccountData({
+        username: savedUsername || "Player123",
+        email: savedEmail || "player@example.com"
+      });
+    }
+  }, []);
 
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
@@ -23,13 +34,37 @@ const Settings = () => {
 
   const handleUpdateAccount = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setMessage(null);
 
+    if (accountData.username.length < 3) {
+      setMessage({ type: 'error', text: 'Никнейм должен содержать минимум 3 символа!' });
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(accountData.email)) {
+      setMessage({ type: 'error', text: 'Некорректный формат email!' });
+      return;
+    }
+
+    setLoading(true);
+
     setTimeout(() => {
-      setMessage({ type: 'success', text: 'Данные аккаунта успешно обновлены!' });
-      setLoading(false);
       localStorage.setItem('username', accountData.username);
+      localStorage.setItem('userEmail', accountData.email);
+      
+      const currentAvatar = localStorage.getItem('userAvatar');
+      if (!currentAvatar) {
+        const newAvatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${accountData.username}`;
+        localStorage.setItem('userAvatar', newAvatar);
+      }
+
+      setMessage({ type: 'success', text: 'Данные аккаунта успешно обновлены! Перезагрузите страницу для применения изменений.' });
+      setLoading(false);
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
     }, 1000);
   };
 

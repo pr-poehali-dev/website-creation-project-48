@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -13,15 +13,28 @@ import {
 
 const Profile = () => {
   const [user, setUser] = useState({
-    username: "Player123",
-    email: "player@example.com",
+    username: localStorage.getItem('username') || "Player123",
+    email: localStorage.getItem('userEmail') || "player@example.com",
     level: 0,
     exp: 0,
     gems: 0,
     joinDate: "15 января 2025",
     playTime: "0 часов",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Player123"
+    avatar: localStorage.getItem('userAvatar') || "https://api.dicebear.com/7.x/avataaars/svg?seed=Player123"
   });
+
+  useEffect(() => {
+    const savedUsername = localStorage.getItem('username');
+    const savedEmail = localStorage.getItem('userEmail');
+    const savedAvatar = localStorage.getItem('userAvatar');
+    
+    setUser(prev => ({
+      ...prev,
+      username: savedUsername || "Player123",
+      email: savedEmail || "player@example.com",
+      avatar: savedAvatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${savedUsername || 'Player123'}`
+    }));
+  }, []);
 
   const [stats] = useState({
     kills: 0,
@@ -63,8 +76,9 @@ const Profile = () => {
     }));
 
   const handleAvatarChange = (style: string) => {
-    setUser({ ...user, avatar: `https://api.dicebear.com/7.x/${style}/svg?seed=${user.username}` });
-    localStorage.setItem('userAvatar', `https://api.dicebear.com/7.x/${style}/svg?seed=${user.username}`);
+    const newAvatar = `https://api.dicebear.com/7.x/${style}/svg?seed=${user.username}`;
+    setUser({ ...user, avatar: newAvatar });
+    localStorage.setItem('userAvatar', newAvatar);
     setShowAvatarDialog(false);
   };
 
