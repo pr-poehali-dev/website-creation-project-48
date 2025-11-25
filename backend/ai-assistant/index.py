@@ -53,7 +53,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         from openai import OpenAI
         
         api_key = os.environ.get('OPENAI_API_KEY')
-        base_url = os.environ.get('OPENAI_BASE_URL', 'https://api.openai.com/v1')
+        base_url = os.environ.get('OPENAI_BASE_URL')
         
         if not api_key:
             return {
@@ -63,6 +63,17 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'Access-Control-Allow-Origin': '*'
                 },
                 'body': json.dumps({'error': 'API ключ OpenAI не настроен'}),
+                'isBase64Encoded': False
+            }
+        
+        if not base_url:
+            return {
+                'statusCode': 500,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'error': 'OPENAI_BASE_URL не настроен. Добавьте прокси-сервер для обхода блокировок OpenAI API.'}),
                 'isBase64Encoded': False
             }
         
