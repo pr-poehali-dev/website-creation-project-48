@@ -3,9 +3,16 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const Profile = () => {
-  const [user] = useState({
+  const [user, setUser] = useState({
     username: "Player123",
     email: "player@example.com",
     level: 0,
@@ -23,9 +30,44 @@ const Profile = () => {
     achievements: 0
   });
 
+  const [showAvatarDialog, setShowAvatarDialog] = useState(false);
+  const [showRewardsDialog, setShowRewardsDialog] = useState(false);
+
+  const maxLevel = 100;
   const expToNextLevel = 1000;
   const currentLevelExp = user.exp % expToNextLevel;
   const expProgress = (currentLevelExp / expToNextLevel) * 100;
+
+  const avatarStyles = [
+    { name: "Аватаарс", seed: user.username, style: "avataaars" },
+    { name: "Ботты", seed: user.username, style: "bottts" },
+    { name: "Пикселька", seed: user.username, style: "pixel-art" },
+    { name: "Личности", seed: user.username, style: "personas" },
+    { name: "Весёлый", seed: user.username, style: "fun-emoji" },
+    { name: "Инициалы", seed: user.username, style: "initials" },
+    { name: "Большие уши", seed: user.username, style: "big-ears" },
+    { name: "Улыбки", seed: user.username, style: "adventurer" },
+  ];
+
+  const getLevelRewards = (level: number) => {
+    if (level % 25 === 0) return { gems: 500, title: "Легендарная награда" };
+    if (level % 10 === 0) return { gems: 200, title: "Эпическая награда" };
+    if (level % 5 === 0) return { gems: 100, title: "Редкая награда" };
+    return null;
+  };
+
+  const allLevelRewards = Array.from({ length: 20 }, (_, i) => (i + 1) * 5)
+    .filter(lvl => lvl <= maxLevel)
+    .map(lvl => ({
+      level: lvl,
+      ...getLevelRewards(lvl)!
+    }));
+
+  const handleAvatarChange = (style: string) => {
+    setUser({ ...user, avatar: `https://api.dicebear.com/7.x/${style}/svg?seed=${user.username}` });
+    localStorage.setItem('userAvatar', `https://api.dicebear.com/7.x/${style}/svg?seed=${user.username}`);
+    setShowAvatarDialog(false);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative">
@@ -63,8 +105,16 @@ const Profile = () => {
             <div className="h-32 bg-gradient-to-r from-primary via-accent to-primary"></div>
             <div className="px-8 pb-8">
               <div className="flex flex-col md:flex-row items-start md:items-end gap-6 -mt-16 mb-8">
-                <div className="w-32 h-32 rounded-full border-4 border-background bg-card overflow-hidden shadow-[0_0_30px_rgba(168,85,247,0.5)]">
-                  <img src={user.avatar} alt="Avatar" className="w-full h-full" />
+                <div className="relative group">
+                  <div className="w-32 h-32 rounded-full border-4 border-background bg-card overflow-hidden shadow-[0_0_30px_rgba(168,85,247,0.5)]">
+                    <img src={user.avatar} alt="Avatar" className="w-full h-full" />
+                  </div>
+                  <button
+                    onClick={() => setShowAvatarDialog(true)}
+                    className="absolute inset-0 rounded-full bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                  >
+                    <Icon name="Camera" className="text-white" size={32} />
+                  </button>
                 </div>
                 <div className="flex-1">
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -86,14 +136,24 @@ const Profile = () => {
 
               <div className="grid md:grid-cols-3 gap-4 mb-8">
                 <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-                      <Icon name="TrendingUp" className="text-primary" size={20} />
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                        <Icon name="TrendingUp" className="text-primary" size={20} />
+                      </div>
+                      <div>
+                        <p className="text-2xl font-bold">{user.level} <span className="text-sm text-foreground/50">/ {maxLevel}</span></p>
+                        <p className="text-sm text-foreground/60">Уровень</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-2xl font-bold">{user.level}</p>
-                      <p className="text-sm text-foreground/60">Уровень</p>
-                    </div>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => setShowRewardsDialog(true)}
+                      className="h-8 px-2"
+                    >
+                      <Icon name="Gift" className="text-primary" size={16} />
+                    </Button>
                   </div>
                   <div className="w-full bg-background rounded-full h-2 overflow-hidden mb-1">
                     <div 
@@ -204,6 +264,95 @@ const Profile = () => {
           </Card>
         </div>
       </section>
+
+      <Dialog open={showAvatarDialog} onOpenChange={setShowAvatarDialog}>
+        <DialogContent className="bg-card/95 backdrop-blur border-primary/50 max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Сменить аватар
+            </DialogTitle>
+            <DialogDescription>
+              Выберите стиль для своего аватара
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid grid-cols-4 gap-4 py-4">
+            {avatarStyles.map((style) => (
+              <button
+                key={style.style}
+                onClick={() => handleAvatarChange(style.style)}
+                className="flex flex-col items-center gap-2 p-3 rounded-lg bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/50 transition-all"
+              >
+                <div className="w-20 h-20 rounded-full overflow-hidden bg-background">
+                  <img
+                    src={`https://api.dicebear.com/7.x/${style.style}/svg?seed=${style.seed}`}
+                    alt={style.name}
+                    className="w-full h-full"
+                  />
+                </div>
+                <span className="text-xs text-foreground/70">{style.name}</span>
+              </button>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showRewardsDialog} onOpenChange={setShowRewardsDialog}>
+        <DialogContent className="bg-card/95 backdrop-blur border-primary/50 max-w-3xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Награды за уровни
+            </DialogTitle>
+            <DialogDescription>
+              Получайте награды каждые 5 уровней. Максимальный уровень: {maxLevel}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3 py-4">
+            {allLevelRewards.map((reward) => {
+              const isUnlocked = user.level >= reward.level;
+              const rewardType = reward.level % 25 === 0 ? 'legendary' : reward.level % 10 === 0 ? 'epic' : 'rare';
+              const borderColor = rewardType === 'legendary' ? 'border-accent' : rewardType === 'epic' ? 'border-primary' : 'border-primary/50';
+              
+              return (
+                <Card
+                  key={reward.level}
+                  className={`p-4 bg-card/50 backdrop-blur transition-all ${
+                    isUnlocked 
+                      ? `${borderColor} shadow-[0_0_20px_rgba(168,85,247,0.3)]` 
+                      : 'border-border/30 opacity-50 grayscale'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                        rewardType === 'legendary' ? 'bg-accent/20' : 'bg-primary/20'
+                      }`}>
+                        <Icon 
+                          name={rewardType === 'legendary' ? 'Crown' : rewardType === 'epic' ? 'Award' : 'Star'} 
+                          className={rewardType === 'legendary' ? 'text-accent' : 'text-primary'} 
+                          size={24} 
+                        />
+                      </div>
+                      <div>
+                        <p className="font-bold text-lg">Уровень {reward.level}</p>
+                        <p className="text-sm text-foreground/60">{reward.title}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-lg">
+                        <Icon name="Gem" className="text-primary" size={18} />
+                        <span className="font-bold">+{reward.gems}</span>
+                      </div>
+                      {isUnlocked && (
+                        <Icon name="CheckCircle" className="text-green-500" size={24} />
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
