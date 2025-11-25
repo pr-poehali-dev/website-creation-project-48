@@ -182,24 +182,7 @@ const Profile = () => {
                     <div className="flex-1">
                       <h1 className="text-3xl font-bold mb-1">{user.username}</h1>
                       <p className="text-foreground/60">{user.email}</p>
-                      <p className="text-sm text-foreground/50 mb-3">Играет с {user.joinDate}</p>
-                      
-                      <div className="bg-card/50 rounded-lg p-3 border border-border/30 relative group">
-                        {user.bio ? (
-                          <p className="text-sm text-foreground/80">{user.bio}</p>
-                        ) : (
-                          <p className="text-sm text-foreground/50 italic">Нет описания профиля</p>
-                        )}
-                        <button
-                          onClick={() => {
-                            setBioText(user.bio);
-                            setShowBioDialog(true);
-                          }}
-                          className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-primary/10 rounded"
-                        >
-                          <Icon name="Pencil" size={14} className="text-primary" />
-                        </button>
-                      </div>
+                      <p className="text-sm text-foreground/50">Играет с {user.joinDate}</p>
                     </div>
                     <Button 
                       className="bg-gradient-to-r from-primary to-accent hover:opacity-90"
@@ -348,28 +331,24 @@ const Profile = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <Card className="p-6 bg-card/30 backdrop-blur border-border/50">
                   <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                    <Icon name="BarChart3" className="text-primary" size={24} />
-                    Статистика
+                    <Icon name="FileText" className="text-primary" size={24} />
+                    Описание профиля
                   </h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-foreground/70">Убийств</span>
-                      <span className="font-bold text-lg">{stats.kills}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-foreground/70">Смертей</span>
-                      <span className="font-bold text-lg">{stats.deaths}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-foreground/70">K/D Ratio</span>
-                      <span className="font-bold text-lg text-primary">
-                        {stats.deaths > 0 ? (stats.kills / stats.deaths).toFixed(2) : '0.00'}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-foreground/70">Квестов выполнено</span>
-                      <span className="font-bold text-lg">{stats.quests}</span>
-                    </div>
+                  <div className="bg-card/50 rounded-lg p-4 border border-border/30 relative group min-h-[120px]">
+                    {user.bio ? (
+                      <p className="text-foreground/80">{user.bio}</p>
+                    ) : (
+                      <p className="text-foreground/50 italic">Нет описания профиля</p>
+                    )}
+                    <button
+                      onClick={() => {
+                        setBioText(user.bio);
+                        setShowBioDialog(true);
+                      }}
+                      className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity p-2 hover:bg-primary/10 rounded"
+                    >
+                      <Icon name="Pencil" size={18} className="text-primary" />
+                    </button>
                   </div>
                 </Card>
 
