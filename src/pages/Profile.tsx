@@ -181,7 +181,7 @@ const Profile = () => {
         playMinecraftDoorSound();
       }
     }}>
-
+      <SpaceBackground />
       
       <ProfileHeader 
         showServerNotification={showServerNotification}
@@ -227,7 +227,6 @@ const Profile = () => {
         onBioSave={handleBioSave}
         onDeleteProfile={deleteProfile}
       />
-      <SpaceBackground />
     </div>
   );
 };

@@ -47,8 +47,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 flex items-center justify-center px-4">
-      <Card className="w-full max-w-md p-8 bg-card/80 backdrop-blur border-border/50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 flex items-center justify-center px-4 relative">
+      <SpaceBackground />
+      <Card className="w-full max-w-md p-8 bg-card/80 backdrop-blur border-border/50 relative z-10">
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mx-auto mb-4">
             <Icon name="LogIn" className="text-white" size={32} />

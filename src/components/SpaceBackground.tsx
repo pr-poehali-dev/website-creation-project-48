@@ -139,7 +139,7 @@ const SpaceBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full"
-      style={{ pointerEvents: 'none', zIndex: 0 }}
+      style={{ pointerEvents: 'none', zIndex: -1 }}
     />
   );
 };
