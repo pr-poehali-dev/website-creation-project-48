@@ -146,7 +146,7 @@ const Profile = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
+              <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 mb-8">
                 <Card className="lg:col-span-2 p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
@@ -228,7 +228,7 @@ const Profile = () => {
                 </Card>
 
                 <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
                       <Icon name="Gem" className="text-primary" size={20} />
                     </div>
@@ -237,9 +237,6 @@ const Profile = () => {
                       <p className="text-sm text-foreground/60">Кристаллы</p>
                     </div>
                   </div>
-                </Card>
-
-                <Card className="p-4 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
                       <Icon name="Clock" className="text-accent" size={20} />
