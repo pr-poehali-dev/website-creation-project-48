@@ -81,6 +81,7 @@ const Profile = () => {
   const [showAvatarDialog, setShowAvatarDialog] = useState(false);
   const [showRewardsDialog, setShowRewardsDialog] = useState(false);
   const [showBioDialog, setShowBioDialog] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [bioText, setBioText] = useState(user.bio);
   const [selectedServer, setSelectedServer] = useState(() => {
     return parseInt(user.selectedServer);
@@ -110,6 +111,17 @@ const Profile = () => {
   const updateStats = (key: keyof typeof stats, value: number) => {
     setStats(prev => ({ ...prev, [key]: value }));
     saveProfileData(key, value);
+  };
+
+  const deleteProfile = () => {
+    const username = localStorage.getItem('username') || 'Player123';
+    const keysToDelete = ['level', 'exp', 'gems', 'joinDate', 'playTime', 'avatar', 'bio', 'selectedServer', 'userId', 'kills', 'deaths', 'quests', 'achievements', 'playTimeMinutes'];
+    
+    keysToDelete.forEach(key => {
+      localStorage.removeItem(getProfileKey(key));
+    });
+    
+    window.location.href = '/';
   };
 
   const avatarStyles = [
@@ -235,13 +247,22 @@ const Profile = () => {
                       <p className="text-foreground/60">ID: {user.userId}</p>
                       <p className="text-sm text-foreground/50">Играет с {user.joinDate}</p>
                     </div>
-                    <Button 
-                      className="bg-gradient-to-r from-primary to-accent hover:opacity-90"
-                      onClick={() => window.location.href = '/settings'}
-                    >
-                      <Icon name="Settings" className="mr-2" size={18} />
-                      Настройки
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button 
+                        className="bg-gradient-to-r from-primary to-accent hover:opacity-90"
+                        onClick={() => window.location.href = '/settings'}
+                      >
+                        <Icon name="Settings" className="mr-2" size={18} />
+                        Настройки
+                      </Button>
+                      <Button 
+                        variant="outline"
+                        className="border-red-500 text-red-500 hover:bg-red-500/10"
+                        onClick={() => setShowDeleteDialog(true)}
+                      >
+                        <Icon name="Trash2" size={18} />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -553,6 +574,45 @@ const Profile = () => {
               onClick={handleBioSave}
             >
               Сохранить
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <DialogContent className="bg-card/95 backdrop-blur border-red-500/50 max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl text-red-500 flex items-center gap-2">
+              <Icon name="AlertTriangle" size={24} />
+              Удалить профиль
+            </DialogTitle>
+            <DialogDescription>
+              Вы уверены, что хотите удалить этот профиль? Все данные игрока будут безвозвратно потеряны.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4 space-y-2">
+            <p className="text-foreground/80">Будут удалены:</p>
+            <ul className="list-disc list-inside text-sm text-foreground/60 space-y-1">
+              <li>Уровень и опыт ({user.level} уровень)</li>
+              <li>Кристаллы ({user.gems})</li>
+              <li>Статистика и достижения</li>
+              <li>Описание профиля</li>
+              <li>Игровое время ({user.playTime})</li>
+            </ul>
+          </div>
+          <div className="flex gap-2 justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setShowDeleteDialog(false)}
+            >
+              Отмена
+            </Button>
+            <Button
+              className="bg-red-600 hover:bg-red-700"
+              onClick={deleteProfile}
+            >
+              <Icon name="Trash2" className="mr-2" size={18} />
+              Удалить навсегда
             </Button>
           </div>
         </DialogContent>
