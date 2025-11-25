@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
-import CrownsBackground from "@/components/CrownsBackground";
+import ParticlesBackground from "@/components/ParticlesBackground";
 import { useState, useEffect } from "react";
 import {
   Dialog,
@@ -113,8 +113,8 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-700 to-indigo-900 relative overflow-hidden">
-      <CrownsBackground />
+    <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative">
+      <ParticlesBackground />
       
       {showServerNotification && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-4 duration-300">
