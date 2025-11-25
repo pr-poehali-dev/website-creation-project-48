@@ -19,11 +19,15 @@ const Profile = () => {
 
   const loadProfileData = () => {
     const username = localStorage.getItem('username') || 'Player123';
-    const email = localStorage.getItem('userEmail') || 'player@example.com';
+    const userId = localStorage.getItem(getProfileKey('userId')) || `#${Math.floor(Math.random() * 900000) + 100000}`;
+    
+    if (!localStorage.getItem(getProfileKey('userId'))) {
+      localStorage.setItem(getProfileKey('userId'), userId);
+    }
     
     return {
       username,
-      email,
+      userId: localStorage.getItem(getProfileKey('userId')) || userId,
       level: parseInt(localStorage.getItem(getProfileKey('level')) || '0'),
       exp: parseInt(localStorage.getItem(getProfileKey('exp')) || '0'),
       gems: parseInt(localStorage.getItem(getProfileKey('gems')) || '0'),
@@ -223,7 +227,7 @@ const Profile = () => {
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
                     <div className="flex-1">
                       <h1 className="text-3xl font-bold mb-1">{user.username}</h1>
-                      <p className="text-foreground/60">{user.email}</p>
+                      <p className="text-foreground/60">ID: {user.userId}</p>
                       <p className="text-sm text-foreground/50">Играет с {user.joinDate}</p>
                     </div>
                     <Button 
