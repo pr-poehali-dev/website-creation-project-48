@@ -45,6 +45,7 @@ const Profile = () => {
 
   const [showAvatarDialog, setShowAvatarDialog] = useState(false);
   const [showRewardsDialog, setShowRewardsDialog] = useState(false);
+  const [selectedServer, setSelectedServer] = useState(1);
 
   const maxLevel = 100;
   const expToNextLevel = 1000;
@@ -184,7 +185,14 @@ const Profile = () => {
                     <h3 className="text-sm font-bold">Выбор сервера</h3>
                   </div>
                   <div className="grid grid-cols-4 gap-1.5">
-                    <button className="p-1.5 rounded-lg border-2 border-primary bg-primary/10 hover:bg-primary/20 transition-all">
+                    <button 
+                      onClick={() => setSelectedServer(1)}
+                      className={`p-1.5 rounded-lg transition-all ${
+                        selectedServer === 1 
+                          ? 'border-2 border-primary bg-primary/10' 
+                          : 'border border-border/50 hover:border-primary/50 hover:bg-card/50'
+                      }`}
+                    >
                       <div className="flex flex-col items-center gap-0.5">
                         <Icon name="Zap" className="text-primary" size={16} />
                         <p className="text-xs font-bold">Сервер #1</p>
@@ -194,7 +202,14 @@ const Profile = () => {
                         </p>
                       </div>
                     </button>
-                    <button className="p-1.5 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                    <button 
+                      onClick={() => setSelectedServer(2)}
+                      className={`p-1.5 rounded-lg transition-all ${
+                        selectedServer === 2 
+                          ? 'border-2 border-primary bg-primary/10' 
+                          : 'border border-border/50 hover:border-primary/50 hover:bg-card/50'
+                      }`}
+                    >
                       <div className="flex flex-col items-center gap-0.5">
                         <Icon name="Flame" className="text-orange-500" size={16} />
                         <p className="text-xs font-bold">Сервер #2</p>
@@ -204,7 +219,14 @@ const Profile = () => {
                         </p>
                       </div>
                     </button>
-                    <button className="p-1.5 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                    <button 
+                      onClick={() => setSelectedServer(3)}
+                      className={`p-1.5 rounded-lg transition-all ${
+                        selectedServer === 3 
+                          ? 'border-2 border-primary bg-primary/10' 
+                          : 'border border-border/50 hover:border-primary/50 hover:bg-card/50'
+                      }`}
+                    >
                       <div className="flex flex-col items-center gap-0.5">
                         <Icon name="Trophy" className="text-yellow-500" size={16} />
                         <p className="text-xs font-bold">Сервер #3</p>
@@ -214,7 +236,14 @@ const Profile = () => {
                         </p>
                       </div>
                     </button>
-                    <button className="p-1.5 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                    <button 
+                      onClick={() => setSelectedServer(4)}
+                      className={`p-1.5 rounded-lg transition-all ${
+                        selectedServer === 4 
+                          ? 'border-2 border-primary bg-primary/10' 
+                          : 'border border-border/50 hover:border-primary/50 hover:bg-card/50'
+                      }`}
+                    >
                       <div className="flex flex-col items-center gap-0.5">
                         <Icon name="Star" className="text-purple-500" size={16} />
                         <p className="text-xs font-bold">Сервер #4</p>
