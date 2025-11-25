@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-interface Crown {
+interface FloatingImage {
   x: number;
   y: number;
   size: number;
@@ -8,10 +8,12 @@ interface Crown {
   opacity: number;
   rotation: number;
   rotationSpeed: number;
+  imageIndex: number;
 }
 
 const CrownsBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -23,75 +25,81 @@ const CrownsBackground = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const crowns: Crown[] = [];
-    const crownCount = 20;
+    const imageUrls = [
+      'https://cdn.poehali.dev/files/83519596-fd8f-46e7-8bce-9817f4304f92.jpg',
+      'https://cdn.poehali.dev/files/e1d44230-f036-446d-b6d2-ea59f9c6680c.jpg'
+    ];
 
-    for (let i = 0; i < crownCount; i++) {
-      crowns.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 15 + 10,
-        speed: Math.random() * 0.5 + 0.2,
-        opacity: Math.random() * 0.2 + 0.05,
-        rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.02
-      });
-    }
-
-    const drawCrown = (crown: Crown) => {
-      ctx.save();
-      ctx.translate(crown.x, crown.y);
-      ctx.rotate(crown.rotation);
-      ctx.globalAlpha = crown.opacity;
-
-      ctx.fillStyle = '#ffffff';
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1;
-
-      const s = crown.size;
-      ctx.beginPath();
-      ctx.moveTo(0, -s * 0.4);
-      ctx.lineTo(s * 0.15, -s * 0.2);
-      ctx.lineTo(s * 0.2, -s * 0.5);
-      ctx.lineTo(s * 0.3, -s * 0.2);
-      ctx.lineTo(s * 0.4, -s * 0.6);
-      ctx.lineTo(s * 0.5, -s * 0.2);
-      ctx.lineTo(s * 0.6, 0);
-      ctx.lineTo(s * 0.3, 0.1);
-      ctx.lineTo(0, 0.3);
-      ctx.lineTo(-s * 0.3, 0.1);
-      ctx.lineTo(-s * 0.6, 0);
-      ctx.lineTo(-s * 0.5, -s * 0.2);
-      ctx.lineTo(-s * 0.4, -s * 0.6);
-      ctx.lineTo(-s * 0.3, -s * 0.2);
-      ctx.lineTo(-s * 0.2, -s * 0.5);
-      ctx.lineTo(-s * 0.15, -s * 0.2);
-      ctx.closePath();
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.restore();
+    const loadImages = () => {
+      return Promise.all(
+        imageUrls.map(url => {
+          return new Promise<HTMLImageElement>((resolve) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => resolve(img);
+            img.src = url;
+          });
+        })
+      );
     };
 
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    loadImages().then(images => {
+      imagesRef.current = images;
 
-      crowns.forEach(crown => {
-        drawCrown(crown);
+      const floatingImages: FloatingImage[] = [];
+      const imageCount = 15;
 
-        crown.y -= crown.speed;
-        crown.rotation += crown.rotationSpeed;
+      for (let i = 0; i < imageCount; i++) {
+        floatingImages.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 80 + 60,
+          speed: Math.random() * 0.3 + 0.1,
+          opacity: Math.random() * 0.15 + 0.05,
+          rotation: Math.random() * Math.PI * 2,
+          rotationSpeed: (Math.random() - 0.5) * 0.01,
+          imageIndex: Math.floor(Math.random() * images.length)
+        });
+      }
 
-        if (crown.y < -crown.size) {
-          crown.y = canvas.height + crown.size;
-          crown.x = Math.random() * canvas.width;
-        }
-      });
+      const drawImage = (item: FloatingImage) => {
+        const img = imagesRef.current[item.imageIndex];
+        if (!img) return;
 
-      requestAnimationFrame(animate);
-    };
+        ctx.save();
+        ctx.translate(item.x, item.y);
+        ctx.rotate(item.rotation);
+        ctx.globalAlpha = item.opacity;
 
-    animate();
+        const aspectRatio = img.width / img.height;
+        const width = item.size;
+        const height = item.size / aspectRatio;
+
+        ctx.drawImage(img, -width / 2, -height / 2, width, height);
+
+        ctx.restore();
+      };
+
+      const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        floatingImages.forEach(item => {
+          drawImage(item);
+
+          item.y -= item.speed;
+          item.rotation += item.rotationSpeed;
+
+          if (item.y < -item.size) {
+            item.y = canvas.height + item.size;
+            item.x = Math.random() * canvas.width;
+          }
+        });
+
+        requestAnimationFrame(animate);
+      };
+
+      animate();
+    });
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
