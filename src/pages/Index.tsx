@@ -122,7 +122,10 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             <AnimatedCard delay={0}>
-              <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full">
+              <Card 
+                className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full cursor-pointer"
+                onClick={() => window.location.href = '/forum'}
+              >
                 <Icon name="MessageSquare" className="text-primary mb-4" size={32} />
                 <h3 className="text-xl font-bold mb-2">Обсуждения</h3>
                 <p className="text-foreground/70">Последние темы и горячие обсуждения сообщества</p>
