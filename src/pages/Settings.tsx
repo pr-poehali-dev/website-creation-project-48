@@ -102,28 +102,37 @@ const Settings = () => {
 
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50 relative">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
               <Icon name="Sparkles" className="text-white" size={24} />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Imunns RolePlay
             </span>
-          </a>
+          </div>
           <div className="hidden md:flex items-center gap-2">
-            <a href="/profile" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Профиль</a>
-            <a href="/achievements" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Достижения</a>
             <a href="/forum" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Форум</a>
             <a href="/stats" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Топ игроков</a>
+            <a href="/jobs" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Работа</a>
+            <a href="/admin" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Администрация</a>
+            <a href="/rules" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Правила</a>
           </div>
-          <Button 
-            variant="outline" 
-            className="border-primary/50 hover:bg-primary/10"
-            onClick={() => window.location.href = '/profile'}
-          >
-            <Icon name="ArrowLeft" className="mr-2" size={18} />
-            Назад
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button variant="outline" size="icon" className="border-primary/50 hover:bg-primary/10 rounded-full h-9 w-9" onClick={() => window.location.href = '/profile'}>
+              <Icon name="User" size={18} />
+            </Button>
+            <Button 
+              variant="outline" 
+              className="border-destructive/50 hover:bg-destructive/10" 
+              onClick={() => {
+                localStorage.removeItem('isLoggedIn');
+                window.location.reload();
+              }}
+            >
+              <Icon name="LogOut" className="mr-2" size={18} />
+              Выход
+            </Button>
+          </div>
         </div>
       </nav>
 
