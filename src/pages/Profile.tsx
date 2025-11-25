@@ -88,6 +88,11 @@ const Profile = () => {
   };
 
   const handleServerChange = (serverNum: number) => {
+    // Звуковой эффект
+    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZUQ4NVKzo7aVXEwxKpOPxv2whBzKJ0vPThTQHImvA7eacTxANUqvm7aVXEgxIot/ut2MdBjaO1vLMeSgGI3fG7dmNPwkVXrPq7KdUEwtGoN/xt2QdBzaP1fPOeiYGJHnG7NqPQQoVXbTp66pVFAtGoN/xs2MeBjaP1fPOficHJHnG7NqQQQoVXrTp66hWFQtFoN/xsmEbBzaQ1fPOfygGJHrF7duRQwoVX7Pp7KlWEgtFoN/ysmIcBjaQ1vPPfykFJHzF7dyRRAoVYLPq66hWEgtGoODysmEbBjiQ1fPQgCkGI3vF7dyRRAkVYbPq66hWEgtGoODys2EbBjiQ1vPQfykFI3zF7t2SRAoVYLTq66hWEgtGoODys2EbBziR1fPRfykGI3zF7t2SRQoWYLTq7KlXEwtGoODytGIcBziR1fPRfysFJH3F7N6TSAoWX7Xq7KlXEgtFn+DytGIcBzmR1vPRgCsFJH3E7d6USAoWYLXp7KpYFAxFn+DytWMdBzmS1vPSgCwGJH7E7d+USQsWYLXp7KpYFAxFn+DytWMdBzmS1vPSgSwGJH/E7eCVSgsWYLbq7KtYEwtGn+HzsmQeBjmT1vPSgSwGI4DE7eCVSgsWYLbq7KtZEwtFn+HzsmQeBzmT1vPSgCwGI4HE7eGVSwsWYLbq7KpZEgtFn+HzsmUfBzmT1vPTgCwGJIHE7eGWSgsWX7fq7apZEgtFn+HztGUeBjqT1vPTfy0FJIHE7eGWSgsWX7fq7atZEwtGn+HztGUeBjqT1/PTfy0FJIHE7eKXSwsWX7fq7atZEwtGn+HztGYfBzqU1/PTgC0FJYHf7+OWSgsWX7fq7axaEgtGoOH0tWYfBzqU1/PUgC0FJYHf7+OWSgsWYLjq7axaEgtGoOH0tWYfBzqU1/PUgS4FJYLf7+SXSwsWYLjq7axaEwtGoOH0tmYfBzqU2PPUgS4FJYLf8OSYSwsWYLjq7q1aEwtGoOL0tmYgBzqV2PPUgi4FJYLf8OSYTAsWYLnq7q1aEwtHoeL0t2YgBzqV2PPVgi4FJYPf8OSYTAsWYLnq7q1bEwtHoeL0t2YgBzqV2PPVgi8GJYPf8OSYTAsWYLnq7q1bEwtHoeL0uGYgBzqV2PPVgi8GJYPf8OWYTAsWYLnq7q1cFAtHoeL0uGYhBzqW2PPVgi8GJYPf8OWYTAsWYLrq7q1cFAtHoeP0uGYhBzqW2PPWgi8GJYPf8OWYTAsWYLrq7q1cFAtIouP0uGYhBzqW2PPWgi8GJYTf8OWYTQsWYLrq7q1cFAtIouP0uWchBzqW2PPWgjAGJYTf8OWZTQsWYLrq761cFAtIouP0uWchBzqW2PPWgjAGJYTf8OWZTQsWYLvq761dFQtIouP0umciB0CX2PPWgjAGJYXf8OaZTQsWYLvq761dFQtJo+P0umciB0CX2PPWgjAHJYXf8OaZTQsWYLvq761dFQtJo+P0umciB0CY2PPXgjAHJYXf8OaZTgsWYLzq761dFQtJo+P0u2ciB0CY2PPXgjAHJYXf8OaaUAsWYbzq761eFgtKpOP0u2ciB0CY2PPXgjAHJYbf8OaaUAsWYbzq8K1eFgtKpOP0vGciB0CY2PPXgzAHJYbf8OaaUAsWYbzq8K1eFgtKpOP0vGciB0CZ2PPXgzAHJYbf8OaaUAsWYb3q8K1fFgtKpOP0vGgiB0CZ2PPXgzAHJYff8OaaUQsWYb3q8K1fFgtKpOP0vGgiB0CZ2PPYgzAHJ... [truncated]
+    audio.volume = 0.3;
+    audio.play().catch(() => {}); // Игнорируем ошибки если браузер блокирует автовоспроизведение
+    
     setSelectedServer(serverNum);
     localStorage.setItem('selectedServer', serverNum.toString());
     setServerNotificationText(`Выбран Сервер #${serverNum}`);
@@ -101,8 +106,8 @@ const Profile = () => {
       
       {showServerNotification && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-4 duration-300">
-          <div className="bg-primary/90 backdrop-blur text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
-            <Icon name="CheckCircle2" size={20} />
+          <div className="bg-primary/90 backdrop-blur text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 animate-pulse">
+            <Icon name="CheckCircle2" size={20} className="animate-bounce" />
             <span className="font-semibold">{serverNotificationText}</span>
           </div>
         </div>
@@ -209,68 +214,68 @@ const Profile = () => {
                   <div className="grid grid-cols-4 gap-1.5">
                     <button 
                       onClick={() => handleServerChange(1)}
-                      className={`p-1.5 rounded-lg transition-all ${
+                      className={`p-1.5 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 ${
                         selectedServer === 1 
-                          ? 'border-2 border-primary bg-primary/10' 
+                          ? 'border-2 border-primary bg-primary/10 shadow-lg shadow-primary/20' 
                           : 'border border-border/50 hover:border-primary/50 hover:bg-card/50'
                       }`}
                     >
                       <div className="flex flex-col items-center gap-0.5">
-                        <Icon name="Zap" className="text-primary" size={16} />
+                        <Icon name="Zap" className={`text-primary ${selectedServer === 1 ? 'animate-pulse' : ''}`} size={16} />
                         <p className="text-xs font-bold">Сервер #1</p>
                         <p className="text-xs text-green-500 flex items-center gap-0.5">
-                          <span className="w-1 h-1 bg-green-500 rounded-full"></span>
+                          <span className="w-1 h-1 bg-green-500 rounded-full animate-pulse"></span>
                           245
                         </p>
                       </div>
                     </button>
                     <button 
                       onClick={() => handleServerChange(2)}
-                      className={`p-1.5 rounded-lg transition-all ${
+                      className={`p-1.5 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 ${
                         selectedServer === 2 
-                          ? 'border-2 border-primary bg-primary/10' 
+                          ? 'border-2 border-primary bg-primary/10 shadow-lg shadow-primary/20' 
                           : 'border border-border/50 hover:border-primary/50 hover:bg-card/50'
                       }`}
                     >
                       <div className="flex flex-col items-center gap-0.5">
-                        <Icon name="Flame" className="text-orange-500" size={16} />
+                        <Icon name="Flame" className={`text-orange-500 ${selectedServer === 2 ? 'animate-pulse' : ''}`} size={16} />
                         <p className="text-xs font-bold">Сервер #2</p>
                         <p className="text-xs text-green-500 flex items-center gap-0.5">
-                          <span className="w-1 h-1 bg-green-500 rounded-full"></span>
+                          <span className="w-1 h-1 bg-green-500 rounded-full animate-pulse"></span>
                           189
                         </p>
                       </div>
                     </button>
                     <button 
                       onClick={() => handleServerChange(3)}
-                      className={`p-1.5 rounded-lg transition-all ${
+                      className={`p-1.5 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 ${
                         selectedServer === 3 
-                          ? 'border-2 border-primary bg-primary/10' 
+                          ? 'border-2 border-primary bg-primary/10 shadow-lg shadow-primary/20' 
                           : 'border border-border/50 hover:border-primary/50 hover:bg-card/50'
                       }`}
                     >
                       <div className="flex flex-col items-center gap-0.5">
-                        <Icon name="Trophy" className="text-yellow-500" size={16} />
+                        <Icon name="Trophy" className={`text-yellow-500 ${selectedServer === 3 ? 'animate-pulse' : ''}`} size={16} />
                         <p className="text-xs font-bold">Сервер #3</p>
                         <p className="text-xs text-yellow-500 flex items-center gap-0.5">
-                          <span className="w-1 h-1 bg-yellow-500 rounded-full"></span>
+                          <span className="w-1 h-1 bg-yellow-500 rounded-full animate-pulse"></span>
                           312
                         </p>
                       </div>
                     </button>
                     <button 
                       onClick={() => handleServerChange(4)}
-                      className={`p-1.5 rounded-lg transition-all ${
+                      className={`p-1.5 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 ${
                         selectedServer === 4 
-                          ? 'border-2 border-primary bg-primary/10' 
+                          ? 'border-2 border-primary bg-primary/10 shadow-lg shadow-primary/20' 
                           : 'border border-border/50 hover:border-primary/50 hover:bg-card/50'
                       }`}
                     >
                       <div className="flex flex-col items-center gap-0.5">
-                        <Icon name="Star" className="text-purple-500" size={16} />
+                        <Icon name="Star" className={`text-purple-500 ${selectedServer === 4 ? 'animate-pulse' : ''}`} size={16} />
                         <p className="text-xs font-bold">Сервер #4</p>
                         <p className="text-xs text-red-500 flex items-center gap-0.5">
-                          <span className="w-1 h-1 bg-red-500 rounded-full"></span>
+                          <span className="w-1 h-1 bg-red-500 rounded-full animate-pulse"></span>
                           456
                         </p>
                       </div>
