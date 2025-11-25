@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import AnimatedCard from "@/components/AnimatedCard";
+import VirtualAssistant from "@/components/VirtualAssistant";
 import { useEffect, useState } from "react";
 
 const Index = () => {
@@ -372,6 +373,7 @@ const Index = () => {
           </div>
         </div>
       </footer>
+      <VirtualAssistant />
     </div>
   );
 };
