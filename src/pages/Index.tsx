@@ -63,7 +63,6 @@ const Index = () => {
           </div>
           <div className="hidden md:flex items-center gap-2">
             <a href="/forum" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-foreground hover:bg-primary/10 hover:text-primary transition-all">Форум</a>
-            <a href="/assistant" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-foreground hover:bg-primary/10 hover:text-primary transition-all">ИИ Помощник</a>
             <a href="/stats" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-foreground hover:bg-primary/10 hover:text-primary transition-all">Топ игроков</a>
             <a href="/jobs" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-foreground hover:bg-primary/10 hover:text-primary transition-all">Работа</a>
             <a href="/admin" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-foreground hover:bg-primary/10 hover:text-primary transition-all">Администрация</a>
