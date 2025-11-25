@@ -146,58 +146,51 @@ const Profile = () => {
                 </div>
               </div>
 
-              <Card className="p-6 bg-card/30 backdrop-blur border-border/50 mb-8">
-                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <Icon name="Server" className="text-primary" size={24} />
-                  Выбор сервера
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <button className="p-4 rounded-lg border-2 border-primary bg-primary/10 hover:bg-primary/20 transition-all group">
-                    <div className="flex flex-col items-center gap-2">
-                      <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Icon name="Zap" className="text-primary" size={24} />
-                      </div>
-                      <p className="font-bold">Сервер #1</p>
-                      <p className="text-sm text-green-500 flex items-center gap-1">
-                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                        245 игроков
-                      </p>
-                      <span className="text-xs text-foreground/60 mt-1">Выбран</span>
-                    </div>
-                  </button>
-                  <button className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all group">
-                    <div className="flex flex-col items-center gap-2">
-                      <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Icon name="Flame" className="text-orange-500" size={24} />
-                      </div>
-                      <p className="font-bold">Сервер #2</p>
-                      <p className="text-sm text-green-500 flex items-center gap-1">
-                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                        189 игроков
+              <Card className="p-4 bg-card/30 backdrop-blur border-border/50 mb-6">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-base font-bold flex items-center gap-2">
+                    <Icon name="Server" className="text-primary" size={18} />
+                    Выбор сервера
+                  </h3>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                  <button className="p-3 rounded-lg border-2 border-primary bg-primary/10 hover:bg-primary/20 transition-all">
+                    <div className="flex flex-col items-center gap-1">
+                      <Icon name="Zap" className="text-primary" size={20} />
+                      <p className="text-sm font-bold">Сервер #1</p>
+                      <p className="text-xs text-green-500 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                        245
                       </p>
                     </div>
                   </button>
-                  <button className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all group">
-                    <div className="flex flex-col items-center gap-2">
-                      <div className="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Icon name="Trophy" className="text-yellow-500" size={24} />
-                      </div>
-                      <p className="font-bold">Сервер #3</p>
-                      <p className="text-sm text-yellow-500 flex items-center gap-1">
-                        <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>
-                        312 игроков
+                  <button className="p-3 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                    <div className="flex flex-col items-center gap-1">
+                      <Icon name="Flame" className="text-orange-500" size={20} />
+                      <p className="text-sm font-bold">Сервер #2</p>
+                      <p className="text-xs text-green-500 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                        189
                       </p>
                     </div>
                   </button>
-                  <button className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all group">
-                    <div className="flex flex-col items-center gap-2">
-                      <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Icon name="Star" className="text-purple-500" size={24} />
-                      </div>
-                      <p className="font-bold">Сервер #4</p>
-                      <p className="text-sm text-red-500 flex items-center gap-1">
-                        <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                        456 игроков
+                  <button className="p-3 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                    <div className="flex flex-col items-center gap-1">
+                      <Icon name="Trophy" className="text-yellow-500" size={20} />
+                      <p className="text-sm font-bold">Сервер #3</p>
+                      <p className="text-xs text-yellow-500 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full"></span>
+                        312
+                      </p>
+                    </div>
+                  </button>
+                  <button className="p-3 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                    <div className="flex flex-col items-center gap-1">
+                      <Icon name="Star" className="text-purple-500" size={20} />
+                      <p className="text-sm font-bold">Сервер #4</p>
+                      <p className="text-xs text-red-500 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                        456
                       </p>
                     </div>
                   </button>
