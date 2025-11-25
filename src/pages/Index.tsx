@@ -438,16 +438,6 @@ const Index = () => {
                 места для строительства и расскажем о самых интересных квестах. Не стесняйтесь обращаться к нам — мы всегда рады помочь 
                 новичкам и опытным игрокам!
               </p>
-              <div className="flex gap-4 mt-6">
-                <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/30">
-                  <span className="text-2xl">🐹</span>
-                  <span className="text-foreground/90 font-semibold">Хома</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/30">
-                  <span className="text-2xl">🦫</span>
-                  <span className="text-foreground/90 font-semibold">Боба</span>
-                </div>
-              </div>
             </Card>
           </AnimatedCard>
         </div>
