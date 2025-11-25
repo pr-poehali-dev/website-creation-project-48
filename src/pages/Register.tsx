@@ -47,6 +47,8 @@ const Register = () => {
       const data = await response.json();
 
       if (response.ok) {
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("username", formData.username);
         navigate("/profile");
       } else {
         setError(data.error || "Ошибка регистрации");

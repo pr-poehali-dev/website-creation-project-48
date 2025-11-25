@@ -15,6 +15,12 @@ import { useEffect, useState } from "react";
 const Index = () => {
   const [onlinePlayers, setOnlinePlayers] = useState(0);
   const [serverStatus, setServerStatus] = useState<'loading' | 'online' | 'offline'>('loading');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(loggedIn);
+  }, []);
 
   useEffect(() => {
     const fetchServerStatus = async () => {
@@ -61,13 +67,29 @@ const Index = () => {
             <a href="/rules" className="font-bold text-purple-300 hover:text-primary transition-colors">Правила</a>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="outline" className="border-primary/50 hover:bg-primary/10" onClick={() => window.location.href = '/profile'}>
-              <Icon name="User" className="mr-2" size={18} />
-              Личный кабинет
-            </Button>
-            <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90" onClick={() => window.location.href = '/login'}>
-              Вход
-            </Button>
+            {isLoggedIn ? (
+              <>
+                <Button variant="outline" className="border-primary/50 hover:bg-primary/10" onClick={() => window.location.href = '/profile'}>
+                  <Icon name="User" className="mr-2" size={18} />
+                  Личный кабинет
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="border-destructive/50 hover:bg-destructive/10" 
+                  onClick={() => {
+                    localStorage.removeItem('isLoggedIn');
+                    window.location.reload();
+                  }}
+                >
+                  <Icon name="LogOut" className="mr-2" size={18} />
+                  Выход
+                </Button>
+              </>
+            ) : (
+              <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90" onClick={() => window.location.href = '/login'}>
+                Вход
+              </Button>
+            )}
           </div>
         </div>
       </nav>

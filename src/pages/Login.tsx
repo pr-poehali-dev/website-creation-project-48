@@ -33,6 +33,7 @@ const Login = () => {
         localStorage.setItem("authToken", data.token);
         localStorage.setItem("username", data.username);
         localStorage.setItem("userId", data.user_id);
+        localStorage.setItem("isLoggedIn", "true");
         navigate("/");
       } else {
         setError(data.error || "Ошибка входа");
