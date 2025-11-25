@@ -84,34 +84,27 @@ const Profile = () => {
                 </div>
               </div>
 
-              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50 mb-8">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
-                      <Icon name="TrendingUp" className="text-primary" size={24} />
+              <div className="grid md:grid-cols-3 gap-4 mb-8">
+                <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Icon name="TrendingUp" className="text-primary" size={20} />
                     </div>
                     <div>
-                      <p className="text-sm text-foreground/60">Уровень</p>
                       <p className="text-2xl font-bold">{user.level}</p>
+                      <p className="text-sm text-foreground/60">Уровень</p>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-sm text-foreground/60">Опыт</p>
-                    <p className="text-lg font-semibold text-primary">{currentLevelExp} / {expToNextLevel}</p>
+                  <div className="w-full bg-background rounded-full h-2 overflow-hidden mb-1">
+                    <div 
+                      className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500"
+                      style={{ width: `${expProgress}%` }}
+                    ></div>
                   </div>
-                </div>
-                <div className="w-full bg-background rounded-full h-3 overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500"
-                    style={{ width: `${expProgress}%` }}
-                  ></div>
-                </div>
-                <p className="text-xs text-foreground/50 mt-2">
-                  До следующего уровня: {expToNextLevel - currentLevelExp} опыта
-                </p>
-              </Card>
-
-              <div className="grid md:grid-cols-2 gap-4 mb-8">
+                  <p className="text-xs text-foreground/50">
+                    {currentLevelExp} / {expToNextLevel} опыта
+                  </p>
+                </Card>
                 <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
