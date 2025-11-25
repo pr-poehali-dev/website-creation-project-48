@@ -436,6 +436,7 @@ const Index = () => {
                     Homa-Boba bubble tea Rostov
                   </h2>
                 </div>
+                <div className="h-20 w-px bg-border/50"></div>
                 <div className="flex flex-col gap-2">
                   <p className="text-sm text-foreground/70 font-semibold text-center mb-1">Наши соцсети</p>
                   <div className="grid grid-cols-2 gap-2">
