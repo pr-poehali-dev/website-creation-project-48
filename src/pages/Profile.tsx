@@ -3,6 +3,7 @@ import ProfileHeader from "@/components/profile/ProfileHeader";
 import ProfileInfo from "@/components/profile/ProfileInfo";
 import ProfileStats from "@/components/profile/ProfileStats";
 import ProfileDialogs from "@/components/profile/ProfileDialogs";
+import ProfileChat from "@/components/profile/ProfileChat";
 import { useState, useEffect } from "react";
 import SpaceBackground from "@/components/SpaceBackground";
 
@@ -235,6 +236,11 @@ const Profile = () => {
         <ProfileStats 
           selectedServer={selectedServer}
           onServerChange={handleServerChange}
+        />
+
+        <ProfileChat 
+          currentUsername={user.username}
+          currentAvatar={user.avatar}
         />
       </main>
 
