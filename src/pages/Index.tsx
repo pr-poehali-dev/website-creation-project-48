@@ -60,9 +60,15 @@ const Index = () => {
             <a href="/admin" className="font-bold text-purple-300 hover:text-primary transition-colors">Администрация</a>
             <a href="/rules" className="font-bold text-purple-300 hover:text-primary transition-colors">Правила</a>
           </div>
-          <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90" onClick={() => window.location.href = '/login'}>
-            Вход
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button variant="outline" className="border-primary/50 hover:bg-primary/10" onClick={() => window.location.href = '/profile'}>
+              <Icon name="User" className="mr-2" size={18} />
+              Личный кабинет
+            </Button>
+            <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90" onClick={() => window.location.href = '/login'}>
+              Вход
+            </Button>
+          </div>
         </div>
       </nav>
 
