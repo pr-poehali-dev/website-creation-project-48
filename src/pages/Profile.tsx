@@ -17,7 +17,7 @@ const Profile = () => {
     email: localStorage.getItem('userEmail') || "player@example.com",
     level: 0,
     exp: 0,
-    gems: 0,
+    gems: 1000000,
     joinDate: "15 января 2025",
     playTime: "0 часов",
     avatar: localStorage.getItem('userAvatar') || "https://api.dicebear.com/7.x/avataaars/svg?seed=Player123",
