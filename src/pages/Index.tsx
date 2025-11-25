@@ -456,7 +456,7 @@ const Index = () => {
                       <Icon name="Send" size={18} className="text-primary" />
                     </a>
                     <a 
-                      href="https://vk.com/homa_boba_rostov" 
+                      href="https://vk.com/imunnsroleplay" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="w-10 h-10 bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 rounded-lg flex items-center justify-center transition-all hover:scale-110"
