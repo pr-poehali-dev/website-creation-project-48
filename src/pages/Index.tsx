@@ -148,11 +148,14 @@ const Index = () => {
                       </div>
                     </Card>
                   </TooltipTrigger>
-                  <TooltipContent side="top" className="max-w-xs bg-card/95 backdrop-blur border-primary/50 shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-                    <p className="font-semibold mb-1">🎮 Основной сервер</p>
-                    <p className="text-sm text-foreground/80">IP: play.imunns.ru</p>
-                    <p className="text-sm text-foreground/80">Версия: 1.20.1</p>
-                    <p className="text-sm text-foreground/80">Режим: RolePlay</p>
+                  <TooltipContent side="top" className="max-w-sm bg-card/95 backdrop-blur border-primary/50 shadow-[0_0_20px_rgba(168,85,247,0.4)] p-4">
+                    <p className="font-semibold mb-2 text-base">🎮 Основной сервер</p>
+                    <p className="text-sm text-foreground/90 mb-3">Погрузись в мир ролевой игры! Создавай персонажа, строй карьеру, заводи друзей и пиши свою историю в уникальной вселенной.</p>
+                    <div className="space-y-1 border-t border-border/30 pt-2">
+                      <p className="text-sm text-foreground/80"><span className="font-semibold">IP:</span> play.imunns.ru</p>
+                      <p className="text-sm text-foreground/80"><span className="font-semibold">Версия:</span> 1.20.1</p>
+                      <p className="text-sm text-foreground/80"><span className="font-semibold">Режим:</span> RolePlay</p>
+                    </div>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
