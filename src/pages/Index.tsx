@@ -97,9 +97,7 @@ const Index = () => {
       <section className="relative py-32 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center space-y-6 max-w-4xl mx-auto">
-            <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-pulse">
-              Imunns RolePlay
-            </h1>
+            <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-pulse">ImunnS RolePlay</h1>
             <p className="text-xl md:text-2xl text-foreground/90">
               Погрузись в мир ролевой игры с уникальными квестами и персонажами
             </p>
