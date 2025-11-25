@@ -146,28 +146,28 @@ const Profile = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 mb-8">
-                <Card className="lg:col-span-2 p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-                        <Icon name="TrendingUp" className="text-primary" size={20} />
+              <div className="grid grid-cols-1 lg:grid-cols-8 gap-4 mb-8">
+                <Card className="lg:col-span-2 p-3 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
+                        <Icon name="TrendingUp" className="text-primary" size={18} />
                       </div>
                       <div>
-                        <p className="text-2xl font-bold">{user.level}</p>
-                        <p className="text-sm text-foreground/60">Уровень</p>
+                        <p className="text-xl font-bold">{user.level}</p>
+                        <p className="text-xs text-foreground/60">Уровень</p>
                       </div>
                     </div>
                     <Button
                       size="sm"
                       variant="ghost"
                       onClick={() => setShowRewardsDialog(true)}
-                      className="h-8 px-2"
+                      className="h-7 px-1.5"
                     >
-                      <Icon name="Gift" className="text-primary" size={16} />
+                      <Icon name="Gift" className="text-primary" size={14} />
                     </Button>
                   </div>
-                  <div className="w-full bg-background rounded-full h-2 overflow-hidden mb-1">
+                  <div className="w-full bg-background rounded-full h-1.5 overflow-hidden mb-1">
                     <div 
                       className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500"
                       style={{ width: `${expProgress}%` }}
@@ -178,47 +178,47 @@ const Profile = () => {
                   </p>
                 </Card>
 
-                <Card className="lg:col-span-3 p-4 bg-card/30 backdrop-blur border-border/50">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Icon name="Server" className="text-primary" size={18} />
-                    <h3 className="text-base font-bold">Выбор сервера</h3>
+                <Card className="lg:col-span-4 p-3 bg-card/30 backdrop-blur border-border/50">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Icon name="Server" className="text-primary" size={16} />
+                    <h3 className="text-sm font-bold">Выбор сервера</h3>
                   </div>
-                  <div className="grid grid-cols-4 gap-2">
-                    <button className="p-2 rounded-lg border-2 border-primary bg-primary/10 hover:bg-primary/20 transition-all">
-                      <div className="flex flex-col items-center gap-1">
-                        <Icon name="Zap" className="text-primary" size={18} />
+                  <div className="grid grid-cols-4 gap-1.5">
+                    <button className="p-1.5 rounded-lg border-2 border-primary bg-primary/10 hover:bg-primary/20 transition-all">
+                      <div className="flex flex-col items-center gap-0.5">
+                        <Icon name="Zap" className="text-primary" size={16} />
                         <p className="text-xs font-bold">Сервер #1</p>
-                        <p className="text-xs text-green-500 flex items-center gap-1">
+                        <p className="text-xs text-green-500 flex items-center gap-0.5">
                           <span className="w-1 h-1 bg-green-500 rounded-full"></span>
                           245
                         </p>
                       </div>
                     </button>
-                    <button className="p-2 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
-                      <div className="flex flex-col items-center gap-1">
-                        <Icon name="Flame" className="text-orange-500" size={18} />
+                    <button className="p-1.5 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                      <div className="flex flex-col items-center gap-0.5">
+                        <Icon name="Flame" className="text-orange-500" size={16} />
                         <p className="text-xs font-bold">Сервер #2</p>
-                        <p className="text-xs text-green-500 flex items-center gap-1">
+                        <p className="text-xs text-green-500 flex items-center gap-0.5">
                           <span className="w-1 h-1 bg-green-500 rounded-full"></span>
                           189
                         </p>
                       </div>
                     </button>
-                    <button className="p-2 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
-                      <div className="flex flex-col items-center gap-1">
-                        <Icon name="Trophy" className="text-yellow-500" size={18} />
+                    <button className="p-1.5 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                      <div className="flex flex-col items-center gap-0.5">
+                        <Icon name="Trophy" className="text-yellow-500" size={16} />
                         <p className="text-xs font-bold">Сервер #3</p>
-                        <p className="text-xs text-yellow-500 flex items-center gap-1">
+                        <p className="text-xs text-yellow-500 flex items-center gap-0.5">
                           <span className="w-1 h-1 bg-yellow-500 rounded-full"></span>
                           312
                         </p>
                       </div>
                     </button>
-                    <button className="p-2 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
-                      <div className="flex flex-col items-center gap-1">
-                        <Icon name="Star" className="text-purple-500" size={18} />
+                    <button className="p-1.5 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                      <div className="flex flex-col items-center gap-0.5">
+                        <Icon name="Star" className="text-purple-500" size={16} />
                         <p className="text-xs font-bold">Сервер #4</p>
-                        <p className="text-xs text-red-500 flex items-center gap-1">
+                        <p className="text-xs text-red-500 flex items-center gap-0.5">
                           <span className="w-1 h-1 bg-red-500 rounded-full"></span>
                           456
                         </p>
@@ -227,23 +227,25 @@ const Profile = () => {
                   </div>
                 </Card>
 
-                <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-                      <Icon name="Gem" className="text-primary" size={20} />
+                <Card className="lg:col-span-2 p-3 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 pb-3 border-b border-border/30">
+                      <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
+                        <Icon name="Gem" className="text-primary" size={18} />
+                      </div>
+                      <div>
+                        <p className="text-xl font-bold">{user.gems}</p>
+                        <p className="text-xs text-foreground/60">Кристаллы</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-2xl font-bold">{user.gems}</p>
-                      <p className="text-sm text-foreground/60">Кристаллы</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
-                      <Icon name="Clock" className="text-accent" size={20} />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold">{user.playTime}</p>
-                      <p className="text-sm text-foreground/60">Игровое время</p>
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
+                        <Icon name="Clock" className="text-accent" size={18} />
+                      </div>
+                      <div>
+                        <p className="text-xl font-bold">{user.playTime}</p>
+                        <p className="text-xs text-foreground/60">Игровое время</p>
+                      </div>
                     </div>
                   </div>
                 </Card>
