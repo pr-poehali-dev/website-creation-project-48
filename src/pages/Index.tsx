@@ -47,7 +47,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative">
+    <div className="min-h-screen bg-background relative">
 
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -149,7 +149,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-card/30">
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -360,7 +360,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="discord" className="py-20 bg-card/30">
+      <section id="discord" className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedCard>
             <Card className="p-12 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 backdrop-blur border-primary/30">
