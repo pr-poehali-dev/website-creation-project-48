@@ -148,34 +148,6 @@ const Index = () => {
 
       <section className="py-20 relative z-10">
         <div className="container mx-auto px-4">
-          <AnimatedCard delay={0}>
-            <Card className="p-8 bg-gradient-to-br from-card/80 to-primary/5 backdrop-blur border-primary/30 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all mb-12">
-              <div className="flex items-center gap-4 mb-4">
-                <Icon name="MessageCircle" className="text-primary" size={40} />
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Хома и Боба
-                </h2>
-              </div>
-              <p className="text-foreground/80 text-lg leading-relaxed">
-                Приветствуем вас на сервере ImunnS RolePlay! Мы — Хома и Боба, ваши верные спутники в этом невероятном мире приключений. 
-                Хома — мудрый хомяк с золотыми усами, знаток всех секретов сервера. А Боба — бобёр-строитель, который может построить 
-                что угодно: от уютного домика до величественного замка! Вместе мы поможем вам освоиться на сервере, подскажем лучшие 
-                места для строительства и расскажем о самых интересных квестах. Не стесняйтесь обращаться к нам — мы всегда рады помочь 
-                новичкам и опытным игрокам!
-              </p>
-              <div className="flex gap-4 mt-6">
-                <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/30">
-                  <span className="text-2xl">🐹</span>
-                  <span className="text-foreground/90 font-semibold">Хома</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/30">
-                  <span className="text-2xl">🦫</span>
-                  <span className="text-foreground/90 font-semibold">Боба</span>
-                </div>
-              </div>
-            </Card>
-          </AnimatedCard>
-
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Наши Сервера
@@ -446,6 +418,38 @@ const Index = () => {
               </Button>
             </a>
           </div>
+        </div>
+      </section>
+
+      <section className="py-20 relative z-10">
+        <div className="container mx-auto px-4">
+          <AnimatedCard delay={0}>
+            <Card className="p-8 bg-gradient-to-br from-card/80 to-primary/5 backdrop-blur border-primary/30 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all">
+              <div className="flex items-center gap-4 mb-4">
+                <Icon name="MessageCircle" className="text-primary" size={40} />
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Хома и Боба
+                </h2>
+              </div>
+              <p className="text-foreground/80 text-lg leading-relaxed">
+                Приветствуем вас на сервере ImunnS RolePlay! Мы — Хома и Боба, ваши верные спутники в этом невероятном мире приключений. 
+                Хома — мудрый хомяк с золотыми усами, знаток всех секретов сервера. А Боба — бобёр-строитель, который может построить 
+                что угодно: от уютного домика до величественного замка! Вместе мы поможем вам освоиться на сервере, подскажем лучшие 
+                места для строительства и расскажем о самых интересных квестах. Не стесняйтесь обращаться к нам — мы всегда рады помочь 
+                новичкам и опытным игрокам!
+              </p>
+              <div className="flex gap-4 mt-6">
+                <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/30">
+                  <span className="text-2xl">🐹</span>
+                  <span className="text-foreground/90 font-semibold">Хома</span>
+                </div>
+                <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/30">
+                  <span className="text-2xl">🦫</span>
+                  <span className="text-foreground/90 font-semibold">Боба</span>
+                </div>
+              </div>
+            </Card>
+          </AnimatedCard>
         </div>
       </section>
 
