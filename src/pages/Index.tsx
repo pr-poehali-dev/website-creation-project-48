@@ -48,8 +48,8 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background relative">
-
+    <div className="min-h-screen relative">
+      <SpaceBackground />
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -463,7 +463,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-      <SpaceBackground />
       <VirtualAssistant />
     </div>
   );
