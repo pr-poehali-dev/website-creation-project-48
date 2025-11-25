@@ -15,7 +15,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "PvP",
-      reward: { coins: 100, gems: 5 }
+      reward: { gems: 5 }
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Прогресс",
-      reward: { coins: 250, gems: 10 }
+      reward: { gems: 10 }
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Социальное",
-      reward: { coins: 150, gems: 8 }
+      reward: { gems: 8 }
     },
     {
       id: 4,
@@ -48,7 +48,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Прогресс",
-      reward: { coins: 500, gems: 25 }
+      reward: { gems: 25 }
     },
     {
       id: 5,
@@ -59,7 +59,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "PvP",
-      reward: { coins: 300, gems: 15 }
+      reward: { gems: 15 }
     },
     {
       id: 6,
@@ -70,7 +70,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Экономика",
-      reward: { coins: 400, gems: 20 }
+      reward: { gems: 20 }
     },
     {
       id: 7,
@@ -81,7 +81,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Исследование",
-      reward: { coins: 350, gems: 18 }
+      reward: { gems: 18 }
     },
     {
       id: 8,
@@ -92,7 +92,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Квесты",
-      reward: { coins: 600, gems: 30 }
+      reward: { gems: 30 }
     },
     {
       id: 9,
@@ -103,7 +103,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Экономика",
-      reward: { coins: 5000, gems: 100 }
+      reward: { gems: 100 }
     },
     {
       id: 10,
@@ -114,7 +114,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Прогресс",
-      reward: { coins: 10000, gems: 200 }
+      reward: { gems: 200 }
     },
     {
       id: 11,
@@ -125,7 +125,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "PvP",
-      reward: { coins: 450, gems: 22 }
+      reward: { gems: 22 }
     },
     {
       id: 12,
@@ -136,7 +136,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Коллекции",
-      reward: { coins: 800, gems: 40 }
+      reward: { gems: 40 }
     },
     {
       id: 13,
@@ -147,7 +147,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Социальное",
-      reward: { coins: 200, gems: 12 }
+      reward: { gems: 12 }
     },
     {
       id: 14,
@@ -158,7 +158,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Строительство",
-      reward: { coins: 550, gems: 28 }
+      reward: { gems: 28 }
     },
     {
       id: 15,
@@ -169,7 +169,7 @@ const Achievements = () => {
       unlocked: false,
       progress: 0,
       category: "Крафт",
-      reward: { coins: 700, gems: 35 }
+      reward: { gems: 35 }
     }
   ];
 
@@ -273,15 +273,9 @@ const Achievements = () => {
                   <div className="mt-4 pt-4 border-t border-border/30">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-foreground/70">Награда:</span>
-                      <div className="flex items-center gap-3">
-                        <div className="flex items-center gap-1">
-                          <Icon name="Coins" className="text-accent" size={16} />
-                          <span className="font-semibold text-sm">{achievement.reward.coins}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Icon name="Gem" className="text-primary" size={16} />
-                          <span className="font-semibold text-sm">{achievement.reward.gems}</span>
-                        </div>
+                      <div className="flex items-center gap-1">
+                        <Icon name="Gem" className="text-primary" size={16} />
+                        <span className="font-semibold text-sm">{achievement.reward.gems} кристаллов</span>
                       </div>
                     </div>
                   </div>

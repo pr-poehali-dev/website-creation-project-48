@@ -9,7 +9,6 @@ const Profile = () => {
     username: "Player123",
     email: "player@example.com",
     level: 0,
-    coins: 0,
     gems: 0,
     joinDate: "15 января 2025",
     playTime: "0 часов",
@@ -69,7 +68,10 @@ const Profile = () => {
                       <p className="text-foreground/60">{user.email}</p>
                       <p className="text-sm text-foreground/50">Играет с {user.joinDate}</p>
                     </div>
-                    <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
+                    <Button 
+                      className="bg-gradient-to-r from-primary to-accent hover:opacity-90"
+                      onClick={() => window.location.href = '/settings'}
+                    >
                       <Icon name="Settings" className="mr-2" size={18} />
                       Настройки
                     </Button>
@@ -77,7 +79,7 @@ const Profile = () => {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-4 gap-4 mb-8">
+              <div className="grid md:grid-cols-3 gap-4 mb-8">
                 <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -86,17 +88,6 @@ const Profile = () => {
                     <div>
                       <p className="text-2xl font-bold">{user.level}</p>
                       <p className="text-sm text-foreground/60">Уровень</p>
-                    </div>
-                  </div>
-                </Card>
-                <Card className="p-4 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
-                      <Icon name="Coins" className="text-accent" size={20} />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold">{user.coins}</p>
-                      <p className="text-sm text-foreground/60">Монеты</p>
                     </div>
                   </div>
                 </Card>
