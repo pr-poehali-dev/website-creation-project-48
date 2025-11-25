@@ -443,41 +443,25 @@ const Index = () => {
             </AnimatedCard>
             
             <AnimatedCard delay={100}>
-              <Card className="p-4 bg-gradient-to-br from-card/80 to-primary/5 backdrop-blur border-primary/30 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all">
+              <Card className="p-3 bg-gradient-to-br from-card/80 to-primary/5 backdrop-blur border-primary/30 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all">
                 <div className="flex flex-col gap-2">
-                  <p className="text-sm text-foreground/70 font-semibold text-center">Наши соцсети</p>
-                  <div className="grid grid-cols-2 gap-2">
+                  <p className="text-xs text-foreground/70 font-semibold text-center">Наши соцсети</p>
+                  <div className="flex gap-2">
                     <a 
                       href="https://t.me/HOMARND" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="w-12 h-12 bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 rounded-lg flex items-center justify-center transition-all hover:scale-110"
+                      className="w-10 h-10 bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 rounded-lg flex items-center justify-center transition-all hover:scale-110"
                     >
-                      <Icon name="Send" size={20} className="text-primary" />
-                    </a>
-                    <a 
-                      href="https://instagram.com/homa_boba_rostov" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-accent/10 hover:bg-accent/20 border border-accent/30 hover:border-accent/50 rounded-lg flex items-center justify-center transition-all hover:scale-110"
-                    >
-                      <Icon name="Instagram" size={20} className="text-accent" />
+                      <Icon name="Send" size={18} className="text-primary" />
                     </a>
                     <a 
                       href="https://vk.com/homa_boba_rostov" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="w-12 h-12 bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 rounded-lg flex items-center justify-center transition-all hover:scale-110"
+                      className="w-10 h-10 bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 rounded-lg flex items-center justify-center transition-all hover:scale-110"
                     >
-                      <Icon name="Share2" size={20} className="text-primary" />
-                    </a>
-                    <a 
-                      href="https://wa.me/79001234567" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-accent/10 hover:bg-accent/20 border border-accent/30 hover:border-accent/50 rounded-lg flex items-center justify-center transition-all hover:scale-110"
-                    >
-                      <Icon name="MessageCircle" size={20} className="text-accent" />
+                      <Icon name="Share2" size={18} className="text-primary" />
                     </a>
                   </div>
                 </div>
