@@ -12,45 +12,69 @@ import {
 } from "@/components/ui/dialog";
 
 const Profile = () => {
-  const [user, setUser] = useState({
-    username: localStorage.getItem('username') || "Player123",
-    email: localStorage.getItem('userEmail') || "player@example.com",
-    level: 0,
-    exp: 0,
-    gems: 1000000,
-    joinDate: "15 января 2025",
-    playTime: "0 часов",
-    avatar: localStorage.getItem('userAvatar') || "https://api.dicebear.com/7.x/avataaars/svg?seed=Player123",
-    bio: localStorage.getItem('userBio') || ""
+  const getProfileKey = (key: string) => {
+    const username = localStorage.getItem('username') || 'Player123';
+    return `${username}_${key}`;
+  };
+
+  const loadProfileData = () => {
+    const username = localStorage.getItem('username') || 'Player123';
+    const email = localStorage.getItem('userEmail') || 'player@example.com';
+    
+    return {
+      username,
+      email,
+      level: parseInt(localStorage.getItem(getProfileKey('level')) || '0'),
+      exp: parseInt(localStorage.getItem(getProfileKey('exp')) || '0'),
+      gems: parseInt(localStorage.getItem(getProfileKey('gems')) || '0'),
+      joinDate: localStorage.getItem(getProfileKey('joinDate')) || new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }),
+      playTime: localStorage.getItem(getProfileKey('playTime')) || '0',
+      avatar: localStorage.getItem(getProfileKey('avatar')) || `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`,
+      bio: localStorage.getItem(getProfileKey('bio')) || '',
+      selectedServer: localStorage.getItem(getProfileKey('selectedServer')) || '1'
+    };
+  };
+
+  const [user, setUser] = useState(loadProfileData());
+
+  useEffect(() => {
+    setUser(loadProfileData());
+  }, []);
+
+  const saveProfileData = (key: string, value: string | number) => {
+    localStorage.setItem(getProfileKey(key), value.toString());
+  };
+
+  const [stats, setStats] = useState({
+    kills: parseInt(localStorage.getItem(getProfileKey('kills')) || '0'),
+    deaths: parseInt(localStorage.getItem(getProfileKey('deaths')) || '0'),
+    quests: parseInt(localStorage.getItem(getProfileKey('quests')) || '0'),
+    achievements: parseInt(localStorage.getItem(getProfileKey('achievements')) || '0')
   });
 
   useEffect(() => {
-    const savedUsername = localStorage.getItem('username');
-    const savedEmail = localStorage.getItem('userEmail');
-    const savedAvatar = localStorage.getItem('userAvatar');
-    
-    setUser(prev => ({
-      ...prev,
-      username: savedUsername || "Player123",
-      email: savedEmail || "player@example.com",
-      avatar: savedAvatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${savedUsername || 'Player123'}`
-    }));
-  }, []);
+    const interval = setInterval(() => {
+      const currentTime = parseInt(localStorage.getItem(getProfileKey('playTimeMinutes')) || '0');
+      const newTime = currentTime + 1;
+      saveProfileData('playTimeMinutes', newTime);
+      
+      const hours = Math.floor(newTime / 60);
+      const minutes = newTime % 60;
+      const timeString = hours > 0 ? `${hours} ч ${minutes} мин` : `${minutes} мин`;
+      
+      setUser(prev => ({ ...prev, playTime: timeString }));
+      saveProfileData('playTime', timeString);
+    }, 60000);
 
-  const [stats] = useState({
-    kills: 0,
-    deaths: 0,
-    quests: 0,
-    achievements: 0
-  });
+    return () => clearInterval(interval);
+  }, []);
 
   const [showAvatarDialog, setShowAvatarDialog] = useState(false);
   const [showRewardsDialog, setShowRewardsDialog] = useState(false);
   const [showBioDialog, setShowBioDialog] = useState(false);
   const [bioText, setBioText] = useState(user.bio);
   const [selectedServer, setSelectedServer] = useState(() => {
-    const saved = localStorage.getItem('selectedServer');
-    return saved ? parseInt(saved) : 1;
+    return parseInt(user.selectedServer);
   });
   const [showServerNotification, setShowServerNotification] = useState(false);
   const [serverNotificationText, setServerNotificationText] = useState('');
@@ -59,6 +83,25 @@ const Profile = () => {
   const expToNextLevel = 1000;
   const currentLevelExp = user.exp % expToNextLevel;
   const expProgress = (currentLevelExp / expToNextLevel) * 100;
+
+  const addExp = (amount: number) => {
+    const newExp = user.exp + amount;
+    const newLevel = Math.floor(newExp / expToNextLevel);
+    setUser(prev => ({ ...prev, exp: newExp, level: newLevel }));
+    saveProfileData('exp', newExp);
+    saveProfileData('level', newLevel);
+  };
+
+  const addGems = (amount: number) => {
+    const newGems = user.gems + amount;
+    setUser(prev => ({ ...prev, gems: newGems }));
+    saveProfileData('gems', newGems);
+  };
+
+  const updateStats = (key: keyof typeof stats, value: number) => {
+    setStats(prev => ({ ...prev, [key]: value }));
+    saveProfileData(key, value);
+  };
 
   const avatarStyles = [
     { name: "Аватаарс", seed: user.username, style: "avataaars", url: `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.username}` },
@@ -86,13 +129,13 @@ const Profile = () => {
 
   const handleAvatarChange = (style: string, url: string) => {
     setUser({ ...user, avatar: url });
-    localStorage.setItem('userAvatar', url);
+    saveProfileData('avatar', url);
     setShowAvatarDialog(false);
   };
 
   const handleBioSave = () => {
     setUser({ ...user, bio: bioText });
-    localStorage.setItem('userBio', bioText);
+    saveProfileData('bio', bioText);
     setShowBioDialog(false);
   };
 
@@ -115,7 +158,8 @@ const Profile = () => {
     oscillator.stop(audioContext.currentTime + 0.1);
     
     setSelectedServer(serverNum);
-    localStorage.setItem('selectedServer', serverNum.toString());
+    saveProfileData('selectedServer', serverNum);
+    setUser(prev => ({ ...prev, selectedServer: serverNum.toString() }));
     setServerNotificationText(`Выбран Сервер #${serverNum}`);
     setShowServerNotification(true);
     setTimeout(() => setShowServerNotification(false), 2000);
@@ -393,6 +437,43 @@ const Profile = () => {
                   </Button>
                 </Card>
               </div>
+
+              <Card className="p-6 bg-card/30 backdrop-blur border-border/50 mt-6">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Icon name="Zap" className="text-accent" size={24} />
+                  Быстрые действия (тест системы)
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <Button
+                    onClick={() => addExp(500)}
+                    className="bg-blue-600 hover:bg-blue-700"
+                  >
+                    <Icon name="Plus" className="mr-2" size={16} />
+                    +500 опыта
+                  </Button>
+                  <Button
+                    onClick={() => addGems(100)}
+                    className="bg-purple-600 hover:bg-purple-700"
+                  >
+                    <Icon name="Gem" className="mr-2" size={16} />
+                    +100 кристаллов
+                  </Button>
+                  <Button
+                    onClick={() => updateStats('kills', stats.kills + 1)}
+                    className="bg-red-600 hover:bg-red-700"
+                  >
+                    <Icon name="Sword" className="mr-2" size={16} />
+                    +1 убийство
+                  </Button>
+                  <Button
+                    onClick={() => updateStats('achievements', stats.achievements + 1)}
+                    className="bg-yellow-600 hover:bg-yellow-700"
+                  >
+                    <Icon name="Trophy" className="mr-2" size={16} />
+                    +1 достижение
+                  </Button>
+                </div>
+              </Card>
             </div>
           </Card>
         </div>
