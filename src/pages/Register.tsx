@@ -47,7 +47,7 @@ const Register = () => {
       const data = await response.json();
 
       if (response.ok) {
-        navigate("/login");
+        navigate("/profile");
       } else {
         setError(data.error || "Ошибка регистрации");
       }
