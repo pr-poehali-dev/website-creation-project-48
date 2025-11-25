@@ -45,7 +45,12 @@ const Profile = () => {
 
   const [showAvatarDialog, setShowAvatarDialog] = useState(false);
   const [showRewardsDialog, setShowRewardsDialog] = useState(false);
-  const [selectedServer, setSelectedServer] = useState(1);
+  const [selectedServer, setSelectedServer] = useState(() => {
+    const saved = localStorage.getItem('selectedServer');
+    return saved ? parseInt(saved) : 1;
+  });
+  const [showServerNotification, setShowServerNotification] = useState(false);
+  const [serverNotificationText, setServerNotificationText] = useState('');
 
   const maxLevel = 100;
   const expToNextLevel = 1000;
@@ -82,9 +87,26 @@ const Profile = () => {
     setShowAvatarDialog(false);
   };
 
+  const handleServerChange = (serverNum: number) => {
+    setSelectedServer(serverNum);
+    localStorage.setItem('selectedServer', serverNum.toString());
+    setServerNotificationText(`Выбран Сервер #${serverNum}`);
+    setShowServerNotification(true);
+    setTimeout(() => setShowServerNotification(false), 2000);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative">
       <ParticlesBackground />
+      
+      {showServerNotification && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="bg-primary/90 backdrop-blur text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
+            <Icon name="CheckCircle2" size={20} />
+            <span className="font-semibold">{serverNotificationText}</span>
+          </div>
+        </div>
+      )}
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
@@ -186,7 +208,7 @@ const Profile = () => {
                   </div>
                   <div className="grid grid-cols-4 gap-1.5">
                     <button 
-                      onClick={() => setSelectedServer(1)}
+                      onClick={() => handleServerChange(1)}
                       className={`p-1.5 rounded-lg transition-all ${
                         selectedServer === 1 
                           ? 'border-2 border-primary bg-primary/10' 
@@ -203,7 +225,7 @@ const Profile = () => {
                       </div>
                     </button>
                     <button 
-                      onClick={() => setSelectedServer(2)}
+                      onClick={() => handleServerChange(2)}
                       className={`p-1.5 rounded-lg transition-all ${
                         selectedServer === 2 
                           ? 'border-2 border-primary bg-primary/10' 
@@ -220,7 +242,7 @@ const Profile = () => {
                       </div>
                     </button>
                     <button 
-                      onClick={() => setSelectedServer(3)}
+                      onClick={() => handleServerChange(3)}
                       className={`p-1.5 rounded-lg transition-all ${
                         selectedServer === 3 
                           ? 'border-2 border-primary bg-primary/10' 
@@ -237,7 +259,7 @@ const Profile = () => {
                       </div>
                     </button>
                     <button 
-                      onClick={() => setSelectedServer(4)}
+                      onClick={() => handleServerChange(4)}
                       className={`p-1.5 rounded-lg transition-all ${
                         selectedServer === 4 
                           ? 'border-2 border-primary bg-primary/10' 
