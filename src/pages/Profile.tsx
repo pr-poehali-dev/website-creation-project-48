@@ -52,14 +52,14 @@ const Profile = () => {
   const expProgress = (currentLevelExp / expToNextLevel) * 100;
 
   const avatarStyles = [
-    { name: "Аватаарс", seed: user.username, style: "avataaars" },
-    { name: "Ботты", seed: user.username, style: "bottts" },
-    { name: "Пикселька", seed: user.username, style: "pixel-art" },
-    { name: "Личности", seed: user.username, style: "personas" },
-    { name: "Весёлый", seed: user.username, style: "fun-emoji" },
-    { name: "Инициалы", seed: user.username, style: "initials" },
-    { name: "Большие уши", seed: user.username, style: "big-ears" },
-    { name: "Улыбки", seed: user.username, style: "adventurer" },
+    { name: "Аватаарс", seed: user.username, style: "avataaars", url: `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.username}` },
+    { name: "Ботты", seed: user.username, style: "bottts", url: `https://api.dicebear.com/7.x/bottts/svg?seed=${user.username}` },
+    { name: "Пикселька", seed: user.username, style: "pixel-art", url: `https://api.dicebear.com/7.x/pixel-art/svg?seed=${user.username}` },
+    { name: "Личности", seed: user.username, style: "personas", url: `https://api.dicebear.com/7.x/personas/svg?seed=${user.username}` },
+    { name: "Весёлый", seed: user.username, style: "fun-emoji", url: `https://api.dicebear.com/7.x/fun-emoji/svg?seed=${user.username}` },
+    { name: "Инициалы", seed: user.username, style: "initials", url: `https://api.dicebear.com/7.x/initials/svg?seed=${user.username}&backgroundColor=a855f7,9333ea,7c3aed` },
+    { name: "Большие уши", seed: user.username, style: "big-ears", url: `https://api.dicebear.com/7.x/big-ears/svg?seed=${user.username}` },
+    { name: "Улыбки", seed: user.username, style: "adventurer", url: `https://api.dicebear.com/7.x/adventurer/svg?seed=${user.username}` },
   ];
 
   const getLevelRewards = (level: number) => {
@@ -75,10 +75,9 @@ const Profile = () => {
       ...getLevelRewards(lvl)
     }));
 
-  const handleAvatarChange = (style: string) => {
-    const newAvatar = `https://api.dicebear.com/7.x/${style}/svg?seed=${user.username}`;
-    setUser({ ...user, avatar: newAvatar });
-    localStorage.setItem('userAvatar', newAvatar);
+  const handleAvatarChange = (style: string, url: string) => {
+    setUser({ ...user, avatar: url });
+    localStorage.setItem('userAvatar', url);
     setShowAvatarDialog(false);
   };
 
@@ -292,12 +291,12 @@ const Profile = () => {
             {avatarStyles.map((style) => (
               <button
                 key={style.style}
-                onClick={() => handleAvatarChange(style.style)}
+                onClick={() => handleAvatarChange(style.style, style.url)}
                 className="flex flex-col items-center gap-2 p-3 rounded-lg bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/50 transition-all"
               >
                 <div className="w-20 h-20 rounded-full overflow-hidden bg-background">
                   <img
-                    src={`https://api.dicebear.com/7.x/${style.style}/svg?seed=${style.seed}`}
+                    src={style.url}
                     alt={style.name}
                     className="w-full h-full"
                   />
