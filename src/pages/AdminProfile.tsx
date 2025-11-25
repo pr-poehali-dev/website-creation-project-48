@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 
 import AnimatedCard from "@/components/AnimatedCard";
+import ProfileChat from "@/components/profile/ProfileChat";
 import { useParams, useNavigate } from "react-router-dom";
 import SpaceBackground from "@/components/SpaceBackground";
 
@@ -238,6 +239,13 @@ const AdminProfile = () => {
                 ))}
               </div>
             </Card>
+          </AnimatedCard>
+
+          <AnimatedCard delay={300}>
+            <ProfileChat 
+              currentUsername={adminData.name}
+              currentAvatar={`https://api.dicebear.com/7.x/avataaars/svg?seed=${adminData.name}`}
+            />
           </AnimatedCard>
         </div>
       </section>
