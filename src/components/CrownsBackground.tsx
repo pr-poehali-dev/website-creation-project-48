@@ -30,9 +30,9 @@ const CrownsBackground = () => {
       crowns.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 30 + 20,
+        size: Math.random() * 15 + 10,
         speed: Math.random() * 0.5 + 0.2,
-        opacity: Math.random() * 0.3 + 0.1,
+        opacity: Math.random() * 0.2 + 0.05,
         rotation: Math.random() * Math.PI * 2,
         rotationSpeed: (Math.random() - 0.5) * 0.02
       });
@@ -44,14 +44,9 @@ const CrownsBackground = () => {
       ctx.rotate(crown.rotation);
       ctx.globalAlpha = crown.opacity;
 
-      const gradient = ctx.createLinearGradient(-crown.size / 2, -crown.size / 2, crown.size / 2, crown.size / 2);
-      gradient.addColorStop(0, '#fbbf24');
-      gradient.addColorStop(0.5, '#f59e0b');
-      gradient.addColorStop(1, '#d97706');
-
-      ctx.fillStyle = gradient;
-      ctx.strokeStyle = '#92400e';
-      ctx.lineWidth = 2;
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 1;
 
       const s = crown.size;
       ctx.beginPath();
