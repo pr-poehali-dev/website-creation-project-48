@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import { useEffect, useState } from "react";
 
 interface Stats {
   kills: number;
@@ -17,8 +18,35 @@ interface ProfileStatsProps {
 }
 
 const ProfileStats = ({ stats, selectedServer, onServerChange, onDeleteProfile }: ProfileStatsProps) => {
+  const [onlinePlayers, setOnlinePlayers] = useState(0);
+  const [serverStatus, setServerStatus] = useState<'loading' | 'online' | 'offline'>('loading');
+
+  useEffect(() => {
+    const fetchServerStatus = async () => {
+      try {
+        const response = await fetch('https://functions.poehali.dev/97b19ffd-bf8c-421a-9ae5-ee754557f899');
+        const data = await response.json();
+        
+        if (data.status === 'online') {
+          setOnlinePlayers(data.online);
+          setServerStatus('online');
+        } else {
+          setServerStatus('offline');
+        }
+      } catch (error) {
+        console.error('Failed to fetch server status:', error);
+        setServerStatus('offline');
+      }
+    };
+
+    fetchServerStatus();
+    const interval = setInterval(fetchServerStatus, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const servers = [
-    { id: 1, name: "Imunns Role Play", players: 42, status: "online" },
+    { id: 1, name: "Imunns Role Play", players: onlinePlayers, status: serverStatus },
     { id: 2, name: "Сервер #2", players: 28, status: "online" },
     { id: 3, name: "Сервер #3", players: 15, status: "online" },
   ];
