@@ -146,52 +146,61 @@ const Profile = () => {
                 </div>
               </div>
 
-              <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50 mb-6">
-                <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
-                  <Icon name="Server" className="text-primary" size={20} />
+              <Card className="p-6 bg-card/30 backdrop-blur border-border/50 mb-8">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Icon name="Server" className="text-primary" size={24} />
                   Выбор сервера
                 </h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <Button
-                    variant="outline"
-                    className="flex flex-col items-center gap-2 h-auto py-3 border-primary bg-primary/10"
-                  >
-                    <Icon name="Zap" className="text-primary" size={24} />
-                    <div className="text-center">
-                      <p className="font-bold text-sm">Сервер #1</p>
-                      <p className="text-xs text-green-500">● 245 игроков</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <button className="p-4 rounded-lg border-2 border-primary bg-primary/10 hover:bg-primary/20 transition-all group">
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Icon name="Zap" className="text-primary" size={24} />
+                      </div>
+                      <p className="font-bold">Сервер #1</p>
+                      <p className="text-sm text-green-500 flex items-center gap-1">
+                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        245 игроков
+                      </p>
+                      <span className="text-xs text-foreground/60 mt-1">Выбран</span>
                     </div>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="flex flex-col items-center gap-2 h-auto py-3 hover:border-primary hover:bg-primary/5"
-                  >
-                    <Icon name="Flame" className="text-orange-500" size={24} />
-                    <div className="text-center">
-                      <p className="font-bold text-sm">Сервер #2</p>
-                      <p className="text-xs text-green-500">● 189 игроков</p>
+                  </button>
+                  <button className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all group">
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Icon name="Flame" className="text-orange-500" size={24} />
+                      </div>
+                      <p className="font-bold">Сервер #2</p>
+                      <p className="text-sm text-green-500 flex items-center gap-1">
+                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        189 игроков
+                      </p>
                     </div>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="flex flex-col items-center gap-2 h-auto py-3 hover:border-primary hover:bg-primary/5"
-                  >
-                    <Icon name="Trophy" className="text-yellow-500" size={24} />
-                    <div className="text-center">
-                      <p className="font-bold text-sm">Сервер #3</p>
-                      <p className="text-xs text-yellow-500">● 312 игроков</p>
+                  </button>
+                  <button className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all group">
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Icon name="Trophy" className="text-yellow-500" size={24} />
+                      </div>
+                      <p className="font-bold">Сервер #3</p>
+                      <p className="text-sm text-yellow-500 flex items-center gap-1">
+                        <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>
+                        312 игроков
+                      </p>
                     </div>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="flex flex-col items-center gap-2 h-auto py-3 hover:border-primary hover:bg-primary/5"
-                  >
-                    <Icon name="Star" className="text-purple-500" size={24} />
-                    <div className="text-center">
-                      <p className="font-bold text-sm">Сервер #4</p>
-                      <p className="text-xs text-red-500">● 456 игроков</p>
+                  </button>
+                  <button className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all group">
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Icon name="Star" className="text-purple-500" size={24} />
+                      </div>
+                      <p className="font-bold">Сервер #4</p>
+                      <p className="text-sm text-red-500 flex items-center gap-1">
+                        <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                        456 игроков
+                      </p>
                     </div>
-                  </Button>
+                  </button>
                 </div>
               </Card>
 
