@@ -429,7 +429,11 @@ const Index = () => {
               onClick={() => window.open('https://t.me/HOMARND', '_blank')}
             >
               <div className="flex items-center gap-3">
-                <Icon name="Coffee" className="text-primary" size={28} />
+                <img 
+                  src="https://cdn.poehali.dev/files/779479cb-ccce-408d-887a-17cced37dcfb.jpg" 
+                  alt="Homa-Boba logo" 
+                  className="w-12 h-12 rounded-full object-cover"
+                />
                 <h2 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   Homa-Boba bubble tea Rostov
                 </h2>
