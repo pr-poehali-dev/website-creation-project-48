@@ -59,7 +59,10 @@ const Forum = () => {
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <AnimatedCard delay={0}>
-              <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all h-full cursor-pointer">
+              <Card 
+                className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all h-full cursor-pointer"
+                onClick={() => window.open('https://t.me/+QgiLIa1gFRY4Y2Iy', '_blank')}
+              >
                 <Icon name="MessageSquare" className="text-primary mb-4" size={32} />
                 <h3 className="text-xl font-bold mb-2">Общие обсуждения</h3>
                 <p className="text-foreground/70 mb-4">Обсуждай игровой процесс и делись впечатлениями</p>
@@ -70,7 +73,10 @@ const Forum = () => {
               </Card>
             </AnimatedCard>
             <AnimatedCard delay={100}>
-              <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all h-full cursor-pointer">
+              <Card 
+                className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all h-full cursor-pointer"
+                onClick={() => window.open('https://t.me/+QgiLIa1gFRY4Y2Iy', '_blank')}
+              >
                 <Icon name="HelpCircle" className="text-accent mb-4" size={32} />
                 <h3 className="text-xl font-bold mb-2">Помощь новичкам</h3>
                 <p className="text-foreground/70 mb-4">Получи ответы на вопросы от опытных игроков</p>
@@ -81,7 +87,10 @@ const Forum = () => {
               </Card>
             </AnimatedCard>
             <AnimatedCard delay={200}>
-              <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all h-full cursor-pointer">
+              <Card 
+                className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all h-full cursor-pointer"
+                onClick={() => window.location.href = '/achievements'}
+              >
                 <Icon name="Trophy" className="text-primary mb-4" size={32} />
                 <h3 className="text-xl font-bold mb-2">Достижения</h3>
                 <p className="text-foreground/70 mb-4">Делись своими успехами и историями</p>
@@ -102,7 +111,10 @@ const Forum = () => {
               { title: "Поиск гильдии для рейдов", author: "NewPlayer", replies: 12, views: 340 },
             ].map((topic, index) => (
               <AnimatedCard key={index} delay={index * 50}>
-                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer">
+                <Card 
+                  className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
+                  onClick={() => window.open('https://t.me/+QgiLIa1gFRY4Y2Iy', '_blank')}
+                >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold mb-2 hover:text-primary transition-colors">{topic.title}</h3>

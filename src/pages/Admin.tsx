@@ -100,7 +100,10 @@ const Admin = () => {
             <h2 className="text-3xl font-bold mb-8 text-center">Связаться с администрацией</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <AnimatedCard delay={0}>
-                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer">
+                <Card 
+                  className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
+                  onClick={() => window.open('https://t.me/imunns', '_blank')}
+                >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Icon name="MessageSquare" className="text-primary" size={24} />
@@ -113,7 +116,10 @@ const Admin = () => {
                 </Card>
               </AnimatedCard>
               <AnimatedCard delay={100}>
-                <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer">
+                <Card 
+                  className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
+                  onClick={() => window.location.href = '/forum'}
+                >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Icon name="Mail" className="text-accent" size={24} />

@@ -51,9 +51,11 @@ const MobileMenu = ({ currentPath = "/" }: MobileMenuProps) => {
                 </a>
               ))}
               <div className="pt-4 border-t border-border/50">
-                <Button className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90">
-                  Играть
-                </Button>
+                <a href="/login">
+                  <Button className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90">
+                    Играть
+                  </Button>
+                </a>
               </div>
             </div>
           </div>

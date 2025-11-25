@@ -218,7 +218,10 @@ const Jobs = () => {
                     </ul>
                   </div>
 
-                  <Button className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90">
+                  <Button 
+                    className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90"
+                    onClick={() => window.open('https://t.me/imunns', '_blank')}
+                  >
                     <Icon name="Send" className="mr-2" size={18} />
                     Подать заявку
                   </Button>

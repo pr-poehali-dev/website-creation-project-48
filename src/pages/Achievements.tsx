@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
@@ -6,6 +7,7 @@ import AnimatedCard from "@/components/AnimatedCard";
 import SpaceBackground from "@/components/SpaceBackground";
 
 const Achievements = () => {
+  const [selectedCategory, setSelectedCategory] = useState("Все");
   const achievements = [
     {
       id: 1,
@@ -242,7 +244,10 @@ const Achievements = () => {
                 key={category}
                 variant="outline"
                 size="sm"
-                className="border-primary/50 hover:bg-primary/10 whitespace-nowrap"
+                onClick={() => setSelectedCategory(category)}
+                className={`border-primary/50 hover:bg-primary/10 whitespace-nowrap ${
+                  selectedCategory === category ? 'bg-primary/20 border-primary' : ''
+                }`}
               >
                 {category}
               </Button>
