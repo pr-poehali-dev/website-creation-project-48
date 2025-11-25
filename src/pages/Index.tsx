@@ -448,7 +448,7 @@ const Index = () => {
                   <p className="text-xs text-foreground/70 font-semibold text-center">Наши соцсети</p>
                   <div className="flex gap-2">
                     <a 
-                      href="https://t.me/HOMARND" 
+                      href="https://t.me/imunns" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="w-10 h-10 bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 rounded-lg flex items-center justify-center transition-all hover:scale-110"
