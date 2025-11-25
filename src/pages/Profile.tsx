@@ -19,15 +19,20 @@ const Profile = () => {
 
   const loadProfileData = () => {
     const username = localStorage.getItem('username') || 'Player123';
-    const userId = localStorage.getItem(getProfileKey('userId')) || `#${Math.floor(Math.random() * 900000) + 100000}`;
     
-    if (!localStorage.getItem(getProfileKey('userId'))) {
+    let userId = localStorage.getItem(getProfileKey('userId'));
+    
+    if (!userId) {
+      const globalUserCount = parseInt(localStorage.getItem('global_user_count') || '0');
+      const newUserId = globalUserCount + 1;
+      localStorage.setItem('global_user_count', newUserId.toString());
+      userId = newUserId.toString().padStart(6, '0');
       localStorage.setItem(getProfileKey('userId'), userId);
     }
     
     return {
       username,
-      userId: localStorage.getItem(getProfileKey('userId')) || userId,
+      userId,
       level: parseInt(localStorage.getItem(getProfileKey('level')) || '0'),
       exp: parseInt(localStorage.getItem(getProfileKey('exp')) || '0'),
       gems: parseInt(localStorage.getItem(getProfileKey('gems')) || '0'),
