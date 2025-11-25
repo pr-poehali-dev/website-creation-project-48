@@ -160,23 +160,36 @@ const Profile = () => {
     setShowBioDialog(false);
   };
 
-  const handleServerChange = (serverNum: number) => {
-    // Звуковой эффект (короткий клик)
+  const playMinecraftDoorSound = () => {
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
+    const oscillator1 = audioContext.createOscillator();
+    const oscillator2 = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
     
-    oscillator.connect(gainNode);
+    oscillator1.connect(gainNode);
+    oscillator2.connect(gainNode);
     gainNode.connect(audioContext.destination);
     
-    oscillator.frequency.value = 800;
-    oscillator.type = 'sine';
+    oscillator1.type = 'square';
+    oscillator2.type = 'triangle';
     
-    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+    oscillator1.frequency.setValueAtTime(600, audioContext.currentTime);
+    oscillator1.frequency.linearRampToValueAtTime(400, audioContext.currentTime + 0.1);
     
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 0.1);
+    oscillator2.frequency.setValueAtTime(400, audioContext.currentTime);
+    oscillator2.frequency.linearRampToValueAtTime(300, audioContext.currentTime + 0.1);
+    
+    gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+    
+    oscillator1.start(audioContext.currentTime);
+    oscillator2.start(audioContext.currentTime);
+    oscillator1.stop(audioContext.currentTime + 0.15);
+    oscillator2.stop(audioContext.currentTime + 0.15);
+  };
+
+  const handleServerChange = (serverNum: number) => {
+    playMinecraftDoorSound();
     
     setSelectedServer(serverNum);
     saveProfileData('selectedServer', serverNum);
@@ -187,7 +200,11 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative">
+    <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative" onClick={(e) => {
+      if ((e.target as HTMLElement).tagName === 'BUTTON' || (e.target as HTMLElement).closest('button')) {
+        playMinecraftDoorSound();
+      }
+    }}>
       <ParticlesBackground />
       
       {showServerNotification && (
