@@ -426,9 +426,9 @@ const Index = () => {
           <AnimatedCard delay={0}>
             <Card className="p-8 bg-gradient-to-br from-card/80 to-primary/5 backdrop-blur border-primary/30 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all">
               <div className="flex items-center gap-4 mb-4">
-                <Icon name="MessageCircle" className="text-primary" size={40} />
+                <Icon name="Coffee" className="text-primary" size={40} />
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Хома и Боба
+                  Homa-Boba bubble tea Rostov
                 </h2>
               </div>
               <p className="text-foreground/80 text-lg leading-relaxed">
