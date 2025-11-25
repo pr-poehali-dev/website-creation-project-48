@@ -43,6 +43,14 @@ const Profile = () => {
   const [user, setUser] = useState(loadProfileData());
 
   useEffect(() => {
+    localStorage.setItem(`profile_${user.userId}`, JSON.stringify({
+      username: user.username,
+      avatar: user.avatar,
+      userId: user.userId
+    }));
+  }, [user.username, user.avatar, user.userId]);
+
+  useEffect(() => {
     setUser(loadProfileData());
   }, []);
 
@@ -239,6 +247,7 @@ const Profile = () => {
         />
 
         <ProfileChat 
+          currentUserId={user.userId}
           currentUsername={user.username}
           currentAvatar={user.avatar}
         />

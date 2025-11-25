@@ -243,6 +243,7 @@ const AdminProfile = () => {
 
           <AnimatedCard delay={300}>
             <ProfileChat 
+              currentUserId={`admin_${adminData.name}`}
               currentUsername={adminData.name}
               currentAvatar={`https://api.dicebear.com/7.x/avataaars/svg?seed=${adminData.name}`}
             />
