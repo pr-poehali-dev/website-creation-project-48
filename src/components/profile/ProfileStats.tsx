@@ -18,7 +18,7 @@ interface ProfileStatsProps {
 
 const ProfileStats = ({ stats, selectedServer, onServerChange, onDeleteProfile }: ProfileStatsProps) => {
   const servers = [
-    { id: 1, name: "Сервер #1", players: 42, status: "online" },
+    { id: 1, name: "Imunns Role Play", players: 42, status: "online" },
     { id: 2, name: "Сервер #2", players: 28, status: "online" },
     { id: 3, name: "Сервер #3", players: 15, status: "online" },
   ];
