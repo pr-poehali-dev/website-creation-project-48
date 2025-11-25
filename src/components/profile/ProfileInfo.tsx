@@ -97,10 +97,13 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
                 </div>
                 <p className="text-sm text-muted-foreground">Кристаллов</p>
               </div>
-              <Button onClick={() => window.location.href = '/achievements'} variant="outline" className="flex-1">
-                <Icon name="Trophy" size={16} className="mr-2" />
-                Достижения
-              </Button>
+              <div className="flex-1 bg-accent/10 rounded-lg p-4 text-center cursor-pointer hover:bg-accent/20 transition-colors" onClick={() => window.location.href = '/achievements'}>
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <Icon name="Trophy" size={20} className="text-accent" />
+                  <span className="text-2xl font-bold text-foreground">0</span>
+                </div>
+                <p className="text-sm text-muted-foreground">Достижения</p>
+              </div>
             </div>
           </div>
 

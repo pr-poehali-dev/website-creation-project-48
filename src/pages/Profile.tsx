@@ -152,7 +152,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative" onClick={(e) => {
+    <div className="min-h-screen relative" onClick={(e) => {
       if ((e.target as HTMLElement).tagName === 'BUTTON' || (e.target as HTMLElement).closest('button')) {
         playMinecraftDoorSound();
       }
