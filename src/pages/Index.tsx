@@ -130,10 +130,17 @@ const Index = () => {
               </div>
             </div>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8" onClick={() => window.location.href = '/login'}>
-                <Icon name="LogIn" className="mr-2" size={20} />
-                Вход
-              </Button>
+              {isLoggedIn ? (
+                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8" onClick={() => window.location.href = '/profile'}>
+                  <Icon name="User" className="mr-2" size={20} />
+                  Личный кабинет
+                </Button>
+              ) : (
+                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8" onClick={() => window.location.href = '/login'}>
+                  <Icon name="LogIn" className="mr-2" size={20} />
+                  Вход
+                </Button>
+              )}
               <Button size="lg" variant="outline" className="border-primary/50 hover:bg-primary/10 text-lg px-8" asChild>
                 <a href="https://t.me/imunns" target="_blank" rel="noopener noreferrer">
                   <Icon name="Users" className="mr-2" size={20} />
