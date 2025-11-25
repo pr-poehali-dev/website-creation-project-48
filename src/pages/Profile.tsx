@@ -137,31 +137,9 @@ const Profile = () => {
   };
 
   const playMinecraftDoorSound = () => {
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    const oscillator1 = audioContext.createOscillator();
-    const oscillator2 = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    
-    oscillator1.connect(gainNode);
-    oscillator2.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    oscillator1.type = 'square';
-    oscillator2.type = 'triangle';
-    
-    oscillator1.frequency.setValueAtTime(600, audioContext.currentTime);
-    oscillator1.frequency.linearRampToValueAtTime(400, audioContext.currentTime + 0.1);
-    
-    oscillator2.frequency.setValueAtTime(400, audioContext.currentTime);
-    oscillator2.frequency.linearRampToValueAtTime(300, audioContext.currentTime + 0.1);
-    
-    gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
-    
-    oscillator1.start(audioContext.currentTime);
-    oscillator2.start(audioContext.currentTime);
-    oscillator1.stop(audioContext.currentTime + 0.15);
-    oscillator2.stop(audioContext.currentTime + 0.15);
+    const audio = new Audio('https://minecraft.wiki/images/Wooden_Door_open3.ogg?57bae');
+    audio.volume = 0.5;
+    audio.play().catch(err => console.log('Audio play failed:', err));
   };
 
   const handleServerChange = (serverNum: number) => {
