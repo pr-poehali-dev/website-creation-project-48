@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
-import ParticlesBackground from "@/components/ParticlesBackground";
-import CrownsBackground from "@/components/CrownsBackground";
+
 import AnimatedCard from "@/components/AnimatedCard";
 import VirtualAssistant from "@/components/VirtualAssistant";
 import {
@@ -49,8 +48,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative">
-      <ParticlesBackground />
-      <CrownsBackground />
+
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">

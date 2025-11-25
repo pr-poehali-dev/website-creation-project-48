@@ -1,4 +1,4 @@
-import ParticlesBackground from "@/components/ParticlesBackground";
+
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import ProfileInfo from "@/components/profile/ProfileInfo";
 import ProfileStats from "@/components/profile/ProfileStats";
@@ -180,7 +180,7 @@ const Profile = () => {
         playMinecraftDoorSound();
       }
     }}>
-      <ParticlesBackground />
+
       
       <ProfileHeader 
         showServerNotification={showServerNotification}
