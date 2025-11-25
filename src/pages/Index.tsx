@@ -173,7 +173,7 @@ const Index = () => {
                         <Icon name="Server" className="text-primary" size={32} />
                         <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                       </div>
-                      <h3 className="text-2xl font-bold mb-2">Imunns rolep play</h3>
+                      <h3 className="text-2xl font-bold mb-2">Imunns role play</h3>
                       <p className="text-foreground/70 mb-4">Добро пожаловать на наш уникальный Minecraft-сервер с роле-плей системой! </p>
                       <div className="flex items-center gap-2 text-sm">
                         <Icon name="Users" size={16} className="text-primary" />
