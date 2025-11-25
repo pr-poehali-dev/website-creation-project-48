@@ -108,11 +108,11 @@ const Settings = () => {
               Imunns RolePlay
             </span>
           </a>
-          <div className="hidden md:flex items-center gap-6">
-            <a href="/profile" className="font-bold text-purple-300 hover:text-primary transition-colors">Профиль</a>
-            <a href="/achievements" className="font-bold text-purple-300 hover:text-primary transition-colors">Достижения</a>
-            <a href="/forum" className="font-bold text-purple-300 hover:text-primary transition-colors">Форум</a>
-            <a href="/stats" className="font-bold text-purple-300 hover:text-primary transition-colors">Топ игроков</a>
+          <div className="hidden md:flex items-center gap-2">
+            <a href="/profile" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Профиль</a>
+            <a href="/achievements" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Достижения</a>
+            <a href="/forum" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Форум</a>
+            <a href="/stats" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Топ игроков</a>
           </div>
           <Button 
             variant="outline" 

@@ -76,12 +76,12 @@ const Rules = () => {
               Imunns RolePlay
             </span>
           </a>
-          <div className="hidden md:flex items-center gap-6">
-            <a href="/forum" className="font-bold text-purple-300 hover:text-primary transition-colors">Форум</a>
-            <a href="/stats" className="font-bold text-purple-300 hover:text-primary transition-colors">Топ игроков</a>
-            <a href="/jobs" className="font-bold text-purple-300 hover:text-primary transition-colors">Работа</a>
-            <a href="/admin" className="font-bold text-purple-300 hover:text-primary transition-colors">Администрация</a>
-            <a href="/rules" className="text-primary font-bold transition-colors">Правила</a>
+          <div className="hidden md:flex items-center gap-2">
+            <a href="/forum" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Форум</a>
+            <a href="/stats" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Топ игроков</a>
+            <a href="/jobs" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Работа</a>
+            <a href="/admin" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Администрация</a>
+            <a href="/rules" className="px-4 py-2 rounded-full text-sm font-semibold bg-primary/10 border border-primary/40 text-foreground hover:bg-primary/15 transition-all">Правила</a>
           </div>
           <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
             Играть
