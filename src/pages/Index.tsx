@@ -72,7 +72,7 @@ const Index = () => {
           <div className="flex items-center gap-3">
             {isLoggedIn ? (
               <>
-                <Button variant="outline" className="border-primary/50 hover:bg-primary/10 rounded-full" onClick={() => window.location.href = '/profile'}>
+                <Button variant="outline" className="border-primary/50 hover:bg-primary/10" onClick={() => window.location.href = '/profile'}>
                   <Icon name="User" className="mr-2" size={18} />
                   Личный кабинет
                 </Button>
