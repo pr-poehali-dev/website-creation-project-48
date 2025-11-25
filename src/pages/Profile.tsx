@@ -146,6 +146,55 @@ const Profile = () => {
                 </div>
               </div>
 
+              <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50 mb-6">
+                <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
+                  <Icon name="Server" className="text-primary" size={20} />
+                  Выбор сервера
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <Button
+                    variant="outline"
+                    className="flex flex-col items-center gap-2 h-auto py-3 border-primary bg-primary/10"
+                  >
+                    <Icon name="Zap" className="text-primary" size={24} />
+                    <div className="text-center">
+                      <p className="font-bold text-sm">Сервер #1</p>
+                      <p className="text-xs text-green-500">● 245 игроков</p>
+                    </div>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="flex flex-col items-center gap-2 h-auto py-3 hover:border-primary hover:bg-primary/5"
+                  >
+                    <Icon name="Flame" className="text-orange-500" size={24} />
+                    <div className="text-center">
+                      <p className="font-bold text-sm">Сервер #2</p>
+                      <p className="text-xs text-green-500">● 189 игроков</p>
+                    </div>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="flex flex-col items-center gap-2 h-auto py-3 hover:border-primary hover:bg-primary/5"
+                  >
+                    <Icon name="Trophy" className="text-yellow-500" size={24} />
+                    <div className="text-center">
+                      <p className="font-bold text-sm">Сервер #3</p>
+                      <p className="text-xs text-yellow-500">● 312 игроков</p>
+                    </div>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="flex flex-col items-center gap-2 h-auto py-3 hover:border-primary hover:bg-primary/5"
+                  >
+                    <Icon name="Star" className="text-purple-500" size={24} />
+                    <div className="text-center">
+                      <p className="font-bold text-sm">Сервер #4</p>
+                      <p className="text-xs text-red-500">● 456 игроков</p>
+                    </div>
+                  </Button>
+                </div>
+              </Card>
+
               <div className="grid md:grid-cols-3 gap-4 mb-8">
                 <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
                   <div className="flex items-center justify-between mb-3">
