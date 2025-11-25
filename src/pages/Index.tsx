@@ -426,7 +426,7 @@ const Index = () => {
           <AnimatedCard delay={0}>
             <Card 
               className="p-8 bg-gradient-to-br from-card/80 to-primary/5 backdrop-blur border-primary/30 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
-              onClick={() => window.open('https://t.me/homa_boba_rostov', '_blank')}
+              onClick={() => window.open('https://t.me/HOMARND', '_blank')}
             >
               <div className="flex items-center gap-4 mb-4">
                 <Icon name="Coffee" className="text-primary" size={40} />
