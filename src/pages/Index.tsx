@@ -148,7 +148,7 @@ const Index = () => {
                   <Icon name="Server" className="text-accent" size={32} />
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Сервер #2</h3>
+                <h3 className="text-2xl font-bold mb-2">ISWAR</h3>
                 <p className="text-foreground/70 mb-4">PvP арена и турниры</p>
                 <div className="flex items-center gap-2 text-sm">
                   <Icon name="Users" size={16} className="text-accent" />
