@@ -50,11 +50,12 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'isBase64Encoded': False
             }
         
-        import openai
+        from openai import OpenAI
         
-        openai.api_key = os.environ.get('OPENAI_API_KEY')
+        api_key = os.environ.get('OPENAI_API_KEY')
+        base_url = os.environ.get('OPENAI_BASE_URL', 'https://api.openai.com/v1')
         
-        if not openai.api_key:
+        if not api_key:
             return {
                 'statusCode': 500,
                 'headers': {
@@ -65,7 +66,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'isBase64Encoded': False
             }
         
-        client = openai.OpenAI(api_key=openai.api_key)
+        client = OpenAI(api_key=api_key, base_url=base_url)
         
         system_prompt = """Ты - дружелюбный помощник на Minecraft RolePlay сервере Imunns RolePlay.
 Твоя задача - помогать игрокам с вопросами о сервере, правилах, механиках игры.
