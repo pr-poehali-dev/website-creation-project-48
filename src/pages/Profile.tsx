@@ -186,9 +186,13 @@ const Profile = () => {
                       </div>
                     </div>
                   </div>
-                  <p className="text-center text-foreground/60 mt-4">
-                    Открыто {stats.achievements} из 50 достижений
-                  </p>
+                  <Button 
+                    className="w-full mt-4 bg-gradient-to-r from-primary to-accent hover:opacity-90"
+                    onClick={() => window.location.href = '/achievements'}
+                  >
+                    <Icon name="Trophy" className="mr-2" size={18} />
+                    Все достижения ({stats.achievements}/50)
+                  </Button>
                 </Card>
               </div>
             </div>
