@@ -59,13 +59,13 @@ const Index = () => {
               Imunns RolePlay
             </span>
           </div>
-          <div className="hidden md:flex items-center gap-6">
-            <a href="/forum" className="font-bold text-purple-300 hover:text-primary transition-colors">Форум</a>
-            <a href="/assistant" className="font-bold text-purple-300 hover:text-primary transition-colors">ИИ Помощник</a>
-            <a href="/stats" className="font-bold text-purple-300 hover:text-primary transition-colors">Топ игроков</a>
-            <a href="/jobs" className="font-bold text-purple-300 hover:text-primary transition-colors">Работа</a>
-            <a href="/admin" className="font-bold text-purple-300 hover:text-primary transition-colors">Администрация</a>
-            <a href="/rules" className="font-bold text-purple-300 hover:text-primary transition-colors">Правила</a>
+          <div className="hidden md:flex items-center gap-3">
+            <a href="/forum" className="px-4 py-2 rounded-lg font-bold text-foreground hover:bg-primary/10 hover:text-primary transition-all">Форум</a>
+            <a href="/assistant" className="px-4 py-2 rounded-lg font-bold text-foreground hover:bg-primary/10 hover:text-primary transition-all">ИИ Помощник</a>
+            <a href="/stats" className="px-4 py-2 rounded-lg font-bold text-foreground hover:bg-primary/10 hover:text-primary transition-all">Топ игроков</a>
+            <a href="/jobs" className="px-4 py-2 rounded-lg font-bold text-foreground hover:bg-primary/10 hover:text-primary transition-all">Работа</a>
+            <a href="/admin" className="px-4 py-2 rounded-lg font-bold text-foreground hover:bg-primary/10 hover:text-primary transition-all">Администрация</a>
+            <a href="/rules" className="px-4 py-2 rounded-lg font-bold text-foreground hover:bg-primary/10 hover:text-primary transition-all">Правила</a>
           </div>
           <div className="flex items-center gap-3">
             {isLoggedIn ? (
