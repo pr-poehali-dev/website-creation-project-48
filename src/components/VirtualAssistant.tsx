@@ -49,7 +49,8 @@ const VirtualAssistant = () => {
                 <Icon name="Bot" className="text-white" size={20} />
               </div>
               <div>
-                <h3 className="font-bold">Виртуальный помощник</h3>
+                <h3 className="font-bold">Артём
+</h3>
                 <p className="text-xs text-foreground/60">Онлайн</p>
               </div>
             </div>
