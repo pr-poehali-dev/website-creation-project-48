@@ -149,14 +149,12 @@ const Profile = () => {
             <a href="/stats" className="font-bold text-purple-300 hover:text-primary transition-colors">Топ игроков</a>
             <a href="/admin" className="font-bold text-purple-300 hover:text-primary transition-colors">Администрация</a>
           </div>
-          <Button 
-            variant="outline" 
-            className="border-primary/50 hover:bg-primary/10"
-            onClick={() => window.location.href = '/'}
+          <button 
+            onClick={() => window.location.href = '/profile'}
+            className="w-10 h-10 rounded-full border-2 border-primary/50 hover:border-primary transition-all overflow-hidden hover:shadow-[0_0_20px_rgba(168,85,247,0.5)]"
           >
-            <Icon name="LogOut" className="mr-2" size={18} />
-            Выход
-          </Button>
+            <img src={user.avatar} alt="Profile" className="w-full h-full" />
+          </button>
         </div>
       </nav>
 
