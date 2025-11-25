@@ -146,59 +146,8 @@ const Profile = () => {
                 </div>
               </div>
 
-              <Card className="p-4 bg-card/30 backdrop-blur border-border/50 mb-6">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-base font-bold flex items-center gap-2">
-                    <Icon name="Server" className="text-primary" size={18} />
-                    Выбор сервера
-                  </h3>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                  <button className="p-3 rounded-lg border-2 border-primary bg-primary/10 hover:bg-primary/20 transition-all">
-                    <div className="flex flex-col items-center gap-1">
-                      <Icon name="Zap" className="text-primary" size={20} />
-                      <p className="text-sm font-bold">Сервер #1</p>
-                      <p className="text-xs text-green-500 flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                        245
-                      </p>
-                    </div>
-                  </button>
-                  <button className="p-3 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
-                    <div className="flex flex-col items-center gap-1">
-                      <Icon name="Flame" className="text-orange-500" size={20} />
-                      <p className="text-sm font-bold">Сервер #2</p>
-                      <p className="text-xs text-green-500 flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                        189
-                      </p>
-                    </div>
-                  </button>
-                  <button className="p-3 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
-                    <div className="flex flex-col items-center gap-1">
-                      <Icon name="Trophy" className="text-yellow-500" size={20} />
-                      <p className="text-sm font-bold">Сервер #3</p>
-                      <p className="text-xs text-yellow-500 flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full"></span>
-                        312
-                      </p>
-                    </div>
-                  </button>
-                  <button className="p-3 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
-                    <div className="flex flex-col items-center gap-1">
-                      <Icon name="Star" className="text-purple-500" size={20} />
-                      <p className="text-sm font-bold">Сервер #4</p>
-                      <p className="text-xs text-red-500 flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
-                        456
-                      </p>
-                    </div>
-                  </button>
-                </div>
-              </Card>
-
-              <div className="grid md:grid-cols-3 gap-4 mb-8">
-                <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
+              <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
+                <Card className="lg:col-span-2 p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -228,6 +177,56 @@ const Profile = () => {
                     {currentLevelExp} / {expToNextLevel} опыта
                   </p>
                 </Card>
+
+                <Card className="lg:col-span-3 p-4 bg-card/30 backdrop-blur border-border/50">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Icon name="Server" className="text-primary" size={18} />
+                    <h3 className="text-base font-bold">Выбор сервера</h3>
+                  </div>
+                  <div className="grid grid-cols-4 gap-2">
+                    <button className="p-2 rounded-lg border-2 border-primary bg-primary/10 hover:bg-primary/20 transition-all">
+                      <div className="flex flex-col items-center gap-1">
+                        <Icon name="Zap" className="text-primary" size={18} />
+                        <p className="text-xs font-bold">Сервер #1</p>
+                        <p className="text-xs text-green-500 flex items-center gap-1">
+                          <span className="w-1 h-1 bg-green-500 rounded-full"></span>
+                          245
+                        </p>
+                      </div>
+                    </button>
+                    <button className="p-2 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                      <div className="flex flex-col items-center gap-1">
+                        <Icon name="Flame" className="text-orange-500" size={18} />
+                        <p className="text-xs font-bold">Сервер #2</p>
+                        <p className="text-xs text-green-500 flex items-center gap-1">
+                          <span className="w-1 h-1 bg-green-500 rounded-full"></span>
+                          189
+                        </p>
+                      </div>
+                    </button>
+                    <button className="p-2 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                      <div className="flex flex-col items-center gap-1">
+                        <Icon name="Trophy" className="text-yellow-500" size={18} />
+                        <p className="text-xs font-bold">Сервер #3</p>
+                        <p className="text-xs text-yellow-500 flex items-center gap-1">
+                          <span className="w-1 h-1 bg-yellow-500 rounded-full"></span>
+                          312
+                        </p>
+                      </div>
+                    </button>
+                    <button className="p-2 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all">
+                      <div className="flex flex-col items-center gap-1">
+                        <Icon name="Star" className="text-purple-500" size={18} />
+                        <p className="text-xs font-bold">Сервер #4</p>
+                        <p className="text-xs text-red-500 flex items-center gap-1">
+                          <span className="w-1 h-1 bg-red-500 rounded-full"></span>
+                          456
+                        </p>
+                      </div>
+                    </button>
+                  </div>
+                </Card>
+
                 <Card className="p-4 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -239,6 +238,7 @@ const Profile = () => {
                     </div>
                   </div>
                 </Card>
+
                 <Card className="p-4 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
