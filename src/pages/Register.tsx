@@ -30,6 +30,11 @@ const Register = () => {
       return;
     }
 
+    if (formData.username.length < 3) {
+      setError("Никнейм должен быть не менее 3 символов");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -48,9 +53,9 @@ const Register = () => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("username", formData.username);
-        navigate("/profile");
+        localStorage.setItem("username", data.username);
+        localStorage.setItem("userId", data.user_id);
+        navigate("/login");
       } else {
         setError(data.error || "Ошибка регистрации");
       }
@@ -88,6 +93,7 @@ const Register = () => {
               required
               minLength={3}
             />
+            <p className="text-xs text-foreground/50 mt-1">Минимум 3 символа</p>
           </div>
 
           <div>
@@ -115,6 +121,7 @@ const Register = () => {
               required
               minLength={6}
             />
+            <p className="text-xs text-foreground/50 mt-1">Минимум 6 символов</p>
           </div>
 
           <div>
@@ -158,6 +165,16 @@ const Register = () => {
               Войти
             </button>
           </p>
+        </div>
+
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => navigate("/")}
+            className="text-foreground/50 hover:text-foreground/70 text-sm flex items-center justify-center gap-2 mx-auto"
+          >
+            <Icon name="ArrowLeft" size={16} />
+            Вернуться на главную
+          </button>
         </div>
       </Card>
       <SpaceBackground />

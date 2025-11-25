@@ -113,6 +113,16 @@ const Login = () => {
             </button>
           </p>
         </div>
+
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => navigate("/")}
+            className="text-foreground/50 hover:text-foreground/70 text-sm flex items-center justify-center gap-2 mx-auto"
+          >
+            <Icon name="ArrowLeft" size={16} />
+            Вернуться на главную
+          </button>
+        </div>
       </Card>
       <SpaceBackground />
     </div>
