@@ -62,7 +62,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         'body': json.dumps({'error': 'ID пользователя обязателен'})
                     }
                 
-                cur.execute(f"SELECT id, username, email, created_at FROM {schema}.users WHERE id = %s", (user_id,))
+                cur.execute(f"SELECT id, username, email, created_at FROM {schema}.users WHERE id = '{user_id}'")
                 user = cur.fetchone()
                 
                 if user:
@@ -94,14 +94,14 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     SELECT u.id, u.username, u.email, f.status, f.created_at, 'sent' as direction
                     FROM {schema}.friends f
                     JOIN {schema}.users u ON f.friend_id = u.id
-                    WHERE f.user_id = %s
+                    WHERE f.user_id = '{user_id}'
                     UNION
                     SELECT u.id, u.username, u.email, f.status, f.created_at, 'received' as direction
                     FROM {schema}.friends f
                     JOIN {schema}.users u ON f.user_id = u.id
-                    WHERE f.friend_id = %s
+                    WHERE f.friend_id = '{user_id}'
                 """
-                cur.execute(query, (user_id, user_id))
+                cur.execute(query)
                 rows = cur.fetchall()
                 
                 friends = []
@@ -155,8 +155,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 }
             
             cur.execute(
-                f"SELECT id FROM {schema}.friends WHERE (user_id = %s AND friend_id = %s) OR (user_id = %s AND friend_id = %s)",
-                (user_id, friend_id, friend_id, user_id)
+                f"SELECT id FROM {schema}.friends WHERE (user_id = '{user_id}' AND friend_id = '{friend_id}') OR (user_id = '{friend_id}' AND friend_id = '{user_id}')"
             )
             existing = cur.fetchone()
             
@@ -168,8 +167,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 }
             
             cur.execute(
-                f"INSERT INTO {schema}.friends (user_id, friend_id, status) VALUES (%s, %s, 'pending')",
-                (user_id, friend_id)
+                f"INSERT INTO {schema}.friends (user_id, friend_id, status) VALUES ('{user_id}', '{friend_id}', 'pending')"
             )
             conn.commit()
             
@@ -192,8 +190,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 }
             
             cur.execute(
-                f"UPDATE {schema}.friends SET status = 'accepted', updated_at = CURRENT_TIMESTAMP WHERE user_id = %s AND friend_id = %s",
-                (friend_id, user_id)
+                f"UPDATE {schema}.friends SET status = 'accepted', updated_at = CURRENT_TIMESTAMP WHERE user_id = '{friend_id}' AND friend_id = '{user_id}'"
             )
             conn.commit()
             
@@ -216,8 +213,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 }
             
             cur.execute(
-                f"UPDATE {schema}.friends SET status = 'rejected', updated_at = CURRENT_TIMESTAMP WHERE user_id = %s AND friend_id = %s",
-                (friend_id, user_id)
+                f"UPDATE {schema}.friends SET status = 'rejected', updated_at = CURRENT_TIMESTAMP WHERE user_id = '{friend_id}' AND friend_id = '{user_id}'"
             )
             conn.commit()
             
@@ -238,7 +234,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'body': json.dumps({'error': 'Никнейм и пароль обязательны'})
             }
         
-        cur.execute(f"SELECT id, username, password_hash FROM {schema}.users WHERE username = %s", (username,))
+        username_escaped = username.replace("'", "''")
+        cur.execute(f"SELECT id, username, password_hash FROM {schema}.users WHERE username = '{username_escaped}'")
         user = cur.fetchone()
         
         if not user:
@@ -257,9 +254,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'body': json.dumps({'error': 'Неверный никнейм или пароль'})
             }
         
+        now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         cur.execute(
-            f"UPDATE {schema}.users SET last_login = %s WHERE id = %s",
-            (datetime.now(), user['id'])
+            f"UPDATE {schema}.users SET last_login = '{now}' WHERE id = '{user['id']}'"
         )
         conn.commit()
         
