@@ -1,76 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 import AnimatedCard from "@/components/AnimatedCard";
 import IndexNavigation from "@/components/index/IndexNavigation";
+import { useToast } from "@/hooks/use-toast";
+
+interface Screenshot {
+  id: number;
+  username: string;
+  title: string;
+  description: string;
+  image_url: string;
+  created_at: string;
+}
 
 const Screens = () => {
   const [selectedServer, setSelectedServer] = useState<string>("main");
-
-  const screenshots = {
-    main: [
-      {
-        id: 1,
-        title: "Спавн сервера",
-        description: "Красивый спавн с порталами в разные миры",
-        image: "https://via.placeholder.com/800x450/8B5CF6/FFFFFF?text=Spawn",
-      },
-      {
-        id: 2,
-        title: "Город игроков",
-        description: "Развитый город с магазинами и домами",
-        image: "https://via.placeholder.com/800x450/8B5CF6/FFFFFF?text=City",
-      },
-      {
-        id: 3,
-        title: "Ролевые зоны",
-        description: "Специальные зоны для ролевой игры",
-        image: "https://via.placeholder.com/800x450/8B5CF6/FFFFFF?text=RP+Zones",
-      },
-      {
-        id: 4,
-        title: "События",
-        description: "Арена для проведения массовых событий",
-        image: "https://via.placeholder.com/800x450/8B5CF6/FFFFFF?text=Events",
-      },
-    ],
-    pvp: [
-      {
-        id: 1,
-        title: "PvP Арена",
-        description: "Главная арена для дуэлей",
-        image: "https://via.placeholder.com/800x450/EC4899/FFFFFF?text=Arena",
-      },
-      {
-        id: 2,
-        title: "Турнирная зона",
-        description: "Место для турниров и соревнований",
-        image: "https://via.placeholder.com/800x450/EC4899/FFFFFF?text=Tournament",
-      },
-    ],
-    rp: [
-      {
-        id: 1,
-        title: "Королевский замок",
-        description: "Резиденция правителя королевства",
-        image: "https://via.placeholder.com/800x450/8B5CF6/FFFFFF?text=Castle",
-      },
-      {
-        id: 2,
-        title: "Торговая площадь",
-        description: "Центр торговли и ремесел",
-        image: "https://via.placeholder.com/800x450/8B5CF6/FFFFFF?text=Market",
-      },
-    ],
-    test: [
-      {
-        id: 1,
-        title: "Тестовая зона",
-        description: "Место для тестирования новых механик",
-        image: "https://via.placeholder.com/800x450/F59E0B/FFFFFF?text=Test+Zone",
-      },
-    ],
-  };
+  const [screenshots, setScreenshots] = useState<Screenshot[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
+  const [uploadData, setUploadData] = useState({
+    title: "",
+    description: "",
+    image_url: "",
+  });
+  const { toast } = useToast();
 
   const servers = [
     { id: "main", name: "Основной", icon: "Server", color: "primary" },
@@ -78,6 +33,102 @@ const Screens = () => {
     { id: "rp", name: "Сервер #3", icon: "Crown", color: "primary" },
     { id: "test", name: "Сервер #4", icon: "Flask", color: "accent" },
   ];
+
+  const loadScreenshots = async (serverId: string) => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `https://functions.poehali.dev/4547bc93-b031-4f90-affa-2025df5e20dc?server_id=${serverId}`
+      );
+      const data = await response.json();
+      setScreenshots(data);
+    } catch (error) {
+      console.error("Failed to load screenshots:", error);
+      toast({
+        title: "Ошибка",
+        description: "Не удалось загрузить скриншоты",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadScreenshots(selectedServer);
+  }, [selectedServer]);
+
+  const handleUpload = async () => {
+    const userId = localStorage.getItem("userId");
+    const username = localStorage.getItem("username");
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (!isLoggedIn || !userId || !username) {
+      toast({
+        title: "Требуется авторизация",
+        description: "Войдите в аккаунт, чтобы загрузить скриншот",
+        variant: "destructive",
+      });
+      window.location.href = "/login";
+      return;
+    }
+
+    if (!uploadData.title || !uploadData.image_url) {
+      toast({
+        title: "Ошибка",
+        description: "Заполните название и ссылку на изображение",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch(
+        "https://functions.poehali.dev/4547bc93-b031-4f90-affa-2025df5e20dc",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_id: parseInt(userId),
+            username: username,
+            server_id: selectedServer,
+            title: uploadData.title,
+            description: uploadData.description,
+            image_url: uploadData.image_url,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        toast({
+          title: "Успешно!",
+          description: "Скриншот отправлен на модерацию",
+        });
+        setUploadModalOpen(false);
+        setUploadData({ title: "", description: "", image_url: "" });
+        loadScreenshots(selectedServer);
+      } else {
+        const error = await response.json();
+        toast({
+          title: "Ошибка",
+          description: error.error || "Не удалось загрузить скриншот",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Upload failed:", error);
+      toast({
+        title: "Ошибка",
+        description: "Не удалось загрузить скриншот",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30">
@@ -88,9 +139,16 @@ const Screens = () => {
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Скриншоты Серверов
           </h1>
-          <p className="text-foreground/70 text-lg">
+          <p className="text-foreground/70 text-lg mb-6">
             Посмотри на наши сервера своими глазами
           </p>
+          <Button
+            onClick={() => setUploadModalOpen(true)}
+            className="bg-gradient-to-r from-primary to-accent hover:opacity-90"
+          >
+            <Icon name="Upload" size={20} className="mr-2" />
+            Загрузить скриншот
+          </Button>
         </div>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -110,30 +168,145 @@ const Screens = () => {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {screenshots[selectedServer as keyof typeof screenshots].map(
-            (screenshot, index) => (
+        {loading && screenshots.length === 0 ? (
+          <div className="text-center py-20">
+            <Icon
+              name="Loader2"
+              size={48}
+              className="animate-spin text-primary mx-auto"
+            />
+          </div>
+        ) : screenshots.length === 0 ? (
+          <div className="text-center py-20">
+            <Icon name="ImageOff" size={48} className="text-foreground/30 mx-auto mb-4" />
+            <p className="text-foreground/50 text-lg">
+              Пока нет скриншотов этого сервера
+            </p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-6">
+            {screenshots.map((screenshot, index) => (
               <AnimatedCard key={screenshot.id} delay={index * 100}>
                 <Card className="overflow-hidden bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all">
                   <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden">
                     <img
-                      src={screenshot.image}
+                      src={screenshot.image_url}
                       alt={screenshot.title}
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src =
+                          "https://via.placeholder.com/800x450/8B5CF6/FFFFFF?text=No+Image";
+                      }}
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-2 text-foreground">
-                      {screenshot.title}
-                    </h3>
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-2xl font-bold text-foreground">
+                        {screenshot.title}
+                      </h3>
+                      <div className="flex items-center gap-2 text-sm text-foreground/60">
+                        <Icon name="User" size={16} />
+                        {screenshot.username}
+                      </div>
+                    </div>
                     <p className="text-foreground/70">{screenshot.description}</p>
                   </div>
                 </Card>
               </AnimatedCard>
-            )
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
+
+      {uploadModalOpen && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-md p-6 bg-card/95 backdrop-blur border-border/50">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Загрузить скриншот
+              </h2>
+              <button
+                onClick={() => setUploadModalOpen(false)}
+                className="text-foreground/50 hover:text-foreground"
+              >
+                <Icon name="X" size={24} />
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Название
+                </label>
+                <input
+                  type="text"
+                  value={uploadData.title}
+                  onChange={(e) =>
+                    setUploadData({ ...uploadData, title: e.target.value })
+                  }
+                  className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-primary transition-colors"
+                  placeholder="Красивый замок"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Описание
+                </label>
+                <textarea
+                  value={uploadData.description}
+                  onChange={(e) =>
+                    setUploadData({
+                      ...uploadData,
+                      description: e.target.value,
+                    })
+                  }
+                  className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-primary transition-colors resize-none"
+                  rows={3}
+                  placeholder="Описание скриншота..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Ссылка на изображение
+                </label>
+                <input
+                  type="url"
+                  value={uploadData.image_url}
+                  onChange={(e) =>
+                    setUploadData({ ...uploadData, image_url: e.target.value })
+                  }
+                  className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-primary transition-colors"
+                  placeholder="https://example.com/image.jpg"
+                  required
+                />
+                <p className="text-xs text-foreground/50 mt-1">
+                  Загрузите изображение на любой хостинг (Imgur, Discord и т.д.)
+                </p>
+              </div>
+
+              <div className="flex gap-3 pt-4">
+                <Button
+                  onClick={handleUpload}
+                  disabled={loading}
+                  className="flex-1 bg-gradient-to-r from-primary to-accent hover:opacity-90"
+                >
+                  {loading ? "Загрузка..." : "Загрузить"}
+                </Button>
+                <Button
+                  onClick={() => setUploadModalOpen(false)}
+                  variant="outline"
+                  className="flex-1"
+                >
+                  Отмена
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };

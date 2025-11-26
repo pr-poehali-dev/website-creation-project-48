@@ -1,0 +1,30 @@
+{
+  "tests": [
+    {
+      "name": "Get screenshots for main server",
+      "method": "GET",
+      "path": "/?server_id=main",
+      "expectedStatus": 200,
+      "expectedBody": [],
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Upload new screenshot",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "user_id": 1,
+        "username": "testuser",
+        "server_id": "main",
+        "title": "Test Screenshot",
+        "description": "Test description",
+        "image_url": "https://example.com/image.jpg"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "message": "Screenshot uploaded, waiting for approval"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
