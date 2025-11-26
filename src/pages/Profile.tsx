@@ -43,6 +43,20 @@ const Profile = () => {
   };
 
   const [user, setUser] = useState(loadProfileData());
+  const [friendRequestsCount, setFriendRequestsCount] = useState(0);
+  const [hasPlayedNotificationSound, setHasPlayedNotificationSound] = useState(false);
+  const [stats, setStats] = useState({
+    kills: parseInt(localStorage.getItem(getProfileKey('kills')) || '0'),
+    deaths: parseInt(localStorage.getItem(getProfileKey('deaths')) || '0'),
+    quests: parseInt(localStorage.getItem(getProfileKey('quests')) || '0'),
+    achievements: parseInt(localStorage.getItem(getProfileKey('achievements')) || '0')
+  });
+  const [showAvatarDialog, setShowAvatarDialog] = useState(false);
+  const [showRewardsDialog, setShowRewardsDialog] = useState(false);
+  const [showBioDialog, setShowBioDialog] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [showSettingsDialog, setShowSettingsDialog] = useState(false);
+  const [showFriendsDialog, setShowFriendsDialog] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(`profile_${user.userId}`, JSON.stringify({
@@ -82,13 +96,6 @@ const Profile = () => {
     localStorage.setItem(getProfileKey(key), value.toString());
   };
 
-  const [stats, setStats] = useState({
-    kills: parseInt(localStorage.getItem(getProfileKey('kills')) || '0'),
-    deaths: parseInt(localStorage.getItem(getProfileKey('deaths')) || '0'),
-    quests: parseInt(localStorage.getItem(getProfileKey('quests')) || '0'),
-    achievements: parseInt(localStorage.getItem(getProfileKey('achievements')) || '0')
-  });
-
   useEffect(() => {
     const interval = setInterval(() => {
       const currentTime = parseInt(localStorage.getItem(getProfileKey('playTimeMinutes')) || '0');
@@ -105,15 +112,6 @@ const Profile = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-  const [showAvatarDialog, setShowAvatarDialog] = useState(false);
-  const [showRewardsDialog, setShowRewardsDialog] = useState(false);
-  const [showBioDialog, setShowBioDialog] = useState(false);
-  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const [showSettingsDialog, setShowSettingsDialog] = useState(false);
-  const [showFriendsDialog, setShowFriendsDialog] = useState(false);
-  const [friendRequestsCount, setFriendRequestsCount] = useState(0);
-  const [hasPlayedNotificationSound, setHasPlayedNotificationSound] = useState(false);
   const [bioText, setBioText] = useState(user.bio);
   const [selectedServer, setSelectedServer] = useState(() => {
     return parseInt(user.selectedServer);
