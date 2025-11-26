@@ -1,0 +1,25 @@
+{
+  "tests": [
+    {
+      "name": "Request reset code",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "action": "request",
+        "email": "admin@imunnsrp.ru"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "message": "string",
+        "code": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Handle OPTIONS request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}

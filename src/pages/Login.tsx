@@ -110,7 +110,7 @@ const Login = () => {
           </Button>
         </form>
 
-        <div className="mt-6 text-center">
+        <div className="mt-6 text-center space-y-3">
           <p className="text-foreground/70">
             Нет аккаунта?{" "}
             <button
@@ -118,6 +118,15 @@ const Login = () => {
               className="text-primary hover:underline font-medium"
             >
               Зарегистрироваться
+            </button>
+          </p>
+          <p className="text-foreground/70">
+            Забыли пароль?{" "}
+            <button
+              onClick={() => navigate("/reset-password")}
+              className="text-primary hover:underline font-medium"
+            >
+              Восстановить
             </button>
           </p>
         </div>
