@@ -17,6 +17,7 @@ import Profile from "./pages/Profile";
 import Achievements from "./pages/Achievements";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import Screens from "./pages/Screens";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/profile" element={<Profile />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/screens" element={<Screens />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
