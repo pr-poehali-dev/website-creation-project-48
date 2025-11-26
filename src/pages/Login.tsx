@@ -28,6 +28,12 @@ const Login = () => {
         body: JSON.stringify(formData),
       });
 
+      if (response.status === 402) {
+        setError("Сервис временно недоступен. Попробуйте позже.");
+        setLoading(false);
+        return;
+      }
+
       const data = await response.json();
 
       if (response.ok) {
