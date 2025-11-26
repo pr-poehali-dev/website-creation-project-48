@@ -18,8 +18,28 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    setOnlinePlayers(Math.floor(Math.random() * 50) + 10);
-    setServerStatus('online');
+    const fetchServerStatus = async () => {
+      try {
+        const response = await fetch('https://functions.poehali.dev/97b19ffd-bf8c-421a-9ae5-ee754557f899?host=imunnsrp.ru&port=25565');
+        const data = await response.json();
+        
+        if (data.status === 'online') {
+          setOnlinePlayers(data.online);
+          setServerStatus('online');
+        } else {
+          setServerStatus('offline');
+          setOnlinePlayers(0);
+        }
+      } catch (error) {
+        setServerStatus('offline');
+        setOnlinePlayers(0);
+      }
+    };
+
+    fetchServerStatus();
+    const interval = setInterval(fetchServerStatus, 30000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (

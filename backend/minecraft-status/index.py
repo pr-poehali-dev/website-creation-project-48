@@ -31,8 +31,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'body': json.dumps({'error': 'Method not allowed'})
         }
     
-    server_host = 'forest.s-hub.cloud'
-    server_port = 25565
+    params = event.get('queryStringParameters', {}) or {}
+    server_host = params.get('host', 'imunnsrp.ru')
+    server_port = int(params.get('port', '25565'))
     
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
