@@ -96,6 +96,60 @@ const Admin = () => {
             ))}
           </div>
 
+          <div className="max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold mb-8 text-center">Инструменты администратора</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              <AnimatedCard delay={0}>
+                <Card 
+                  className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
+                  onClick={() => window.location.href = '/admin/screens'}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon name="Image" className="text-primary" size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold mb-1">Модерация</h3>
+                      <p className="text-foreground/70 text-sm">Скриншоты игроков</p>
+                    </div>
+                  </div>
+                </Card>
+              </AnimatedCard>
+              <AnimatedCard delay={100}>
+                <Card 
+                  className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all cursor-pointer"
+                  onClick={() => window.location.href = '/forum'}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon name="MessageSquare" className="text-accent" size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold mb-1">Форум</h3>
+                      <p className="text-foreground/70 text-sm">Обращения игроков</p>
+                    </div>
+                  </div>
+                </Card>
+              </AnimatedCard>
+              <AnimatedCard delay={200}>
+                <Card 
+                  className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
+                  onClick={() => window.location.href = '/stats'}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon name="BarChart" className="text-primary" size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold mb-1">Статистика</h3>
+                      <p className="text-foreground/70 text-sm">Данные серверов</p>
+                    </div>
+                  </div>
+                </Card>
+              </AnimatedCard>
+            </div>
+          </div>
+
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center">Связаться с администрацией</h2>
             <div className="grid md:grid-cols-2 gap-6">
