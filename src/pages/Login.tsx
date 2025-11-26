@@ -46,7 +46,11 @@ const Login = () => {
         setError(data.error || "Ошибка входа");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Произошла ошибка");
+      if (err instanceof TypeError && err.message === 'Failed to fetch') {
+        setError("Не удалось подключиться к серверу. Проверьте интернет-соединение.");
+      } else {
+        setError("Произошла ошибка при входе. Попробуйте позже.");
+      }
     } finally {
       setLoading(false);
     }

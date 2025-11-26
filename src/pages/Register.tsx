@@ -66,7 +66,11 @@ const Register = () => {
         setError(data.error || "Ошибка регистрации");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Произошла ошибка");
+      if (err instanceof TypeError && err.message === 'Failed to fetch') {
+        setError("Не удалось подключиться к серверу. Проверьте интернет-соединение.");
+      } else {
+        setError("Произошла ошибка при регистрации. Попробуйте позже.");
+      }
     } finally {
       setLoading(false);
     }

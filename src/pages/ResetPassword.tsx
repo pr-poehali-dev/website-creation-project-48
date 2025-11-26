@@ -53,7 +53,11 @@ const ResetPassword = () => {
         setError(data.error || "Ошибка отправки кода");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Произошла ошибка");
+      if (err instanceof TypeError && err.message === 'Failed to fetch') {
+        setError("Не удалось подключиться к серверу. Проверьте интернет-соединение.");
+      } else {
+        setError("Произошла ошибка. Попробуйте позже.");
+      }
     } finally {
       setLoading(false);
     }
@@ -105,7 +109,11 @@ const ResetPassword = () => {
         setError(data.error || "Ошибка сброса пароля");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Произошла ошибка");
+      if (err instanceof TypeError && err.message === 'Failed to fetch') {
+        setError("Не удалось подключиться к серверу. Проверьте интернет-соединение.");
+      } else {
+        setError("Произошла ошибка. Попробуйте позже.");
+      }
     } finally {
       setLoading(false);
     }
