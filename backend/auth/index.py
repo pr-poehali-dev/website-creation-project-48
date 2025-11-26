@@ -32,16 +32,14 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Max-Age': '86400'
             },
-            'body': '',
-            'isBase64Encoded': False
+            'body': ''
         }
     
     if method != 'POST':
         return {
             'statusCode': 405,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'error': 'Method not allowed'}),
-            'isBase64Encoded': False
+            'body': json.dumps({'error': 'Method not allowed'})
         }
     
     body_data = json.loads(event.get('body', '{}'))
@@ -52,8 +50,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         return {
             'statusCode': 400,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'error': 'Никнейм и пароль обязательны'}),
-            'isBase64Encoded': False
+            'body': json.dumps({'error': 'Никнейм и пароль обязательны'})
         }
     
     database_url = os.environ.get('DATABASE_URL')
@@ -61,8 +58,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         return {
             'statusCode': 500,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'error': 'Database configuration error'}),
-            'isBase64Encoded': False
+            'body': json.dumps({'error': 'Database configuration error'})
         }
     
     conn = psycopg2.connect(database_url)
@@ -77,8 +73,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         return {
             'statusCode': 401,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'error': 'Неверный никнейм или пароль'}),
-            'isBase64Encoded': False
+            'body': json.dumps({'error': 'Неверный никнейм или пароль'})
         }
     
     password_hash = hash_password(password)
@@ -89,8 +84,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         return {
             'statusCode': 401,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'error': 'Неверный никнейм или пароль'}),
-            'isBase64Encoded': False
+            'body': json.dumps({'error': 'Неверный никнейм или пароль'})
         }
     
     cur.execute(
@@ -112,6 +106,5 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'token': token,
             'username': user['username'],
             'user_id': user['id']
-        }),
-        'isBase64Encoded': False
+        })
     }
