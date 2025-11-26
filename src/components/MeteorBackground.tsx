@@ -13,23 +13,27 @@ const MeteorBackground = () => {
   const [meteors, setMeteors] = useState<Meteor[]>([]);
 
   useEffect(() => {
-    const generateMeteors = () => {
-      const newMeteors: Meteor[] = [];
-      for (let i = 0; i < 15; i++) {
-        newMeteors.push({
-          id: i,
-          letter: Math.random() > 0.5 ? 'I' : 'S',
-          left: Math.random() * 100,
-          animationDuration: 8 + Math.random() * 6,
-          size: 20 + Math.random() * 30,
-          delay: Math.random() * 3
-        });
-      }
-      setMeteors(newMeteors);
+    let idCounter = 0;
+    
+    const addMeteor = () => {
+      const newMeteor: Meteor = {
+        id: idCounter++,
+        letter: Math.random() > 0.5 ? 'I' : 'S',
+        left: Math.random() * 100,
+        animationDuration: 8 + Math.random() * 6,
+        size: 20 + Math.random() * 30,
+        delay: 0
+      };
+      
+      setMeteors(prev => [...prev, newMeteor]);
+      
+      setTimeout(() => {
+        setMeteors(prev => prev.filter(m => m.id !== newMeteor.id));
+      }, (newMeteor.animationDuration + 1) * 1000);
     };
 
-    generateMeteors();
-    const interval = setInterval(generateMeteors, 5000);
+    addMeteor();
+    const interval = setInterval(addMeteor, 2000);
 
     return () => clearInterval(interval);
   }, []);
