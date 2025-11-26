@@ -17,7 +17,7 @@ import Profile from "./pages/Profile";
 import Achievements from "./pages/Achievements";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
-import Screens from "./pages/Screens";
+import Screens from "./pages/webapp/Screens";
 
 const queryClient = new QueryClient();
 
