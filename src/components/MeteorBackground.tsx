@@ -20,16 +20,16 @@ const MeteorBackground = () => {
           id: i,
           letter: Math.random() > 0.5 ? 'I' : 'S',
           left: Math.random() * 100,
-          animationDuration: 3 + Math.random() * 4,
+          animationDuration: 8 + Math.random() * 6,
           size: 20 + Math.random() * 30,
-          delay: Math.random() * 5
+          delay: Math.random() * 3
         });
       }
       setMeteors(newMeteors);
     };
 
     generateMeteors();
-    const interval = setInterval(generateMeteors, 10000);
+    const interval = setInterval(generateMeteors, 5000);
 
     return () => clearInterval(interval);
   }, []);
