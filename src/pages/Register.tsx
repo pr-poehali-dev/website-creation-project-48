@@ -60,7 +60,7 @@ const Register = () => {
         setError(data.error || "Ошибка регистрации");
       }
     } catch (err) {
-      setError("Ошибка подключения к серверу");
+      setError(err instanceof Error ? err.message : "Произошла ошибка");
     } finally {
       setLoading(false);
     }

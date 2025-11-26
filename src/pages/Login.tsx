@@ -40,7 +40,7 @@ const Login = () => {
         setError(data.error || "Ошибка входа");
       }
     } catch (err) {
-      setError("Ошибка подключения к серверу");
+      setError(err instanceof Error ? err.message : "Произошла ошибка");
     } finally {
       setLoading(false);
     }

@@ -47,7 +47,7 @@ const ResetPassword = () => {
         setError(data.error || "Ошибка отправки кода");
       }
     } catch (err) {
-      setError("Ошибка подключения к серверу");
+      setError(err instanceof Error ? err.message : "Произошла ошибка");
     } finally {
       setLoading(false);
     }
@@ -93,7 +93,7 @@ const ResetPassword = () => {
         setError(data.error || "Ошибка сброса пароля");
       }
     } catch (err) {
-      setError("Ошибка подключения к серверу");
+      setError(err instanceof Error ? err.message : "Произошла ошибка");
     } finally {
       setLoading(false);
     }
