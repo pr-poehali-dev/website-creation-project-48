@@ -3,9 +3,11 @@ import Icon from "@/components/ui/icon";
 interface ProfileHeaderProps {
   showServerNotification: boolean;
   serverNotificationText: string;
+  friendRequestsCount: number;
+  onShowFriends: () => void;
 }
 
-const ProfileHeader = ({ showServerNotification, serverNotificationText }: ProfileHeaderProps) => {
+const ProfileHeader = ({ showServerNotification, serverNotificationText, friendRequestsCount, onShowFriends }: ProfileHeaderProps) => {
   return (
     <>
       {showServerNotification && (
@@ -34,6 +36,18 @@ const ProfileHeader = ({ showServerNotification, serverNotificationText }: Profi
             <a href="/rules" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Правила</a>
           </div>
           <div className="flex items-center gap-3">
+            <button 
+              className="px-4 py-2 rounded-full text-sm font-semibold border-purple-500/50 hover:bg-purple-500/10 border border-purple-500/40 bg-purple-500/10 transition-all relative" 
+              onClick={onShowFriends}
+            >
+              <Icon name="Users" className="inline mr-2" size={18} />
+              Друзья
+              {friendRequestsCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                  {friendRequestsCount}
+                </span>
+              )}
+            </button>
             <button className="px-4 py-2 rounded-full text-sm font-semibold border-primary/50 hover:bg-primary/10 border border-primary/40 bg-primary/10 transition-all" onClick={() => window.location.href = '/profile'}>
               <Icon name="User" className="inline mr-2" size={18} />
               Профиль
