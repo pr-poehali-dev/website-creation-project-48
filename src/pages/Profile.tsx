@@ -4,6 +4,7 @@ import ProfileInfo from "@/components/profile/ProfileInfo";
 import ProfileStats from "@/components/profile/ProfileStats";
 import ProfileDialogs from "@/components/profile/ProfileDialogs";
 import ProfileChat from "@/components/profile/ProfileChat";
+import FriendsDialog from "@/components/profile/FriendsDialog";
 import { useState, useEffect } from "react";
 import SpaceBackground from "@/components/SpaceBackground";
 
@@ -87,6 +88,7 @@ const Profile = () => {
   const [showBioDialog, setShowBioDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showSettingsDialog, setShowSettingsDialog] = useState(false);
+  const [showFriendsDialog, setShowFriendsDialog] = useState(false);
   const [bioText, setBioText] = useState(user.bio);
   const [selectedServer, setSelectedServer] = useState(() => {
     return parseInt(user.selectedServer);
@@ -239,6 +241,7 @@ const Profile = () => {
             });
             setShowSettingsDialog(true);
           }}
+          onShowFriends={() => setShowFriendsDialog(true)}
         />
 
         <ProfileStats 
@@ -275,6 +278,12 @@ const Profile = () => {
         onDeleteProfile={deleteProfile}
         onSettingsDataChange={handleSettingsDataChange}
         onSettingsSave={handleSettingsSave}
+      />
+
+      <FriendsDialog
+        open={showFriendsDialog}
+        onClose={() => setShowFriendsDialog(false)}
+        userId={user.userId}
       />
     </div>
   );

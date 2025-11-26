@@ -24,9 +24,10 @@ interface ProfileInfoProps {
   onShowRewards: () => void;
   onDeleteProfile: () => void;
   onShowSettings: () => void;
+  onShowFriends: () => void;
 }
 
-const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onShowRewards, onDeleteProfile, onShowSettings }: ProfileInfoProps) => {
+const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onShowRewards, onDeleteProfile, onShowSettings, onShowFriends }: ProfileInfoProps) => {
   return (
     <Card className="p-8 bg-card/80 backdrop-blur border-primary/20 shadow-2xl">
       <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -118,6 +119,13 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
                   <span className="text-2xl font-bold text-foreground">0</span>
                 </div>
                 <p className="text-sm text-muted-foreground">Достижения</p>
+              </div>
+              <div className="flex-1 bg-purple-600/10 rounded-lg p-4 text-center cursor-pointer hover:bg-purple-600/20 transition-colors" onClick={onShowFriends}>
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <Icon name="Users" size={20} className="text-purple-400" />
+                  <span className="text-2xl font-bold text-foreground">{JSON.parse(localStorage.getItem(`${user.userId}_friends`) || '[]').filter((f: any) => f.status === 'accepted').length}</span>
+                </div>
+                <p className="text-sm text-muted-foreground">Друзья</p>
               </div>
             </div>
           </div>
