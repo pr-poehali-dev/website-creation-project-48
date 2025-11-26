@@ -80,7 +80,10 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     conn = psycopg2.connect(database_url)
     cur = conn.cursor(cursor_factory=RealDictCursor)
     
-    cur.execute("SELECT id FROM users WHERE username = %s OR email = %s", (username, email))
+    schema = 't_p89978113_website_creation_pro'
+    username_escaped = username.replace("'", "''")
+    email_escaped = email.replace("'", "''")
+    cur.execute(f"SELECT id FROM {schema}.users WHERE username = '{username_escaped}' OR email = '{email_escaped}'")
     existing_user = cur.fetchone()
     
     if existing_user:
@@ -96,8 +99,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     password_hash = hash_password(password)
     
     cur.execute(
-        "INSERT INTO users (username, email, password_hash) VALUES (%s, %s, %s) RETURNING id",
-        (username, email, password_hash)
+        f"INSERT INTO {schema}.users (username, email, password_hash) VALUES ('{username_escaped}', '{email_escaped}', '{password_hash}') RETURNING id"
     )
     user_id = cur.fetchone()['id']
     
