@@ -5,7 +5,6 @@ import ProfileStats from "@/components/profile/ProfileStats";
 import ProfileDialogs from "@/components/profile/ProfileDialogs";
 import ProfileChat from "@/components/profile/ProfileChat";
 import FriendsDialog from "@/components/profile/FriendsDialog";
-import FriendNotificationBadge from "@/components/profile/FriendNotificationBadge";
 import { useState, useEffect } from "react";
 import SpaceBackground from "@/components/SpaceBackground";
 
@@ -43,20 +42,6 @@ const Profile = () => {
   };
 
   const [user, setUser] = useState(loadProfileData());
-  const [friendRequestsCount, setFriendRequestsCount] = useState(0);
-  const [hasPlayedNotificationSound, setHasPlayedNotificationSound] = useState(false);
-  const [stats, setStats] = useState({
-    kills: parseInt(localStorage.getItem(getProfileKey('kills')) || '0'),
-    deaths: parseInt(localStorage.getItem(getProfileKey('deaths')) || '0'),
-    quests: parseInt(localStorage.getItem(getProfileKey('quests')) || '0'),
-    achievements: parseInt(localStorage.getItem(getProfileKey('achievements')) || '0')
-  });
-  const [showAvatarDialog, setShowAvatarDialog] = useState(false);
-  const [showRewardsDialog, setShowRewardsDialog] = useState(false);
-  const [showBioDialog, setShowBioDialog] = useState(false);
-  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const [showSettingsDialog, setShowSettingsDialog] = useState(false);
-  const [showFriendsDialog, setShowFriendsDialog] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(`profile_${user.userId}`, JSON.stringify({
@@ -70,31 +55,16 @@ const Profile = () => {
     setUser(loadProfileData());
   }, []);
 
-  useEffect(() => {
-    const checkFriendRequests = () => {
-      const requestsKey = `${user.userId}_friend_requests`;
-      const requests = JSON.parse(localStorage.getItem(requestsKey) || '[]');
-      const newCount = requests.length;
-      
-      if (newCount > friendRequestsCount && newCount > 0 && !hasPlayedNotificationSound) {
-        const notificationSound = new Audio('https://minecraft.wiki/images/Note_Block_bass_hit2.ogg?83821');
-        notificationSound.volume = 0.3;
-        notificationSound.play().catch(err => console.log('Notification sound failed:', err));
-        setHasPlayedNotificationSound(true);
-      }
-      
-      setFriendRequestsCount(newCount);
-    };
-
-    checkFriendRequests();
-    const interval = setInterval(checkFriendRequests, 3000);
-
-    return () => clearInterval(interval);
-  }, [user.userId, friendRequestsCount, hasPlayedNotificationSound]);
-
   const saveProfileData = (key: string, value: string | number) => {
     localStorage.setItem(getProfileKey(key), value.toString());
   };
+
+  const [stats, setStats] = useState({
+    kills: parseInt(localStorage.getItem(getProfileKey('kills')) || '0'),
+    deaths: parseInt(localStorage.getItem(getProfileKey('deaths')) || '0'),
+    quests: parseInt(localStorage.getItem(getProfileKey('quests')) || '0'),
+    achievements: parseInt(localStorage.getItem(getProfileKey('achievements')) || '0')
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -112,6 +82,13 @@ const Profile = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  const [showAvatarDialog, setShowAvatarDialog] = useState(false);
+  const [showRewardsDialog, setShowRewardsDialog] = useState(false);
+  const [showBioDialog, setShowBioDialog] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [showSettingsDialog, setShowSettingsDialog] = useState(false);
+  const [showFriendsDialog, setShowFriendsDialog] = useState(false);
   const [bioText, setBioText] = useState(user.bio);
   const [selectedServer, setSelectedServer] = useState(() => {
     return parseInt(user.selectedServer);
@@ -240,11 +217,6 @@ const Profile = () => {
       <ProfileHeader 
         showServerNotification={showServerNotification}
         serverNotificationText={serverNotificationText}
-        friendRequestsCount={friendRequestsCount}
-        onShowFriends={() => {
-          setShowFriendsDialog(true);
-          setHasPlayedNotificationSound(false);
-        }}
       />
 
       <main className="container mx-auto px-4 py-8 space-y-6 relative z-10">
@@ -312,14 +284,6 @@ const Profile = () => {
         open={showFriendsDialog}
         onClose={() => setShowFriendsDialog(false)}
         userId={user.userId}
-      />
-
-      <FriendNotificationBadge
-        userId={user.userId}
-        onClick={() => {
-          setShowFriendsDialog(true);
-          setHasPlayedNotificationSound(false);
-        }}
       />
     </div>
   );
