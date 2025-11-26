@@ -21,6 +21,13 @@ const Index = () => {
     const fetchServerStatus = async () => {
       try {
         const response = await fetch('https://functions.poehali.dev/97b19ffd-bf8c-421a-9ae5-ee754557f899?host=imunnsrp.ru&port=25565');
+        
+        if (response.status === 402) {
+          setServerStatus('offline');
+          setOnlinePlayers(0);
+          return;
+        }
+        
         const data = await response.json();
         
         if (data.status === 'online') {
@@ -37,7 +44,7 @@ const Index = () => {
     };
 
     fetchServerStatus();
-    const interval = setInterval(fetchServerStatus, 30000);
+    const interval = setInterval(fetchServerStatus, 60000);
 
     return () => clearInterval(interval);
   }, []);
