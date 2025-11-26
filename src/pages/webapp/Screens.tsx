@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import AnimatedCard from "@/components/AnimatedCard";
-import Navigation from "@/components/Navigation";
+import IndexNavigation from "@/components/index/IndexNavigation";
 
 const Screens = () => {
   const [selectedServer, setSelectedServer] = useState<string>("main");
@@ -81,7 +81,7 @@ const Screens = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30">
-      <Navigation />
+      <IndexNavigation />
 
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="text-center mb-12">
