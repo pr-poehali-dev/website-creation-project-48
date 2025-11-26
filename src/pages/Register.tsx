@@ -71,12 +71,20 @@ const Register = () => {
       <SpaceBackground />
       <Card className="w-full max-w-md p-8 bg-card/80 backdrop-blur border-border/50 relative z-10">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mx-auto mb-4">
+          <button
+            onClick={() => navigate("/")}
+            className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mx-auto mb-4 hover:opacity-90 transition-opacity cursor-pointer"
+          >
             <Icon name="UserPlus" className="text-white" size={32} />
-          </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Регистрация
-          </h1>
+          </button>
+          <button
+            onClick={() => navigate("/")}
+            className="hover:opacity-80 transition-opacity"
+          >
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              ImunnS RolePlay
+            </h1>
+          </button>
           <p className="text-foreground/70 mt-2">Создайте новый аккаунт</p>
         </div>
 
