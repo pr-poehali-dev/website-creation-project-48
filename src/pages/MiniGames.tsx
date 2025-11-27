@@ -18,7 +18,7 @@ const MiniGames = () => {
     },
     {
       id: "pet",
-      title: "Рост питомца",
+      title: "Тамагочи",
       description: "Вырасти своего виртуального питомца, корми и играй с ним",
       icon: "Rabbit",
       color: "from-pink-500 to-purple-500"
