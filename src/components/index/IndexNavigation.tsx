@@ -26,11 +26,13 @@ const IndexNavigation = ({ isLoggedIn }: IndexNavigationProps) => {
           <Button 
             variant="outline" 
             size="icon" 
-            className="border-orange-500/50 hover:bg-orange-500/10 rounded-full h-9 w-9" 
+            className="border-orange-500/50 hover:bg-orange-500/10 rounded-full h-9 w-9 relative overflow-hidden group animate-pulse hover:animate-none transition-all hover:scale-110" 
             onClick={() => window.location.href = '/game'}
             title="Игра: Уютный ресторанчик"
           >
-            <Icon name="UtensilsCrossed" size={18} className="text-orange-400" />
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <Icon name="UtensilsCrossed" size={18} className="text-orange-400 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full blur opacity-30 group-hover:opacity-60 transition-opacity duration-300" />
           </Button>
           {isLoggedIn ? (
             <>
