@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import { useNavigate } from "react-router-dom";
 import SpaceBackground from "@/components/SpaceBackground";
+import funcUrls from "../../backend/func2url.json";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://functions.poehali.dev/784307b5-0758-4a31-aee5-b7d19ac35922", {
+      const response = await fetch(funcUrls['reset-password'], {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +82,7 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://functions.poehali.dev/784307b5-0758-4a31-aee5-b7d19ac35922", {
+      const response = await fetch(funcUrls['reset-password'], {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

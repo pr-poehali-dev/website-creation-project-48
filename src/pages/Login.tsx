@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import { useNavigate } from "react-router-dom";
 import SpaceBackground from "@/components/SpaceBackground";
+import funcUrls from "../../backend/func2url.json";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://functions.poehali.dev/33595cf5-9434-4502-a9bd-5c6888b6fbf5", {
+      const response = await fetch(funcUrls.auth, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

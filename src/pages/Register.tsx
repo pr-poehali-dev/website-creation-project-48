@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import { useNavigate } from "react-router-dom";
 import SpaceBackground from "@/components/SpaceBackground";
+import funcUrls from "../../backend/func2url.json";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://functions.poehali.dev/1f0f1fea-9e59-4896-a885-83d4c981565d", {
+      const response = await fetch(funcUrls.register, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
