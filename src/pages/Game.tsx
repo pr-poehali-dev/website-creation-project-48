@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import SpaceBackground from "@/components/SpaceBackground";
+import { sounds } from "@/utils/sounds";
 
 interface MenuItem {
   id: string;
@@ -76,7 +77,14 @@ const Game = () => {
         const expiredOrders = updatedOrders.filter(order => order.time <= 0);
         if (expiredOrders.length > 0) {
           setMoney(prev => Math.max(0, prev - 100));
+          sounds.error();
         }
+        
+        updatedOrders.forEach(order => {
+          if (order.time === 10) {
+            sounds.warning();
+          }
+        });
 
         return updatedOrders.filter(order => order.time > 0);
       });
@@ -106,9 +114,11 @@ const Game = () => {
     };
 
     setOrders(prev => [...prev, newOrder]);
+    sounds.newOrder();
   };
 
   const toggleItemSelection = (item: MenuItem) => {
+    sounds.click();
     const isSelected = selectedItems.find(i => i.id === item.id);
     if (isSelected) {
       setSelectedItems(prev => prev.filter(i => i.id !== item.id));
@@ -122,17 +132,21 @@ const Game = () => {
     const orderIds = order.items.map(i => i.id).sort().join(',');
 
     if (selectedIds === orderIds) {
+      sounds.success();
+      sounds.coin();
       setMoney(prev => prev + order.total);
       setCompletedOrders(prev => prev + 1);
       setOrders(prev => prev.filter(o => o.id !== order.id));
       setSelectedItems([]);
     } else {
+      sounds.error();
       setMoney(prev => Math.max(0, prev - 50));
       setSelectedItems([]);
     }
   };
 
   const startGame = () => {
+    sounds.success();
     setIsPlaying(true);
     setMoney(1000);
     setOrders([]);

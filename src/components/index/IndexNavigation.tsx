@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import { sounds } from "@/utils/sounds";
 
 interface IndexNavigationProps {
   isLoggedIn: boolean;
@@ -27,7 +28,11 @@ const IndexNavigation = ({ isLoggedIn }: IndexNavigationProps) => {
             variant="outline" 
             size="icon" 
             className="border-orange-500/50 hover:bg-orange-500/10 rounded-full h-9 w-9 relative overflow-hidden group animate-pulse hover:animate-none transition-all hover:scale-110" 
-            onClick={() => window.location.href = '/game'}
+            onClick={() => {
+              sounds.click();
+              sounds.newOrder();
+              setTimeout(() => window.location.href = '/game', 100);
+            }}
             title="Игра: Уютный ресторанчик"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
