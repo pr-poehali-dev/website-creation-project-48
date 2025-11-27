@@ -21,6 +21,7 @@ import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import Screens from "./pages/webapp/Screens";
 import AdminScreens from "./pages/webapp/AdminScreens";
+import Game from "./pages/Game";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
           <Route path="/settings" element={<Settings />} />
           <Route path="/screens" element={<Screens />} />
           <Route path="/admin/screens" element={<AdminScreens />} />
+          <Route path="/game" element={<Game />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
