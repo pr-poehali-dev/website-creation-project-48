@@ -6,6 +6,7 @@ import ServersSection from "@/components/index/ServersSection";
 import PromoSection from "@/components/index/PromoSection";
 import Icon from "@/components/ui/icon";
 import { useEffect, useState } from "react";
+import { API_URLS } from "@/config/api";
 
 const Index = () => {
   const [onlinePlayers, setOnlinePlayers] = useState(0);
@@ -20,7 +21,7 @@ const Index = () => {
   useEffect(() => {
     const fetchServerStatus = async () => {
       try {
-        const response = await fetch('https://functions.poehali.dev/97b19ffd-bf8c-421a-9ae5-ee754557f899?host=imunnsrp.ru&port=25565');
+        const response = await fetch(`${API_URLS.minecraftStatus}?host=imunnsrp.ru&port=25565`);
         
         if (response.status === 402) {
           setServerStatus('offline');

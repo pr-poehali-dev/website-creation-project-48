@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import { useNavigate } from "react-router-dom";
 import SpaceBackground from "@/components/SpaceBackground";
-import funcUrls from "../../backend/func2url.json";
+import { API_URLS } from "@/config/api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(funcUrls.auth, {
+      const response = await fetch(API_URLS.auth, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

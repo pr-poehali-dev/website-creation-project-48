@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import { useNavigate } from "react-router-dom";
 import SpaceBackground from "@/components/SpaceBackground";
-import funcUrls from "../../backend/func2url.json";
+import { API_URLS } from "@/config/api";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(funcUrls['reset-password'], {
+      const response = await fetch(API_URLS.resetPassword, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -82,7 +82,7 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(funcUrls['reset-password'], {
+      const response = await fetch(API_URLS.resetPassword, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
