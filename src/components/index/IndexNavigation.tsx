@@ -23,6 +23,15 @@ const IndexNavigation = ({ isLoggedIn }: IndexNavigationProps) => {
           <a href="/rules" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Правила</a>
         </div>
         <div className="flex items-center gap-3">
+          <Button 
+            variant="outline" 
+            size="icon" 
+            className="border-orange-500/50 hover:bg-orange-500/10 rounded-full h-9 w-9" 
+            onClick={() => window.location.href = '/game'}
+            title="Игра: Уютный ресторанчик"
+          >
+            <Icon name="UtensilsCrossed" size={18} className="text-orange-400" />
+          </Button>
           {isLoggedIn ? (
             <>
               <Button variant="outline" size="icon" className="border-primary/50 hover:bg-primary/10 rounded-full h-9 w-9" onClick={() => window.location.href = '/profile'}>
