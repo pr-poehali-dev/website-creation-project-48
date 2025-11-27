@@ -21,6 +21,17 @@ interface Order {
   time: number;
 }
 
+interface Upgrade {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  cost: number;
+  level: number;
+  maxLevel: number;
+  effect: string;
+}
+
 const menuItems: MenuItem[] = [
   { id: '1', name: 'Кофе', icon: 'Coffee', price: 150, category: 'drink' },
   { id: '2', name: 'Чай', icon: 'Wine', price: 100, category: 'drink' },
@@ -41,6 +52,13 @@ const Game = () => {
   const [gameTime, setGameTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedItems, setSelectedItems] = useState<MenuItem[]>([]);
+  const [showShop, setShowShop] = useState(false);
+  const [upgrades, setUpgrades] = useState<Upgrade[]>([
+    { id: '1', name: 'Больше времени', description: 'Увеличивает время на заказ на 5 сек', icon: 'Clock', cost: 500, level: 0, maxLevel: 5, effect: 'time' },
+    { id: '2', name: 'Бонус к заработку', description: 'Увеличивает доход на 20%', icon: 'TrendingUp', cost: 800, level: 0, maxLevel: 3, effect: 'income' },
+    { id: '3', name: 'Меньше штрафов', description: 'Уменьшает штрафы на 50%', icon: 'Shield', cost: 600, level: 0, maxLevel: 2, effect: 'penalty' },
+    { id: '4', name: 'Редкие гости', description: 'Уменьшает частоту заказов', icon: 'Users', cost: 400, level: 0, maxLevel: 3, effect: 'frequency' },
+  ]);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -55,19 +73,25 @@ const Game = () => {
   useEffect(() => {
     if (!isPlaying) return;
 
+    const frequencyUpgrade = upgrades.find(u => u.id === '4');
+    const interval = 8000 + (frequencyUpgrade?.level || 0) * 2000;
+
     const orderInterval = setInterval(() => {
-      if (orders.length < 3) {
+      const maxOrders = 3;
+      if (orders.length < maxOrders) {
         generateNewOrder();
       }
-    }, 8000);
+    }, interval);
 
     return () => clearInterval(orderInterval);
-  }, [isPlaying, orders.length]);
+  }, [isPlaying, orders.length, upgrades]);
 
   useEffect(() => {
     if (!isPlaying) return;
 
     const timerInterval = setInterval(() => {
+      const penaltyUpgrade = upgrades.find(u => u.id === '3');
+      
       setOrders(prevOrders => {
         const updatedOrders = prevOrders.map(order => ({
           ...order,
@@ -76,7 +100,8 @@ const Game = () => {
 
         const expiredOrders = updatedOrders.filter(order => order.time <= 0);
         if (expiredOrders.length > 0) {
-          setMoney(prev => Math.max(0, prev - 100));
+          const penalty = penaltyUpgrade && penaltyUpgrade.level > 0 ? 50 : 100;
+          setMoney(prev => Math.max(0, prev - penalty));
           sounds.error();
         }
         
@@ -91,7 +116,7 @@ const Game = () => {
     }, 1000);
 
     return () => clearInterval(timerInterval);
-  }, [isPlaying]);
+  }, [isPlaying, upgrades]);
 
   const generateNewOrder = () => {
     const numItems = Math.floor(Math.random() * 3) + 1;
@@ -105,12 +130,15 @@ const Game = () => {
     const total = orderItems.reduce((sum, item) => sum + item.price, 0);
     const customerName = customerNames[Math.floor(Math.random() * customerNames.length)];
 
+    const timeUpgrade = upgrades.find(u => u.id === '1');
+    const baseTime = 30 + (timeUpgrade?.level || 0) * 5;
+
     const newOrder: Order = {
       id: Date.now().toString(),
       items: orderItems,
       total,
       customerName,
-      time: 30
+      time: baseTime
     };
 
     setOrders(prev => [...prev, newOrder]);
@@ -134,13 +162,18 @@ const Game = () => {
     if (selectedIds === orderIds) {
       sounds.success();
       sounds.coin();
-      setMoney(prev => prev + order.total);
+      const incomeUpgrade = upgrades.find(u => u.id === '2');
+      const bonus = 1 + (incomeUpgrade?.level || 0) * 0.2;
+      const earnedMoney = Math.floor(order.total * bonus);
+      setMoney(prev => prev + earnedMoney);
       setCompletedOrders(prev => prev + 1);
       setOrders(prev => prev.filter(o => o.id !== order.id));
       setSelectedItems([]);
     } else {
       sounds.error();
-      setMoney(prev => Math.max(0, prev - 50));
+      const penaltyUpgrade = upgrades.find(u => u.id === '3');
+      const penalty = penaltyUpgrade && penaltyUpgrade.level > 0 ? 25 : 50;
+      setMoney(prev => Math.max(0, prev - penalty));
       setSelectedItems([]);
     }
   };
@@ -160,6 +193,24 @@ const Game = () => {
     setIsPlaying(false);
   };
 
+  const buyUpgrade = (upgradeId: string) => {
+    const upgrade = upgrades.find(u => u.id === upgradeId);
+    if (!upgrade || upgrade.level >= upgrade.maxLevel) return;
+    
+    const cost = upgrade.cost * (upgrade.level + 1);
+    if (money < cost) {
+      sounds.error();
+      return;
+    }
+    
+    sounds.coin();
+    sounds.success();
+    setMoney(prev => prev - cost);
+    setUpgrades(prev => prev.map(u => 
+      u.id === upgradeId ? { ...u, level: u.level + 1 } : u
+    ));
+  };
+
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -177,17 +228,25 @@ const Game = () => {
               <h1 className="text-4xl font-bold text-white mb-2">🍽️ Уютный ресторанчик</h1>
               <p className="text-white/80">Обслуживай гостей и зарабатывай деньги!</p>
             </div>
-            {!isPlaying ? (
-              <Button onClick={startGame} size="lg" className="gap-2">
-                <Icon name="Play" size={20} />
-                Начать игру
-              </Button>
-            ) : (
-              <Button onClick={stopGame} variant="destructive" size="lg" className="gap-2">
-                <Icon name="Square" size={20} />
-                Закончить
-              </Button>
-            )}
+            <div className="flex gap-3">
+              {!isPlaying ? (
+                <Button onClick={startGame} size="lg" className="gap-2">
+                  <Icon name="Play" size={20} />
+                  Начать игру
+                </Button>
+              ) : (
+                <>
+                  <Button onClick={() => setShowShop(!showShop)} size="lg" className="gap-2 bg-purple-600 hover:bg-purple-700">
+                    <Icon name="ShoppingCart" size={20} />
+                    Магазин
+                  </Button>
+                  <Button onClick={stopGame} variant="destructive" size="lg" className="gap-2">
+                    <Icon name="Square" size={20} />
+                    Закончить
+                  </Button>
+                </>
+              )}
+            </div>
           </div>
 
           {isPlaying && (
@@ -233,6 +292,72 @@ const Game = () => {
                   </div>
                 </Card>
               </div>
+
+              {showShop && (
+                <Card className="p-6 bg-purple-500/10 backdrop-blur border-purple-500/30 mb-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                      <Icon name="ShoppingCart" size={24} />
+                      Магазин улучшений
+                    </h2>
+                    <Button onClick={() => setShowShop(false)} variant="outline" size="sm">
+                      <Icon name="X" size={16} />
+                    </Button>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {upgrades.map(upgrade => {
+                      const cost = upgrade.cost * (upgrade.level + 1);
+                      const canAfford = money >= cost;
+                      const maxed = upgrade.level >= upgrade.maxLevel;
+                      
+                      return (
+                        <Card key={upgrade.id} className="p-4 bg-white/5 backdrop-blur border-white/20">
+                          <div className="flex items-start gap-3 mb-3">
+                            <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                              <Icon name={upgrade.icon} size={24} className="text-purple-400" />
+                            </div>
+                            <div className="flex-1">
+                              <h3 className="text-lg font-bold text-white">{upgrade.name}</h3>
+                              <p className="text-sm text-white/60">{upgrade.description}</p>
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="flex gap-1">
+                              {Array.from({ length: upgrade.maxLevel }).map((_, i) => (
+                                <div key={i} className={`w-8 h-2 rounded-full ${i < upgrade.level ? 'bg-purple-500' : 'bg-white/10'}`} />
+                              ))}
+                            </div>
+                            <span className="text-xs text-white/60">
+                              {upgrade.level}/{upgrade.maxLevel}
+                            </span>
+                          </div>
+                          
+                          <Button 
+                            onClick={() => buyUpgrade(upgrade.id)}
+                            disabled={!canAfford || maxed}
+                            className="w-full"
+                            variant={maxed ? "outline" : canAfford ? "default" : "outline"}
+                          >
+                            {maxed ? (
+                              <>
+                                <Icon name="CheckCircle" size={16} className="mr-2" />
+                                Максимум
+                              </>
+                            ) : (
+                              <>
+                                <Icon name="Coins" size={16} className="mr-2" />
+                                {cost} ₽
+                              </>
+                            )}
+                          </Button>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </Card>
+              )}
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-2 space-y-4">
