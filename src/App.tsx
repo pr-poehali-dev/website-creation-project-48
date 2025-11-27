@@ -22,6 +22,9 @@ import NotFound from "./pages/NotFound";
 import Screens from "./pages/webapp/Screens";
 import AdminScreens from "./pages/webapp/AdminScreens";
 import Game from "./pages/Game";
+import MiniGames from "./pages/MiniGames";
+import RestaurantGame from "./pages/RestaurantGame";
+import PetGame from "./pages/PetGame";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +52,9 @@ const App = () => (
           <Route path="/screens" element={<Screens />} />
           <Route path="/admin/screens" element={<AdminScreens />} />
           <Route path="/game" element={<Game />} />
+          <Route path="/minigames" element={<MiniGames />} />
+          <Route path="/minigame/restaurant" element={<RestaurantGame />} />
+          <Route path="/minigame/pet" element={<PetGame />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

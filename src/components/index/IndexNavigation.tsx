@@ -27,17 +27,16 @@ const IndexNavigation = ({ isLoggedIn }: IndexNavigationProps) => {
           <Button 
             variant="outline" 
             size="icon" 
-            className="border-orange-500/50 hover:bg-orange-500/10 rounded-full h-9 w-9 relative overflow-hidden group animate-pulse hover:animate-none transition-all hover:scale-110" 
+            className="border-purple-500/50 hover:bg-purple-500/10 rounded-full h-9 w-9 relative overflow-hidden group animate-pulse hover:animate-none transition-all hover:scale-110" 
             onClick={() => {
               sounds.click();
-              sounds.newOrder();
-              setTimeout(() => window.location.href = '/game', 100);
+              setTimeout(() => window.location.href = '/minigames', 100);
             }}
-            title="Игра: Уютный ресторанчик"
+            title="Мини-игры"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <Icon name="UtensilsCrossed" size={18} className="text-orange-400 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
-            <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full blur opacity-30 group-hover:opacity-60 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <Icon name="Gamepad2" size={18} className="text-purple-400 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur opacity-30 group-hover:opacity-60 transition-opacity duration-300" />
           </Button>
           {isLoggedIn ? (
             <>
