@@ -25,6 +25,7 @@ import Game from "./pages/Game";
 import MiniGames from "./pages/MiniGames";
 import RestaurantGame from "./pages/RestaurantGame";
 import PetGame from "./pages/PetGame";
+import SurvivalGame from "./pages/SurvivalGame";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App = () => (
           <Route path="/minigames" element={<MiniGames />} />
           <Route path="/minigame/restaurant" element={<RestaurantGame />} />
           <Route path="/minigame/pet" element={<PetGame />} />
+          <Route path="/minigame/survival" element={<SurvivalGame />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
