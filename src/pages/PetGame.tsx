@@ -238,13 +238,22 @@ const PetGame = () => {
       
       <div className="container mx-auto px-4 py-8 relative z-10 max-w-2xl">
         <div className="flex items-center justify-between mb-6">
-          <Button
-            variant="outline"
-            onClick={() => navigate('/minigames')}
-          >
-            <Icon name="ArrowLeft" size={16} className="mr-2" />
-            К выбору игр
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={() => navigate('/minigames')}
+            >
+              <Icon name="ArrowLeft" size={16} className="mr-2" />
+              К выбору игр
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => navigate('/')}
+            >
+              <Icon name="Home" size={16} className="mr-2" />
+              Главная
+            </Button>
+          </div>
 
           <Button
             onClick={() => setShopOpen(true)}
