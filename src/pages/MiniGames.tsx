@@ -32,11 +32,11 @@ const MiniGames = () => {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <Button
           variant="outline"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/')}
           className="mb-8"
         >
-          <Icon name="ArrowLeft" size={16} className="mr-2" />
-          Назад
+          <Icon name="Home" size={16} className="mr-2" />
+          Главная
         </Button>
 
         <div className="text-center mb-12">
