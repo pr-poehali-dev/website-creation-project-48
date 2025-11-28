@@ -22,13 +22,6 @@ const MiniGames = () => {
       description: "Вырасти своего виртуального питомца, корми и играй с ним",
       icon: "Rabbit",
       color: "from-pink-500 to-purple-500"
-    },
-    {
-      id: "survival",
-      title: "Космический выживальщик",
-      description: "3D игра на выживание - уворачивайся от препятствий и собирай ресурсы",
-      icon: "Rocket",
-      color: "from-green-500 to-blue-500"
     }
   ];
 
