@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MeteorBackground from "./components/MeteorBackground";
 import Index from "./pages/Index";
 import Forum from "./pages/Forum";
-import Stats from "./pages/Stats";
+import Shop from "./pages/Shop";
 import Jobs from "./pages/Jobs";
 import Admin from "./pages/Admin";
 import AdminProfile from "./pages/AdminProfile";
@@ -38,7 +38,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/forum" element={<Forum />} />
-          <Route path="/stats" element={<Stats />} />
+          <Route path="/shop" element={<Shop />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/:username" element={<AdminProfile />} />

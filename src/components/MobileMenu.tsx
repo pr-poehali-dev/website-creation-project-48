@@ -12,7 +12,7 @@ const MobileMenu = ({ currentPath = "/" }: MobileMenuProps) => {
   const menuItems = [
     { href: "/", label: "Главная" },
     { href: "/forum", label: "Форум" },
-    { href: "/stats", label: "Топ игроков" },
+    { href: "/shop", label: "Магазин" },
     { href: "/jobs", label: "Работа" },
     { href: "/admin", label: "Администрация" },
   ];
