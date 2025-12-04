@@ -10,9 +10,10 @@
       },
       "expectedStatus": 200,
       "expectedBody": {
-        "message": "string",
+        "success": "boolean",
         "token": "string",
         "username": "string",
+        "email": "string",
         "user_id": "number"
       },
       "bodyMatcher": "partial"

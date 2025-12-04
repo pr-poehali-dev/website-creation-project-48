@@ -5,12 +5,13 @@
       "method": "POST",
       "path": "/",
       "body": {
-        "username": "testuser",
-        "email": "test@example.com",
+        "username": "newuser999",
+        "email": "newuser999@example.com",
         "password": "password123"
       },
       "expectedStatus": 201,
       "expectedBody": {
+        "success": "boolean",
         "message": "string",
         "user_id": "number",
         "username": "string"
@@ -22,8 +23,8 @@
       "method": "POST",
       "path": "/",
       "body": {
-        "username": "testuser2",
-        "email": "test2@example.com",
+        "username": "newuser888",
+        "email": "newuser888@example.com",
         "password": "123"
       },
       "expectedStatus": 400,

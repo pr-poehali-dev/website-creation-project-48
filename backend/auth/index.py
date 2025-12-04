@@ -17,6 +17,15 @@ from psycopg2.extras import RealDictCursor
 def hash_password(password: str) -> str:
     return hashlib.sha256(password.encode()).hexdigest()
 
+def verify_password(stored_hash: str, provided_password: str) -> bool:
+    """Проверяет соответствие пароля хешу"""
+    try:
+        salt, hash_hex = stored_hash.split('$')
+        hash_obj = hashlib.pbkdf2_hmac('sha256', provided_password.encode('utf-8'), salt.encode('utf-8'), 100000)
+        return hash_obj.hex() == hash_hex
+    except:
+        return hashlib.sha256(provided_password.encode()).hexdigest() == stored_hash
+
 def generate_token() -> str:
     return secrets.token_urlsafe(32)
 
@@ -235,7 +244,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             }
         
         username_escaped = username.replace("'", "''")
-        cur.execute(f"SELECT id, username, password_hash FROM {schema}.users WHERE username = '{username_escaped}'")
+        cur.execute(f"SELECT id, username, email, password_hash FROM {schema}.users WHERE username = '{username_escaped}'")
         user = cur.fetchone()
         
         if not user:
@@ -245,9 +254,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'body': json.dumps({'error': 'Неверный никнейм или пароль'})
             }
         
-        password_hash = hash_password(password)
-        
-        if password_hash != user['password_hash']:
+        if not verify_password(user['password_hash'], password):
             return {
                 'statusCode': 401,
                 'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
@@ -265,10 +272,12 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         return {
             'statusCode': 200,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+            'isBase64Encoded': False,
             'body': json.dumps({
-                'message': 'Вход выполнен успешно',
+                'success': True,
                 'token': token,
                 'username': user['username'],
+                'email': user['email'],
                 'user_id': user['id']
             })
         }

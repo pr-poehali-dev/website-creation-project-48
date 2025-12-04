@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
@@ -8,16 +9,30 @@ import { API_URLS } from "@/config/api";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const registeredUsername = localStorage.getItem('registeredUsername');
+    if (registeredUsername) {
+      setFormData(prev => ({ ...prev, username: registeredUsername }));
+      localStorage.removeItem('registeredUsername');
+    }
+    if (location.state?.message) {
+      setSuccess(location.state.message);
+    }
+  }, [location]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setSuccess("");
     setLoading(true);
 
     try {
@@ -29,18 +44,13 @@ const Login = () => {
         body: JSON.stringify(formData),
       });
 
-      if (response.status === 402) {
-        setError("Сервис временно недоступен. Попробуйте позже.");
-        setLoading(false);
-        return;
-      }
-
       const data = await response.json();
 
-      if (response.ok) {
+      if (response.ok && data.success) {
         localStorage.setItem("authToken", data.token);
         localStorage.setItem("username", data.username);
         localStorage.setItem("userId", data.user_id);
+        localStorage.setItem("userEmail", data.email);
         localStorage.setItem("isLoggedIn", "true");
         navigate("/");
       } else {
@@ -48,9 +58,9 @@ const Login = () => {
       }
     } catch (err) {
       if (err instanceof TypeError && err.message === 'Failed to fetch') {
-        setError("Не удалось подключиться к серверу. Проверьте интернет-соединение.");
+        setError("Не удалось подключиться к серверу");
       } else {
-        setError("Произошла ошибка при входе. Попробуйте позже.");
+        setError("Ошибка сети. Попробуйте позже");
       }
     } finally {
       setLoading(false);
@@ -105,6 +115,12 @@ const Login = () => {
               required
             />
           </div>
+
+          {success && (
+            <div className="p-3 bg-green-500/10 border border-green-500/50 rounded-lg text-green-500 text-sm">
+              {success}
+            </div>
+          )}
 
           {error && (
             <div className="p-3 bg-red-500/10 border border-red-500/50 rounded-lg text-red-500 text-sm">

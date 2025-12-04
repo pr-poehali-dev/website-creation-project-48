@@ -31,8 +31,8 @@ const Register = () => {
       return;
     }
 
-    if (formData.username.length < 3) {
-      setError("Никнейм должен быть не менее 3 символов");
+    if (formData.username.length < 3 || formData.username.length > 20) {
+      setError("Никнейм должен быть от 3 до 20 символов");
       return;
     }
 
@@ -51,26 +51,19 @@ const Register = () => {
         }),
       });
 
-      if (response.status === 402) {
-        setError("Сервис временно недоступен. Попробуйте позже.");
-        setLoading(false);
-        return;
-      }
-
       const data = await response.json();
 
-      if (response.ok) {
-        localStorage.setItem("username", data.username);
-        localStorage.setItem("userId", data.user_id);
-        navigate("/login");
+      if (response.ok && data.success) {
+        localStorage.setItem("registeredUsername", data.username);
+        navigate("/login", { state: { message: 'Регистрация успешна! Войдите в аккаунт' } });
       } else {
         setError(data.error || "Ошибка регистрации");
       }
     } catch (err) {
       if (err instanceof TypeError && err.message === 'Failed to fetch') {
-        setError("Не удалось подключиться к серверу. Проверьте интернет-соединение.");
+        setError("Не удалось подключиться к серверу");
       } else {
-        setError("Произошла ошибка при регистрации. Попробуйте позже.");
+        setError("Ошибка сети. Попробуйте позже");
       }
     } finally {
       setLoading(false);
@@ -112,7 +105,7 @@ const Register = () => {
               required
               minLength={3}
             />
-            <p className="text-xs text-foreground/50 mt-1">Минимум 3 символа</p>
+            <p className="text-xs text-foreground/50 mt-1">От 3 до 20 символов, только буквы, цифры и _</p>
           </div>
 
           <div>
