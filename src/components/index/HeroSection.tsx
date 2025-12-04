@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import SnowText from "@/components/SnowText";
 
 interface HeroSectionProps {
   isLoggedIn: boolean;
@@ -12,7 +13,11 @@ const HeroSection = ({ isLoggedIn, serverStatus, onlinePlayers }: HeroSectionPro
     <section className="relative py-32 overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center space-y-6 max-w-4xl mx-auto">
-          <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-pulse">ImunnS RolePlay</h1>
+          <SnowText className="text-6xl md:text-7xl font-bold">
+            <h1 className="bg-gradient-to-r from-blue-200 via-white to-blue-200 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.9)] animate-pulse">
+              🎄 ImunnS RolePlay 🎄
+            </h1>
+          </SnowText>
           <p className="text-xl md:text-2xl text-foreground/90">
             Погрузись в мир ролевой игры с уникальными квестами и персонажами
           </p>

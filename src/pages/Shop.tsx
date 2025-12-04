@@ -5,6 +5,9 @@ import Icon from "@/components/ui/icon";
 import AnimatedCard from "@/components/AnimatedCard";
 import MobileMenu from "@/components/MobileMenu";
 import SpaceBackground from "@/components/SpaceBackground";
+import Fireworks from "@/components/Fireworks";
+import Snowflakes from "@/components/Snowflakes";
+import SnowText from "@/components/SnowText";
 
 interface CartItem {
   id: number;
@@ -138,8 +141,10 @@ const Shop = () => {
     : products.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900/60 via-purple-800/40 to-indigo-900/60 animate-gradient relative">
       <SpaceBackground />
+      <Fireworks />
+      <Snowflakes />
 
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50 relative">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -193,9 +198,11 @@ const Shop = () => {
       <section className="py-20 relative z-10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Магазин мерча
-            </h1>
+            <SnowText className="text-5xl font-bold mb-4">
+              <h1 className="bg-gradient-to-r from-blue-200 via-white to-blue-200 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]">
+                🎄 Магазин мерча 🎄
+              </h1>
+            </SnowText>
             <p className="text-foreground/70 text-lg mb-4">
               Официальный мерч Imunns RolePlay
             </p>
@@ -206,7 +213,11 @@ const Shop = () => {
           </div>
 
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-6 text-center">Проходки на сервер</h2>
+            <SnowText className="text-3xl font-bold mb-6">
+              <h2 className="text-center bg-gradient-to-r from-blue-200 via-white to-blue-200 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]">
+                ❄️ Проходки на сервер ❄️
+              </h2>
+            </SnowText>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {passes.map((pass) => (
                 <AnimatedCard key={pass.id}>
@@ -251,13 +262,19 @@ const Shop = () => {
             </div>
           </div>
 
+          <SnowText>
+            <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-blue-200 via-white to-blue-200 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]">
+              🎁 Новогодняя коллекция 🎁
+            </h2>
+          </SnowText>
+
           <div className="flex flex-wrap justify-center gap-2 mb-8">
             {categories.map((cat) => (
               <Button
                 key={cat.id}
                 variant={selectedCategory === cat.id ? "default" : "outline"}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={selectedCategory === cat.id ? "bg-gradient-to-r from-primary to-accent" : ""}
+                className={selectedCategory === cat.id ? "bg-gradient-to-r from-blue-500 to-cyan-500 shadow-[0_0_20px_rgba(59,130,246,0.5)]" : "border-blue-300/30 hover:border-blue-400/50"}
               >
                 <Icon name={cat.icon} size={16} className="mr-2" />
                 {cat.name}
@@ -269,7 +286,7 @@ const Shop = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredProducts.map((product, index) => (
                 <AnimatedCard key={product.id} delay={index * 50}>
-                  <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full flex flex-col">
+                  <Card className="p-6 bg-blue-950/40 backdrop-blur border-blue-300/30 hover:border-cyan-400/60 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all h-full flex flex-col">
                     {product.limited && (
                       <div className="mb-3 inline-flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/50 rounded-full w-fit">
                         <Icon name="Sparkles" size={12} className="text-yellow-400" />

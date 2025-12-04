@@ -4,11 +4,16 @@ import Icon from "@/components/ui/icon";
 
 import AnimatedCard from "@/components/AnimatedCard";
 import SpaceBackground from "@/components/SpaceBackground";
+import Fireworks from "@/components/Fireworks";
+import Snowflakes from "@/components/Snowflakes";
+import SnowText from "@/components/SnowText";
 
 const Forum = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 animate-gradient relative">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900/60 via-purple-800/40 to-indigo-900/60 animate-gradient relative">
       <SpaceBackground />
+      <Fireworks />
+      <Snowflakes />
 
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50 relative">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
