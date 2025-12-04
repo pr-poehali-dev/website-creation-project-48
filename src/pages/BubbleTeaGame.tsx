@@ -183,7 +183,7 @@ const BubbleTeaGame = () => {
               <span className="font-bold text-blue-600">{score}</span>
             </div>
             <div className="flex items-center gap-1">
-              {[...Array(lives)].map((_, i) => (
+              {[...Array(Math.max(0, lives))].map((_, i) => (
                 <Icon key={i} name="Heart" size={20} className="text-red-500 fill-red-500" />
               ))}
             </div>
