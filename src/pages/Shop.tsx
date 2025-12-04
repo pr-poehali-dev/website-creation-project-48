@@ -8,6 +8,7 @@ import SpaceBackground from "@/components/SpaceBackground";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
 import SnowText from "@/components/SnowText";
+import NewYearTimer from "@/components/NewYearTimer";
 
 interface CartItem {
   id: number;
@@ -56,6 +57,8 @@ const Shop = () => {
       name: "Кепка Imunns RP",
       category: "apparel",
       price: 1499,
+      oldPrice: 2999,
+      discount: 50,
       image: "🧢",
       description: "Стильная кепка с логотипом сервера",
       stock: "В наличии"
@@ -65,6 +68,8 @@ const Shop = () => {
       name: "Худи Imunns RP",
       category: "apparel",
       price: 3499,
+      oldPrice: 5999,
+      discount: 42,
       image: "👕",
       description: "Тёплое худи с вышитым логотипом",
       stock: "В наличии"
@@ -74,6 +79,8 @@ const Shop = () => {
       name: "Шопер Imunns RP",
       category: "accessories",
       price: 899,
+      oldPrice: 1799,
+      discount: 50,
       image: "👜",
       description: "Практичная сумка для повседневного использования",
       stock: "В наличии"
@@ -83,6 +90,8 @@ const Shop = () => {
       name: "Футболка Imunns RP",
       category: "apparel",
       price: 1299,
+      oldPrice: 2599,
+      discount: 50,
       image: "👕",
       description: "Качественная футболка из хлопка",
       stock: "В наличии"
@@ -92,6 +101,8 @@ const Shop = () => {
       name: "Кроссовки Imunns RP",
       category: "footwear",
       price: 5999,
+      oldPrice: 9999,
+      discount: 40,
       image: "👟",
       description: "Удобные кроссовки с уникальным дизайном",
       stock: "Предзаказ"
@@ -101,6 +112,8 @@ const Shop = () => {
       name: "Фигурка LIMITED",
       category: "collectibles",
       price: 2999,
+      oldPrice: 4999,
+      discount: 40,
       image: "🎭",
       description: "Лимитированная коллекционная фигурка",
       stock: "Осталось 5 шт",
@@ -111,6 +124,8 @@ const Shop = () => {
       name: "Блокнот Imunns RP",
       category: "stationery",
       price: 599,
+      oldPrice: 999,
+      discount: 40,
       image: "📓",
       description: "Стильный блокнот для заметок",
       stock: "В наличии"
@@ -120,6 +135,8 @@ const Shop = () => {
       name: "Рашгард Imunns RP",
       category: "sportswear",
       price: 2299,
+      oldPrice: 3999,
+      discount: 42,
       image: "🥋",
       description: "Спортивный рашгард для тренировок",
       stock: "В наличии"
@@ -206,9 +223,13 @@ const Shop = () => {
             <p className="text-foreground/70 text-lg mb-4">
               Официальный мерч Imunns RolePlay
             </p>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-full">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-full mb-8">
               <Icon name="Truck" size={16} className="text-primary" />
               <span className="text-sm text-foreground/70">Бесплатная доставка от 3000₽</span>
+            </div>
+            
+            <div className="max-w-4xl mx-auto mt-8">
+              <NewYearTimer />
             </div>
           </div>
 
@@ -286,7 +307,13 @@ const Shop = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredProducts.map((product, index) => (
                 <AnimatedCard key={product.id} delay={index * 50}>
-                  <Card className="p-6 bg-blue-950/40 backdrop-blur border-blue-300/30 hover:border-cyan-400/60 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all h-full flex flex-col">
+                  <Card className="p-6 bg-blue-950/40 backdrop-blur border-blue-300/30 hover:border-cyan-400/60 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all h-full flex flex-col relative overflow-hidden">
+                    {product.discount && (
+                      <div className="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1 rounded-full font-bold text-sm shadow-lg animate-pulse">
+                        -{product.discount}%
+                      </div>
+                    )}
+                    
                     {product.limited && (
                       <div className="mb-3 inline-flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/50 rounded-full w-fit">
                         <Icon name="Sparkles" size={12} className="text-yellow-400" />
@@ -300,7 +327,12 @@ const Shop = () => {
                     <p className="text-foreground/60 text-sm mb-4 flex-grow">{product.description}</p>
                     
                     <div className="flex items-center justify-between mb-4">
-                      <div className="text-2xl font-bold text-primary">{product.price}₽</div>
+                      <div>
+                        {product.oldPrice && (
+                          <div className="text-sm text-foreground/40 line-through">{product.oldPrice}₽</div>
+                        )}
+                        <div className="text-2xl font-bold text-green-400">{product.price}₽</div>
+                      </div>
                       <div className={`text-sm px-2 py-1 rounded-full ${
                         product.stock === "В наличии" ? "bg-green-500/20 text-green-400" :
                         product.stock === "Предзаказ" ? "bg-blue-500/20 text-blue-400" :
