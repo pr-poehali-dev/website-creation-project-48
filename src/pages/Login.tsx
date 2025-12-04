@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import { useNavigate } from "react-router-dom";
 import SpaceBackground from "@/components/SpaceBackground";
+import Fireworks from "@/components/Fireworks";
+import Snowflakes from "@/components/Snowflakes";
 import { API_URLS } from "@/config/api";
 
 const Login = () => {
@@ -68,8 +70,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-700/40 via-pink-600/20 to-purple-900/30 flex items-center justify-center px-4 relative">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900/60 via-purple-800/40 to-indigo-900/60 flex items-center justify-center px-4 relative">
       <SpaceBackground />
+      <Fireworks />
+      <Snowflakes />
       <Card className="w-full max-w-md p-8 bg-card/80 backdrop-blur border-border/50 relative z-10">
         <div className="text-center mb-8">
           <button

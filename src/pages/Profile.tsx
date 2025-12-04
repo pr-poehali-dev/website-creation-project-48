@@ -7,6 +7,8 @@ import ProfileChat from "@/components/profile/ProfileChat";
 import FriendsDialog from "@/components/profile/FriendsDialog";
 import { useState, useEffect } from "react";
 import SpaceBackground from "@/components/SpaceBackground";
+import Fireworks from "@/components/Fireworks";
+import Snowflakes from "@/components/Snowflakes";
 
 const Profile = () => {
   const getProfileKey = (key: string) => {
@@ -207,12 +209,14 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen relative" onClick={(e) => {
+    <div className="min-h-screen relative bg-gradient-to-br from-blue-900/60 via-purple-800/40 to-indigo-900/60" onClick={(e) => {
       if ((e.target as HTMLElement).tagName === 'BUTTON' || (e.target as HTMLElement).closest('button')) {
         playMinecraftDoorSound();
       }
     }}>
       <SpaceBackground />
+      <Fireworks />
+      <Snowflakes />
       
       <ProfileHeader 
         showServerNotification={showServerNotification}

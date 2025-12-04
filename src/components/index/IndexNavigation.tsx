@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 import { sounds } from "@/utils/sounds";
+import SnowDriftText from "@/components/SnowDriftText";
 
 interface IndexNavigationProps {
   isLoggedIn: boolean;
@@ -14,55 +15,9 @@ const IndexNavigation = ({ isLoggedIn }: IndexNavigationProps) => {
           <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
             <Icon name="Crown" className="text-white" size={24} />
           </div>
-          <span className="text-2xl font-bold bg-gradient-to-r from-blue-200 via-white to-blue-200 bg-clip-text text-transparent relative">
-            <style>{`
-              @keyframes snow-drift {
-                0%, 100% {
-                  transform: translateY(0) scale(1);
-                }
-                50% {
-                  transform: translateY(-2px) scale(1.05);
-                }
-              }
-              .snow-drift {
-                position: absolute;
-                bottom: -8px;
-                left: 0;
-                right: 0;
-                height: 12px;
-                background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(200,230,255,0.7));
-                border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-                box-shadow: 
-                  0 -2px 10px rgba(255,255,255,0.5),
-                  inset 0 2px 5px rgba(200,230,255,0.3);
-                animation: snow-drift 3s ease-in-out infinite;
-              }
-              .snow-drift::before {
-                content: '';
-                position: absolute;
-                top: -3px;
-                left: 10%;
-                width: 25%;
-                height: 6px;
-                background: rgba(255,255,255,0.8);
-                border-radius: 50%;
-                box-shadow: 0 0 8px rgba(255,255,255,0.6);
-              }
-              .snow-drift::after {
-                content: '';
-                position: absolute;
-                top: -5px;
-                right: 15%;
-                width: 30%;
-                height: 8px;
-                background: rgba(255,255,255,0.8);
-                border-radius: 50%;
-                box-shadow: 0 0 8px rgba(255,255,255,0.6);
-              }
-            `}</style>
+          <SnowDriftText className="text-2xl font-bold bg-gradient-to-r from-blue-200 via-white to-blue-200 bg-clip-text text-transparent">
             🎄 ImunnS RolePlay ❄️
-            <span className="snow-drift"></span>
-          </span>
+          </SnowDriftText>
         </div>
         <div className="hidden md:flex items-center gap-2">
           <a href="/forum" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Форум</a>
