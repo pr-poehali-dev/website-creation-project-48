@@ -4,18 +4,25 @@ import Icon from '@/components/ui/icon';
 
 const NewYearMusic = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.3);
+  const [volume, setVolume] = useState(0.7);
   const [showControls, setShowControls] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const musicTracks = [
-    'https://cdn.pixabay.com/audio/2022/11/28/audio_17b2a63bca.mp3',
+    { name: 'Новогодняя мелодия', url: 'https://cdn.pixabay.com/audio/2022/11/28/audio_17b2a63bca.mp3' },
+    { name: 'Last Christmas', url: 'https://cdn.pixabay.com/audio/2024/01/30/audio_4e3f2221c5.mp3' },
+    { name: 'Jingle Bells', url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_4e3ab91c61.mp3' },
   ];
 
   useEffect(() => {
-    audioRef.current = new Audio(musicTracks[0]);
+    audioRef.current = new Audio(musicTracks[currentTrack].url);
     audioRef.current.loop = true;
     audioRef.current.volume = volume;
+
+    audioRef.current.addEventListener('ended', () => {
+      setCurrentTrack((prev) => (prev + 1) % musicTracks.length);
+    });
 
     const savedMusicState = localStorage.getItem('newYearMusicPlaying');
     if (savedMusicState === 'true') {
@@ -31,7 +38,7 @@ const NewYearMusic = () => {
         audioRef.current = null;
       }
     };
-  }, []);
+  }, [currentTrack]);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -55,6 +62,20 @@ const NewYearMusic = () => {
     }
   };
 
+  const nextTrack = () => {
+    setCurrentTrack((prev) => (prev + 1) % musicTracks.length);
+    if (isPlaying && audioRef.current) {
+      audioRef.current.play();
+    }
+  };
+
+  const prevTrack = () => {
+    setCurrentTrack((prev) => (prev - 1 + musicTracks.length) % musicTracks.length);
+    if (isPlaying && audioRef.current) {
+      audioRef.current.play();
+    }
+  };
+
   return (
     <div 
       className="fixed bottom-6 left-6 z-50"
@@ -63,8 +84,29 @@ const NewYearMusic = () => {
     >
       <div className={`transition-all duration-300 ${showControls ? 'mb-2' : ''}`}>
         {showControls && (
-          <div className="bg-card/95 backdrop-blur border border-border/50 rounded-lg p-3 mb-2 shadow-lg">
-            <div className="flex items-center gap-2 mb-2">
+          <div className="bg-card/95 backdrop-blur border border-border/50 rounded-lg p-3 mb-2 shadow-lg min-w-[200px]">
+            <div className="text-xs text-foreground/60 text-center mb-2 font-semibold">
+              🎵 {musicTracks[currentTrack].name}
+            </div>
+            <div className="flex items-center gap-2 mb-3 justify-center">
+              <Button
+                size="icon"
+                variant="ghost"
+                className="h-8 w-8"
+                onClick={prevTrack}
+              >
+                <Icon name="SkipBack" size={16} />
+              </Button>
+              <Button
+                size="icon"
+                variant="ghost"
+                className="h-8 w-8"
+                onClick={nextTrack}
+              >
+                <Icon name="SkipForward" size={16} />
+              </Button>
+            </div>
+            <div className="flex items-center gap-2">
               <Icon name="Volume2" size={16} className="text-foreground/70" />
               <input
                 type="range"
@@ -72,12 +114,9 @@ const NewYearMusic = () => {
                 max="100"
                 value={volume * 100}
                 onChange={(e) => setVolume(Number(e.target.value) / 100)}
-                className="w-24 h-1 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-primary"
+                className="flex-1 h-1 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-primary"
               />
               <span className="text-xs text-foreground/70 w-8">{Math.round(volume * 100)}%</span>
-            </div>
-            <div className="text-xs text-foreground/60 text-center">
-              🎵 Новогодняя музыка
             </div>
           </div>
         )}
