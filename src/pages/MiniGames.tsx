@@ -22,6 +22,13 @@ const MiniGames = () => {
       description: "Вырасти своего виртуального питомца, корми и играй с ним",
       icon: "Rabbit",
       color: "from-pink-500 to-purple-500"
+    },
+    {
+      id: "bubbletea",
+      title: "Бабл Ти Ресторан",
+      description: "Готовь бабл ти по заказам клиентов и зарабатывай деньги",
+      icon: "Coffee",
+      color: "from-purple-500 to-pink-500"
     }
   ];
 
