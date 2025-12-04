@@ -9,7 +9,7 @@ const NewYearMusic = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const musicTracks = [
-    'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    'https://cdn.pixabay.com/audio/2022/11/28/audio_17b2a63bca.mp3',
   ];
 
   useEffect(() => {
