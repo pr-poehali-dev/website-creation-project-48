@@ -259,7 +259,7 @@ const Shop = () => {
                     </div>
                     <h3 className="text-xl font-bold mb-2">{pass.name}</h3>
                     <p className="text-foreground/60 text-sm mb-4">{pass.description}</p>
-                    <div className="text-3xl font-bold text-primary mb-4">999₽</div>
+                    <div className="text-3xl font-bold text-primary mb-4">6000₽</div>
                     <ul className="space-y-2 mb-6 flex-grow">
                       {pass.features.map((feature, idx) => (
                         <li key={idx} className="flex items-center gap-2 text-sm text-foreground/70">
