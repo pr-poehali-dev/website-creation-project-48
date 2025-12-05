@@ -28,7 +28,7 @@ const Shop = () => {
     {
       id: "one-time",
       name: "Одноразовая проходка",
-      price: 40,
+      price: 100,
       icon: "Ticket",
       description: "Единоразовый вход на сервер",
       features: ["Доступ на 1 сессию", "Базовые возможности"]
