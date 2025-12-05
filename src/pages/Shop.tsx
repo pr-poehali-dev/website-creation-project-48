@@ -28,7 +28,7 @@ const Shop = () => {
     {
       id: "one-time",
       name: "Одноразовая проходка",
-      price: 40,
+      price: 99,
       icon: "Ticket",
       description: "Единоразовый вход на сервер",
       features: ["Доступ на 1 сессию", "Базовые возможности"]
@@ -36,7 +36,7 @@ const Shop = () => {
     {
       id: "monthly",
       name: "Ежемесячная проходка",
-      price: 999,
+      price: 299,
       icon: "Calendar",
       description: "Доступ на месяц",
       features: ["Доступ на 30 дней", "Все возможности", "Приоритет в очереди"]
@@ -44,18 +44,10 @@ const Shop = () => {
     {
       id: "yearly",
       name: "Ежегодная проходка",
-      price: 6000,
+      price: 2499,
       icon: "CalendarDays",
       description: "Доступ на год",
       features: ["Доступ на 365 дней", "Все возможности", "VIP статус", "Эксклюзивные скины"]
-    },
-    {
-      id: "lifetime",
-      name: "Навсегда",
-      price: 11500,
-      icon: "Infinity",
-      description: "Безлимитный доступ на всю жизнь",
-      features: ["Доступ навсегда", "Все возможности", "Premium VIP статус", "Эксклюзивные скины", "Приоритетная поддержка", "Закрытые ивенты"]
     }
   ];
 
@@ -259,7 +251,7 @@ const Shop = () => {
                     </div>
                     <h3 className="text-xl font-bold mb-2">{pass.name}</h3>
                     <p className="text-foreground/60 text-sm mb-4">{pass.description}</p>
-                    <div className="text-3xl font-bold text-primary mb-4">6000₽</div>
+                    <div className="text-3xl font-bold text-primary mb-4">{pass.price}₽</div>
                     <ul className="space-y-2 mb-6 flex-grow">
                       {pass.features.map((feature, idx) => (
                         <li key={idx} className="flex items-center gap-2 text-sm text-foreground/70">
