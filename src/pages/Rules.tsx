@@ -6,6 +6,7 @@ import AnimatedCard from "@/components/AnimatedCard";
 import SpaceBackground from "@/components/SpaceBackground";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
+import NewYearTimer from "@/components/NewYearTimer";
 
 const Rules = () => {
   const rulesCategories = [
@@ -123,6 +124,10 @@ const Rules = () => {
               </p>
             </div>
           </AnimatedCard>
+
+          <div className="max-w-4xl mx-auto mb-12">
+            <NewYearTimer />
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
             {rulesCategories.map((category, index) => (

@@ -8,6 +8,7 @@ import SpaceBackground from "@/components/SpaceBackground";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
 import SnowDriftText from "@/components/SnowDriftText";
+import NewYearTimer from "@/components/NewYearTimer";
 
 const Jobs = () => {
   const openPositions = [
@@ -136,6 +137,10 @@ const Jobs = () => {
             <p className="text-foreground/70 text-lg">
               Открытые вакансии и возможности для развития
             </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto mb-12">
+            <NewYearTimer />
           </div>
 
           <div className="max-w-5xl mx-auto mb-16">

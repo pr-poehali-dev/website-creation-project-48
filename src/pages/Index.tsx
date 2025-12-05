@@ -7,6 +7,7 @@ import PromoSection from "@/components/index/PromoSection";
 import Icon from "@/components/ui/icon";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
+import NewYearTimer from "@/components/NewYearTimer";
 import { useEffect, useState } from "react";
 import { API_URLS } from "@/config/api";
 
@@ -64,6 +65,12 @@ const Index = () => {
         serverStatus={serverStatus} 
         onlinePlayers={onlinePlayers} 
       />
+
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          <NewYearTimer />
+        </div>
+      </div>
 
       <ServersSection />
 

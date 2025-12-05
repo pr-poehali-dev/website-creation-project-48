@@ -7,6 +7,7 @@ import SpaceBackground from "@/components/SpaceBackground";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
 import SnowText from "@/components/SnowText";
+import NewYearTimer from "@/components/NewYearTimer";
 
 const Forum = () => {
   return (
@@ -60,6 +61,10 @@ const Forum = () => {
             <p className="text-foreground/70 text-lg">
               Общайся с игроками, делись опытом и находи новых друзей
             </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto mb-12">
+            <NewYearTimer />
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">

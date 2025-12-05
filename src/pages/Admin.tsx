@@ -6,6 +6,7 @@ import AnimatedCard from "@/components/AnimatedCard";
 import SpaceBackground from "@/components/SpaceBackground";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
+import NewYearTimer from "@/components/NewYearTimer";
 
 const Admin = () => {
   return (
@@ -59,6 +60,10 @@ const Admin = () => {
             <p className="text-foreground/70 text-lg">
               Команда, которая делает сервер лучше каждый день
             </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto mb-12">
+            <NewYearTimer />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
