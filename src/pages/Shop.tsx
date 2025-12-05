@@ -28,7 +28,7 @@ const Shop = () => {
     {
       id: "one-time",
       name: "Одноразовая проходка",
-      price: 99,
+      price: 40,
       icon: "Ticket",
       description: "Единоразовый вход на сервер",
       features: ["Доступ на 1 сессию", "Базовые возможности"]
@@ -36,7 +36,7 @@ const Shop = () => {
     {
       id: "monthly",
       name: "Ежемесячная проходка",
-      price: 299,
+      price: 999,
       icon: "Calendar",
       description: "Доступ на месяц",
       features: ["Доступ на 30 дней", "Все возможности", "Приоритет в очереди"]
@@ -44,7 +44,7 @@ const Shop = () => {
     {
       id: "yearly",
       name: "Ежегодная проходка",
-      price: 2499,
+      price: 6000,
       icon: "CalendarDays",
       description: "Доступ на год",
       features: ["Доступ на 365 дней", "Все возможности", "VIP статус", "Эксклюзивные скины"]
@@ -52,7 +52,7 @@ const Shop = () => {
     {
       id: "lifetime",
       name: "Навсегда",
-      price: 4999,
+      price: 11500,
       icon: "Infinity",
       description: "Безлимитный доступ на всю жизнь",
       features: ["Доступ навсегда", "Все возможности", "Premium VIP статус", "Эксклюзивные скины", "Приоритетная поддержка", "Закрытые ивенты"]
