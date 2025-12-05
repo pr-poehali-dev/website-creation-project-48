@@ -239,10 +239,10 @@ const Shop = () => {
                 ❄️ Проходки на сервер ❄️
               </h2>
             </SnowText>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row gap-6 max-w-6xl mx-auto items-stretch">
               {passes.map((pass) => (
-                <AnimatedCard key={pass.id}>
-                  <Card className={`p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer ${
+                <AnimatedCard key={pass.id} className="flex-1">
+                  <Card className={`p-6 h-full flex flex-col bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer ${
                     selectedPass === pass.id ? 'border-primary shadow-[0_0_30px_rgba(168,85,247,0.6)]' : ''
                   }`} onClick={() => setSelectedPass(pass.id)}>
                     <div className="flex items-center justify-between mb-4">
@@ -252,7 +252,7 @@ const Shop = () => {
                     <h3 className="text-xl font-bold mb-2">{pass.name}</h3>
                     <p className="text-foreground/60 text-sm mb-4">{pass.description}</p>
                     <div className="text-3xl font-bold text-primary mb-4">{pass.price}₽</div>
-                    <ul className="space-y-2 mb-6">
+                    <ul className="space-y-2 mb-6 flex-grow">
                       {pass.features.map((feature, idx) => (
                         <li key={idx} className="flex items-center gap-2 text-sm text-foreground/70">
                           <Icon name="Check" size={16} className="text-green-400" />
@@ -261,7 +261,7 @@ const Shop = () => {
                       ))}
                     </ul>
                     <Button 
-                      className="w-full bg-gradient-to-r from-primary to-accent"
+                      className="w-full bg-gradient-to-r from-primary to-accent mt-auto"
                       onClick={(e) => {
                         e.stopPropagation();
                         const passItem = {
