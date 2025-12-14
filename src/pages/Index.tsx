@@ -10,16 +10,12 @@ import Snowflakes from "@/components/Snowflakes";
 import NewYearTimer from "@/components/NewYearTimer";
 import { useEffect, useState } from "react";
 import { API_URLS } from "@/config/api";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Index = () => {
   const [onlinePlayers, setOnlinePlayers] = useState(0);
   const [serverStatus, setServerStatus] = useState<'loading' | 'online' | 'offline'>('loading');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    setIsLoggedIn(loggedIn);
-  }, []);
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const fetchServerStatus = async () => {
@@ -58,10 +54,10 @@ const Index = () => {
       <SpaceBackground />
       <Fireworks />
       <Snowflakes />
-      <IndexNavigation isLoggedIn={isLoggedIn} />
+      <IndexNavigation isLoggedIn={isAuthenticated} />
 
       <HeroSection 
-        isLoggedIn={isLoggedIn} 
+        isLoggedIn={isAuthenticated} 
         serverStatus={serverStatus} 
         onlinePlayers={onlinePlayers} 
       />

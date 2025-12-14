@@ -2,12 +2,22 @@ import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 import { sounds } from "@/utils/sounds";
 import SnowDriftText from "@/components/SnowDriftText";
+import { useAuth } from "@/contexts/AuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface IndexNavigationProps {
   isLoggedIn: boolean;
 }
 
-const IndexNavigation = ({ isLoggedIn }: IndexNavigationProps) => {
+const IndexNavigation = ({ isLoggedIn: _isLoggedIn }: IndexNavigationProps) => {
+  const { user, isAuthenticated, logout } = useAuth();
   return (
     <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50 relative">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -41,22 +51,53 @@ const IndexNavigation = ({ isLoggedIn }: IndexNavigationProps) => {
             <Icon name="Gamepad2" size={18} className="text-purple-400 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
             <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur opacity-30 group-hover:opacity-60 transition-opacity duration-300" />
           </Button>
-          {isLoggedIn ? (
+          {isAuthenticated && user ? (
             <>
-              <Button variant="outline" size="icon" className="border-primary/50 hover:bg-primary/10 rounded-full h-9 w-9" onClick={() => window.location.href = '/profile'}>
-                <Icon name="User" size={18} />
-              </Button>
-              <Button 
-                variant="outline" 
-                className="border-destructive/50 hover:bg-destructive/10" 
-                onClick={() => {
-                  localStorage.removeItem('isLoggedIn');
-                  window.location.reload();
-                }}
-              >
-                <Icon name="LogOut" className="mr-2" size={18} />
-                Выход
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    className="border-primary/50 hover:bg-primary/10 rounded-full gap-2 pr-3"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                      <Icon name="User" size={16} className="text-white" />
+                    </div>
+                    <span className="font-medium">{user.username}</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>
+                    <div className="flex flex-col gap-1">
+                      <p className="text-sm font-medium">{user.username}</p>
+                      <p className="text-xs text-muted-foreground">{user.email}</p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => window.location.href = '/profile'}>
+                    <Icon name="User" size={16} className="mr-2" />
+                    Профиль
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => window.location.href = '/achievements'}>
+                    <Icon name="Trophy" size={16} className="mr-2" />
+                    Достижения
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => window.location.href = '/settings'}>
+                    <Icon name="Settings" size={16} className="mr-2" />
+                    Настройки
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    onClick={() => {
+                      logout();
+                      window.location.href = '/';
+                    }}
+                    className="text-destructive focus:text-destructive"
+                  >
+                    <Icon name="LogOut" size={16} className="mr-2" />
+                    Выход
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </>
           ) : (
             <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90" onClick={() => window.location.href = '/login'}>
