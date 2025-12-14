@@ -1,3 +1,9 @@
 {
-  "auth": "https://functions.poehali.dev/33595cf5-9434-4502-a9bd-5c6888b6fbf5"
+  "auth-register": "https://functions.poehali.dev/d6cb896c-6933-4be3-96dd-9e68283e9193",
+  "auth-login": "https://functions.poehali.dev/c9562712-4b27-4653-9b04-aea8c923d92f",
+  "reset-password": "https://functions.poehali.dev/784307b5-0758-4a31-aee5-b7d19ac35922",
+  "upload-image": "https://functions.poehali.dev/4454d3cd-9691-49f8-a3a2-bd1cc619abb8",
+  "register": "https://functions.poehali.dev/1f0f1fea-9e59-4896-a885-83d4c981565d",
+  "auth": "https://functions.poehali.dev/33595cf5-9434-4502-a9bd-5c6888b6fbf5",
+  "minecraft-status": "https://functions.poehali.dev/97b19ffd-bf8c-421a-9ae5-ee754557f899"
 }

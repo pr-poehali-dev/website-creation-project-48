@@ -8,12 +8,14 @@ import SpaceBackground from "@/components/SpaceBackground";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
 import { API_URLS } from "@/config/api";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { login: authLogin } = useAuth();
   const [formData, setFormData] = useState({
-    username: "",
+    login: "",
     password: "",
   });
   const [error, setError] = useState("");
@@ -23,7 +25,7 @@ const Login = () => {
   useEffect(() => {
     const registeredUsername = localStorage.getItem('registeredUsername');
     if (registeredUsername) {
-      setFormData(prev => ({ ...prev, username: registeredUsername }));
+      setFormData(prev => ({ ...prev, login: registeredUsername }));
       localStorage.removeItem('registeredUsername');
     }
     if (location.state?.message) {
@@ -38,7 +40,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(API_URLS.auth, {
+      const response = await fetch(API_URLS.login, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,11 +51,7 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        localStorage.setItem("authToken", data.token);
-        localStorage.setItem("username", data.username);
-        localStorage.setItem("userId", data.user_id);
-        localStorage.setItem("userEmail", data.email);
-        localStorage.setItem("isLoggedIn", "true");
+        authLogin(data.user, data.token);
         navigate("/");
       } else {
         setError(data.error || "Ошибка входа");
@@ -95,12 +93,12 @@ const Login = () => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium mb-2">Никнейм</label>
+            <label className="block text-sm font-medium mb-2">Никнейм или Email</label>
             <input
               type="text"
-              value={formData.username}
+              value={formData.login}
               onChange={(e) =>
-                setFormData({ ...formData, username: e.target.value })
+                setFormData({ ...formData, login: e.target.value })
               }
               className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-primary transition-colors"
               required
