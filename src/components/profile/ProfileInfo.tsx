@@ -4,6 +4,7 @@ import Icon from "@/components/ui/icon";
 
 interface User {
   username: string;
+  email?: string;
   userId: string;
   level: number;
   exp: number;
@@ -76,6 +77,12 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
                 ID: {user.userId}
               </span>
             </div>
+            {user.email && (
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Icon name="Mail" size={16} />
+                <span>{user.email}</span>
+              </div>
+            )}
             <div className="flex items-center gap-2 text-muted-foreground">
               <Icon name="Calendar" size={16} />
               <span>Присоединился {user.joinDate}</span>
