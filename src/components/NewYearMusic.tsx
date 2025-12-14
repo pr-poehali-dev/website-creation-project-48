@@ -7,22 +7,40 @@ const NewYearMusic = () => {
   const [volume, setVolume] = useState(0.7);
   const [showControls, setShowControls] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
+  const [duration, setDuration] = useState(30);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const musicTracks = [
-    { name: 'Новогодняя мелодия', url: 'https://cdn.pixabay.com/audio/2022/11/28/audio_17b2a63bca.mp3' },
-    { name: 'Last Christmas', url: 'https://cdn.pixabay.com/audio/2024/01/30/audio_4e3f2221c5.mp3' },
-    { name: 'Jingle Bells', url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_4e3ab91c61.mp3' },
+    { id: 1, name: '🎄 Новогодняя мелодия', url: 'https://cdn.pixabay.com/audio/2022/11/28/audio_17b2a63bca.mp3' },
+    { id: 2, name: '🎅 Last Christmas', url: 'https://cdn.pixabay.com/audio/2024/01/30/audio_4e3f2221c5.mp3' },
+    { id: 3, name: '🔔 Jingle Bells', url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_4e3ab91c61.mp3' },
+    { id: 4, name: '⭐ Winter Wonderland', url: 'https://cdn.pixabay.com/audio/2022/11/22/audio_abc123def.mp3' },
   ];
 
   useEffect(() => {
     audioRef.current = new Audio(musicTracks[currentTrack].url);
-    audioRef.current.loop = true;
+    audioRef.current.loop = false;
     audioRef.current.volume = volume;
+
+    let timeoutId: NodeJS.Timeout;
 
     audioRef.current.addEventListener('ended', () => {
       setCurrentTrack((prev) => (prev + 1) % musicTracks.length);
     });
+
+    const handleAutoStop = () => {
+      timeoutId = setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.pause();
+          setIsPlaying(false);
+          localStorage.setItem('newYearMusicPlaying', 'false');
+        }
+      }, duration * 60 * 1000);
+    };
+
+    if (isPlaying) {
+      handleAutoStop();
+    }
 
     const savedMusicState = localStorage.getItem('newYearMusicPlaying');
     if (savedMusicState === 'true') {
@@ -33,12 +51,13 @@ const NewYearMusic = () => {
     }
 
     return () => {
+      if (timeoutId) clearTimeout(timeoutId);
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
     };
-  }, [currentTrack]);
+  }, [currentTrack, duration, isPlaying]);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -84,9 +103,44 @@ const NewYearMusic = () => {
     >
       <div className={`transition-all duration-300 ${showControls ? 'mb-2' : ''}`}>
         {showControls && (
-          <div className="bg-card/95 backdrop-blur border border-border/50 rounded-lg p-3 mb-2 shadow-lg min-w-[200px]">
-            <div className="text-xs text-foreground/60 text-center mb-2 font-semibold">
-              🎵 {musicTracks[currentTrack].name}
+          <div className="bg-card/95 backdrop-blur border border-border/50 rounded-lg p-4 mb-2 shadow-lg min-w-[280px]">
+            <div className="text-sm text-foreground font-semibold text-center mb-3">
+              {musicTracks[currentTrack].name}
+            </div>
+            
+            <div className="mb-3">
+              <label className="text-xs text-foreground/70 mb-2 block">Выбор трека:</label>
+              <div className="grid grid-cols-2 gap-1">
+                {musicTracks.map((track, index) => (
+                  <Button
+                    key={track.id}
+                    size="sm"
+                    variant={currentTrack === index ? "default" : "outline"}
+                    className="text-xs h-7"
+                    onClick={() => {
+                      setCurrentTrack(index);
+                      if (isPlaying && audioRef.current) {
+                        audioRef.current.play();
+                      }
+                    }}
+                  >
+                    {track.name.split(' ')[0]}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <label className="text-xs text-foreground/70 mb-2 block">Длительность: {duration} мин</label>
+              <input
+                type="range"
+                min="5"
+                max="120"
+                step="5"
+                value={duration}
+                onChange={(e) => setDuration(Number(e.target.value))}
+                className="w-full h-1 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-primary"
+              />
             </div>
             <div className="flex items-center gap-2 mb-3 justify-center">
               <Button
