@@ -9,21 +9,17 @@ import { useState, useEffect } from "react";
 import SpaceBackground from "@/components/SpaceBackground";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
-import { useAuth } from "@/contexts/AuthContext";
 
 const Profile = () => {
-  const { user: authUser } = useAuth();
-  
   const getProfileKey = (key: string) => {
-    const username = authUser?.username || 'Player123';
+    const username = localStorage.getItem('username') || 'Player123';
     return `${username}_${key}`;
   };
 
   const loadProfileData = () => {
-    const username = authUser?.username || 'Player123';
-    const email = authUser?.email || '';
+    const username = localStorage.getItem('username') || 'Player123';
     
-    let userId = authUser?.id.toString() || localStorage.getItem(getProfileKey('userId'));
+    let userId = localStorage.getItem(getProfileKey('userId'));
     
     if (!userId) {
       const globalUserCount = parseInt(localStorage.getItem('global_user_count') || '0');
@@ -35,7 +31,6 @@ const Profile = () => {
     
     return {
       username,
-      email,
       userId,
       level: parseInt(localStorage.getItem(getProfileKey('level')) || '0'),
       exp: parseInt(localStorage.getItem(getProfileKey('exp')) || '0'),
@@ -104,7 +99,7 @@ const Profile = () => {
   const [serverNotificationText, setServerNotificationText] = useState('');
   const [settingsData, setSettingsData] = useState({
     username: user.username,
-    email: user.email || authUser?.email || '',
+    email: localStorage.getItem(getProfileKey('email')) || '',
     password: '',
     birthdate: localStorage.getItem(getProfileKey('birthdate')) || '',
     bio: user.bio
