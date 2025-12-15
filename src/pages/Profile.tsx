@@ -19,18 +19,18 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/login');
+    if (!isAuthenticated || !authUser) {
+      setLoading(false);
       return;
     }
 
     const fetchProfile = async () => {
       try {
-        const response = await fetch('https://function.poehali.dev/p89978113/get-profile', {
+        const response = await fetch('https://functions.poehali.dev/6c6ea4a5-9ef6-465d-9005-8da6bf34e9d3', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'X-User-Id': authUser?.id.toString() || ''
+            'X-User-Id': authUser.id.toString()
           }
         });
 
@@ -46,7 +46,7 @@ const Profile = () => {
     };
 
     fetchProfile();
-  }, [authUser, isAuthenticated, navigate]);
+  }, [authUser, isAuthenticated]);
 
   const getProfileKey = (key: string) => {
     const username = authUser?.username || 'Player123';
@@ -92,12 +92,14 @@ const Profile = () => {
   }, [profileData]);
 
   const saveProfileData = async (updates: any) => {
+    if (!authUser) return;
+    
     try {
       const response = await fetch('https://functions.poehali.dev/dd58dbc7-c964-49c3-9170-3eaa7ca04eb0', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-User-Id': authUser?.id.toString() || ''
+          'X-User-Id': authUser.id.toString()
         },
         body: JSON.stringify(updates)
       });
@@ -244,12 +246,32 @@ const Profile = () => {
     setTimeout(() => setShowServerNotification(false), 2000);
   };
 
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900/60 via-purple-800/40 to-indigo-900/60">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-white mb-4">Войдите в аккаунт</h2>
+          <button 
+            onClick={() => navigate('/login')}
+            className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/80"
+          >
+            Войти
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center">Загрузка...</div>;
+    return <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900/60 via-purple-800/40 to-indigo-900/60">
+      <div className="text-white text-xl">Загрузка профиля...</div>
+    </div>;
   }
 
   if (!user) {
-    return <div className="min-h-screen flex items-center justify-center">Профиль не найден</div>;
+    return <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900/60 via-purple-800/40 to-indigo-900/60">
+      <div className="text-white text-xl">Профиль не найден</div>
+    </div>;
   }
 
   return (
