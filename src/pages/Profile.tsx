@@ -6,18 +6,55 @@ import ProfileDialogs from "@/components/profile/ProfileDialogs";
 import ProfileChat from "@/components/profile/ProfileChat";
 import FriendsDialog from "@/components/profile/FriendsDialog";
 import { useState, useEffect } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import SpaceBackground from "@/components/SpaceBackground";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
 
 const Profile = () => {
+  const { user: authUser, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const [profileData, setProfileData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch('https://function.poehali.dev/p89978113/get-profile', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-User-Id': authUser?.id.toString() || ''
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setProfileData(data);
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [authUser, isAuthenticated, navigate]);
+
   const getProfileKey = (key: string) => {
-    const username = localStorage.getItem('username') || 'Player123';
+    const username = authUser?.username || 'Player123';
     return `${username}_${key}`;
   };
 
   const loadProfileData = () => {
-    const username = localStorage.getItem('username') || 'Player123';
+    const username = authUser?.username || 'Player123';
     
     let userId = localStorage.getItem(getProfileKey('userId'));
     
@@ -43,47 +80,72 @@ const Profile = () => {
     };
   };
 
-  const [user, setUser] = useState(loadProfileData());
-
-  useEffect(() => {
-    localStorage.setItem(`profile_${user.userId}`, JSON.stringify({
-      username: user.username,
-      avatar: user.avatar,
-      userId: user.userId
-    }));
-  }, [user.username, user.avatar, user.userId]);
-
-  useEffect(() => {
-    setUser(loadProfileData());
-  }, []);
-
-  const saveProfileData = (key: string, value: string | number) => {
-    localStorage.setItem(getProfileKey(key), value.toString());
-  };
-
-  const [stats, setStats] = useState({
-    kills: parseInt(localStorage.getItem(getProfileKey('kills')) || '0'),
-    deaths: parseInt(localStorage.getItem(getProfileKey('deaths')) || '0'),
-    quests: parseInt(localStorage.getItem(getProfileKey('quests')) || '0'),
-    achievements: parseInt(localStorage.getItem(getProfileKey('achievements')) || '0')
+  const [user, setUser] = useState(() => {
+    if (profileData) return profileData;
+    return loadProfileData();
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const currentTime = parseInt(localStorage.getItem(getProfileKey('playTimeMinutes')) || '0');
-      const newTime = currentTime + 1;
-      saveProfileData('playTimeMinutes', newTime);
+    if (profileData) {
+      setUser(profileData);
+    }
+  }, [profileData]);
+
+  const saveProfileData = async (updates: any) => {
+    try {
+      const response = await fetch('https://functions.poehali.dev/dd58dbc7-c964-49c3-9170-3eaa7ca04eb0', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-User-Id': authUser?.id.toString() || ''
+        },
+        body: JSON.stringify(updates)
+      });
+
+      if (response.ok) {
+        setUser((prev: any) => ({ ...prev, ...updates }));
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };
+
+  const [stats, setStats] = useState({
+    kills: profileData?.kills || 0,
+    deaths: profileData?.deaths || 0,
+    quests: profileData?.quests || 0,
+    achievements: profileData?.achievements || 0
+  });
+
+  useEffect(() => {
+    if (profileData) {
+      setStats({
+        kills: profileData.kills || 0,
+        deaths: profileData.deaths || 0,
+        quests: profileData.quests || 0,
+        achievements: profileData.achievements || 0
+      });
+    }
+  }, [profileData]);
+
+  useEffect(() => {
+    if (!authUser) return;
+    
+    const interval = setInterval(async () => {
+      const currentMinutes = user.playTime ? 
+        parseInt(user.playTime.split(' ')[0]) * 60 + parseInt(user.playTime.split(' ')[2] || '0') : 0;
+      const newTime = currentMinutes + 1;
       
       const hours = Math.floor(newTime / 60);
       const minutes = newTime % 60;
       const timeString = hours > 0 ? `${hours} ч ${minutes} мин` : `${minutes} мин`;
       
-      setUser(prev => ({ ...prev, playTime: timeString }));
-      saveProfileData('playTime', timeString);
+      await saveProfileData({ playTimeMinutes: newTime });
+      setUser((prev: any) => ({ ...prev, playTime: timeString }));
     }, 60000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [authUser, user.playTime]);
 
   const [showAvatarDialog, setShowAvatarDialog] = useState(false);
   const [showRewardsDialog, setShowRewardsDialog] = useState(false);
@@ -145,15 +207,13 @@ const Profile = () => {
       ...getLevelRewards(lvl)
     }));
 
-  const handleAvatarChange = (style: string, url: string) => {
-    setUser({ ...user, avatar: url });
-    saveProfileData('avatar', url);
+  const handleAvatarChange = async (style: string, url: string) => {
+    await saveProfileData({ avatar: url });
     setShowAvatarDialog(false);
   };
 
-  const handleBioSave = () => {
-    setUser({ ...user, bio: bioText });
-    saveProfileData('bio', bioText);
+  const handleBioSave = async () => {
+    await saveProfileData({ bio: bioText });
     setShowBioDialog(false);
   };
 
@@ -161,31 +221,8 @@ const Profile = () => {
     setSettingsData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSettingsSave = () => {
-    if (settingsData.username !== user.username) {
-      const oldUsername = user.username;
-      localStorage.setItem('username', settingsData.username);
-      
-      const keysToMigrate = ['level', 'exp', 'gems', 'joinDate', 'playTime', 'avatar', 'bio', 'selectedServer', 'userId', 'email', 'birthdate', 'playTimeMinutes'];
-      keysToMigrate.forEach(key => {
-        const value = localStorage.getItem(`${oldUsername}_${key}`);
-        if (value) {
-          localStorage.setItem(`${settingsData.username}_${key}`, value);
-          localStorage.removeItem(`${oldUsername}_${key}`);
-        }
-      });
-      
-      setUser(prev => ({ ...prev, username: settingsData.username }));
-    }
-    
-    saveProfileData('email', settingsData.email);
-    saveProfileData('birthdate', settingsData.birthdate);
-    saveProfileData('bio', settingsData.bio);
-    setUser(prev => ({ ...prev, bio: settingsData.bio }));
-    
-    if (settingsData.password) {
-      saveProfileData('password', settingsData.password);
-    }
+  const handleSettingsSave = async () => {
+    await saveProfileData({ bio: settingsData.bio });
     
     setShowSettingsDialog(false);
     setServerNotificationText('Настройки сохранены');
@@ -201,12 +238,19 @@ const Profile = () => {
 
   const handleServerChange = (serverNum: number) => {
     setSelectedServer(serverNum);
-    saveProfileData('selectedServer', serverNum);
-    setUser(prev => ({ ...prev, selectedServer: serverNum.toString() }));
+    setUser((prev: any) => ({ ...prev, selectedServer: serverNum.toString() }));
     setServerNotificationText(`Выбран Сервер #${serverNum}`);
     setShowServerNotification(true);
     setTimeout(() => setShowServerNotification(false), 2000);
   };
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Загрузка...</div>;
+  }
+
+  if (!user) {
+    return <div className="min-h-screen flex items-center justify-center">Профиль не найден</div>;
+  }
 
   return (
     <div className="min-h-screen relative bg-gradient-to-br from-blue-900/60 via-purple-800/40 to-indigo-900/60" onClick={(e) => {
@@ -238,9 +282,9 @@ const Profile = () => {
           onShowSettings={() => {
             setSettingsData({
               username: user.username,
-              email: localStorage.getItem(getProfileKey('email')) || '',
+              email: authUser?.email || '',
               password: '',
-              birthdate: localStorage.getItem(getProfileKey('birthdate')) || '',
+              birthdate: '',
               bio: user.bio
             });
             setShowSettingsDialog(true);

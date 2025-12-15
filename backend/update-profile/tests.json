@@ -1,0 +1,23 @@
+{
+  "tests": [
+    {
+      "name": "POST update profile - missing user ID",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "level": 5
+      },
+      "expectedStatus": 401,
+      "expectedBody": {
+        "error": "Unauthorized"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "OPTIONS request for CORS",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}
