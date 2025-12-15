@@ -71,7 +71,12 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
         <div className="flex-1 space-y-6">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <h2 className="text-3xl font-bold text-foreground">{user.username}</h2>
+              <h2 className="text-3xl font-bold text-foreground">
+                {user.username}
+                {user.userId === '000012' && (
+                  <span className="ml-2 text-lg text-red-500 font-semibold">(Admin)</span>
+                )}
+              </h2>
               <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-semibold">
                 ID: {user.userId}
               </span>
