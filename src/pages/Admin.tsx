@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
@@ -9,6 +10,8 @@ import Snowflakes from "@/components/Snowflakes";
 import NewYearTimer from "@/components/NewYearTimer";
 
 const Admin = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900/60 via-purple-800/40 to-indigo-900/60 animate-gradient relative">
       <SpaceBackground />
@@ -16,13 +19,14 @@ const Admin = () => {
       <Snowflakes />
 
       <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50 relative">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-              <Icon name="Crown" className="text-white" size={24} />
+            <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+              <Icon name="Crown" className="text-white" size={20} />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Imunns RolePlay
+            <span className="text-lg md:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <span className="hidden sm:inline">Imunns RolePlay</span>
+              <span className="sm:hidden">Imunns RP</span>
             </span>
           </a>
           <div className="hidden md:flex items-center gap-2">
@@ -32,13 +36,13 @@ const Admin = () => {
             <a href="/admin" className="px-4 py-2 rounded-full text-sm font-semibold bg-primary/10 border border-primary/40 text-foreground hover:bg-primary/15 transition-all">Администрация</a>
             <a href="/rules" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Правила</a>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
             <Button variant="outline" size="icon" className="border-primary/50 hover:bg-primary/10 rounded-full h-9 w-9" onClick={() => window.location.href = '/profile'}>
               <Icon name="User" size={18} />
             </Button>
             <Button 
               variant="outline" 
-              className="border-destructive/50 hover:bg-destructive/10" 
+              className="hidden sm:flex border-destructive/50 hover:bg-destructive/10" 
               onClick={() => {
                 localStorage.removeItem('isLoggedIn');
                 window.location.reload();
@@ -47,35 +51,71 @@ const Admin = () => {
               <Icon name="LogOut" className="mr-2" size={18} />
               Выход
             </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="md:hidden border-primary/50 hover:bg-primary/10 rounded-full h-9 w-9"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <Icon name={mobileMenuOpen ? "X" : "Menu"} size={18} />
+            </Button>
           </div>
         </div>
+        {mobileMenuOpen && (
+          <>
+            <div
+              className="fixed inset-0 bg-background/95 backdrop-blur-sm z-40 md:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className="fixed top-16 left-0 right-0 bg-card/95 backdrop-blur-lg border-b border-border/50 z-40 animate-in slide-in-from-top md:hidden">
+              <div className="container mx-auto px-4 py-6 space-y-3">
+                <a href="/forum" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Форум</a>
+                <a href="/stats" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Топ игроков</a>
+                <a href="/jobs" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Работа</a>
+                <a href="/admin" className="block py-3 px-4 rounded-lg text-foreground bg-primary/10 border border-primary/40 hover:bg-primary/15 transition-all" onClick={() => setMobileMenuOpen(false)}>Администрация</a>
+                <a href="/rules" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Правила</a>
+                <button 
+                  className="block w-full py-3 px-4 rounded-lg text-destructive hover:bg-destructive/10 transition-all text-left sm:hidden" 
+                  onClick={() => {
+                    localStorage.removeItem('isLoggedIn');
+                    window.location.reload();
+                  }}
+                >
+                  <Icon name="LogOut" className="inline mr-2" size={18} />
+                  Выход
+                </button>
+              </div>
+            </div>
+          </>
+        )}
       </nav>
 
-      <section className="py-20 relative z-10">
+      <section className="py-12 md:py-20 relative z-10">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <div className="text-center mb-8 md:mb-12">
+            <h1 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Администрация
             </h1>
-            <p className="text-foreground/70 text-lg">
+            <p className="text-foreground/70 text-base md:text-lg">
               Команда, которая делает сервер лучше каждый день
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto mb-12">
+          <div className="max-w-4xl mx-auto mb-8 md:mb-12">
             <NewYearTimer />
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
             <AnimatedCard delay={0}>
               <a href="/admin/den_master">
-                <Card className="p-8 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-primary/30 hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.5)] transition-all cursor-pointer">
+                <Card className="p-6 md:p-8 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-primary/30 hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.5)] transition-all cursor-pointer">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-28 h-28 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mb-4 shadow-lg shadow-primary/50">
-                      <Icon name="Crown" className="text-white" size={48} />
+                    <div className="w-20 h-20 md:w-28 md:h-28 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mb-3 md:mb-4 shadow-lg shadow-primary/50">
+                      <Icon name="Crown" className="text-white" size={36} />
+                      <Icon name="Crown" className="text-white hidden md:block" size={48} />
                     </div>
-                    <span className="px-4 py-1.5 bg-gradient-to-r from-primary to-accent text-white text-xs font-bold rounded-full mb-3 shadow-lg">СОЗДАТЕЛЬ СЕРВЕРА</span>
-                    <h3 className="text-2xl font-bold mb-1 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">den_master</h3>
+                    <span className="px-3 md:px-4 py-1 md:py-1.5 bg-gradient-to-r from-primary to-accent text-white text-xs font-bold rounded-full mb-2 md:mb-3 shadow-lg">СОЗДАТЕЛЬ СЕРВЕРА</span>
+                    <h3 className="text-xl md:text-2xl font-bold mb-1 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">den_master</h3>
                     <p className="text-foreground/70 text-sm">Основатель проекта</p>
                   </div>
                 </Card>
@@ -90,13 +130,14 @@ const Admin = () => {
             ].map((member, index) => (
               <AnimatedCard key={index} delay={(index + 1) * 100}>
                 <a href={member.link}>
-                  <Card className={`p-6 bg-card/50 backdrop-blur border-border/50 hover:border-${member.color}/50 hover:shadow-[0_0_30px_rgba(${member.color === 'primary' ? '168,85,247' : '236,72,153'},0.4)] transition-all cursor-pointer`}>
+                  <Card className={`p-4 md:p-6 bg-card/50 backdrop-blur border-border/50 hover:border-${member.color}/50 hover:shadow-[0_0_30px_rgba(${member.color === 'primary' ? '168,85,247' : '236,72,153'},0.4)] transition-all cursor-pointer`}>
                     <div className="flex flex-col items-center text-center">
-                      <div className={`w-20 h-20 bg-${member.color}/20 rounded-full flex items-center justify-center mb-4 shadow-lg`}>
-                        <Icon name={member.icon as any} className={`text-${member.color}`} size={36} />
+                      <div className={`w-16 h-16 md:w-20 md:h-20 bg-${member.color}/20 rounded-full flex items-center justify-center mb-3 md:mb-4 shadow-lg`}>
+                        <Icon name={member.icon as any} className={`text-${member.color}`} size={28} />
+                        <Icon name={member.icon as any} className={`text-${member.color} hidden md:block`} size={36} />
                       </div>
-                      <span className={`px-3 py-1 bg-${member.color}/20 text-${member.color} text-xs font-bold rounded-full mb-2`}>{member.badge}</span>
-                      <h3 className="text-xl font-bold mb-1">{member.name}</h3>
+                      <span className={`px-2 md:px-3 py-1 bg-${member.color}/20 text-${member.color} text-xs font-bold rounded-full mb-2`}>{member.badge}</span>
+                      <h3 className="text-lg md:text-xl font-bold mb-1">{member.name}</h3>
                       <p className="text-foreground/70 text-sm">{member.role}</p>
                     </div>
                   </Card>
@@ -105,53 +146,56 @@ const Admin = () => {
             ))}
           </div>
 
-          <div className="max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-center">Инструменты администратора</h2>
-            <div className="grid md:grid-cols-3 gap-6">
+          <div className="max-w-3xl mx-auto mb-12 md:mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">Инструменты администратора</h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               <AnimatedCard delay={0}>
                 <Card 
-                  className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
+                  className="p-4 md:p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
                   onClick={() => window.location.href = '/admin/screens'}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon name="Image" className="text-primary" size={24} />
+                  <div className="flex items-start gap-3 md:gap-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon name="Image" className="text-primary" size={20} />
+                      <Icon name="Image" className="text-primary hidden md:block" size={24} />
                     </div>
                     <div>
-                      <h3 className="font-bold mb-1">Модерация</h3>
-                      <p className="text-foreground/70 text-sm">Скриншоты игроков</p>
+                      <h3 className="font-bold mb-1 text-sm md:text-base">Модерация</h3>
+                      <p className="text-foreground/70 text-xs md:text-sm">Скриншоты игроков</p>
                     </div>
                   </div>
                 </Card>
               </AnimatedCard>
               <AnimatedCard delay={100}>
                 <Card 
-                  className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all cursor-pointer"
+                  className="p-4 md:p-6 bg-card/50 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all cursor-pointer"
                   onClick={() => window.location.href = '/forum'}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon name="MessageSquare" className="text-accent" size={24} />
+                  <div className="flex items-start gap-3 md:gap-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon name="MessageSquare" className="text-accent" size={20} />
+                      <Icon name="MessageSquare" className="text-accent hidden md:block" size={24} />
                     </div>
                     <div>
-                      <h3 className="font-bold mb-1">Форум</h3>
-                      <p className="text-foreground/70 text-sm">Обращения игроков</p>
+                      <h3 className="font-bold mb-1 text-sm md:text-base">Форум</h3>
+                      <p className="text-foreground/70 text-xs md:text-sm">Обращения игроков</p>
                     </div>
                   </div>
                 </Card>
               </AnimatedCard>
               <AnimatedCard delay={200}>
                 <Card 
-                  className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
+                  className="p-4 md:p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
                   onClick={() => window.location.href = '/stats'}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon name="BarChart" className="text-primary" size={24} />
+                  <div className="flex items-start gap-3 md:gap-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon name="BarChart" className="text-primary" size={20} />
+                      <Icon name="BarChart" className="text-primary hidden md:block" size={24} />
                     </div>
                     <div>
-                      <h3 className="font-bold mb-1">Статистика</h3>
-                      <p className="text-foreground/70 text-sm">Данные серверов</p>
+                      <h3 className="font-bold mb-1 text-sm md:text-base">Статистика</h3>
+                      <p className="text-foreground/70 text-xs md:text-sm">Данные серверов</p>
                     </div>
                   </div>
                 </Card>
@@ -160,36 +204,38 @@ const Admin = () => {
           </div>
 
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Связаться с администрацией</h2>
-            <div className="grid md:grid-cols-2 gap-6">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">Связаться с администрацией</h2>
+            <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
               <AnimatedCard delay={0}>
                 <Card 
-                  className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
+                  className="p-4 md:p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
                   onClick={() => window.open('https://t.me/imunns', '_blank')}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon name="MessageSquare" className="text-primary" size={24} />
+                  <div className="flex items-start gap-3 md:gap-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon name="MessageSquare" className="text-primary" size={20} />
+                      <Icon name="MessageSquare" className="text-primary hidden md:block" size={24} />
                     </div>
                     <div>
-                      <h3 className="font-bold mb-1">Discord</h3>
-                      <p className="text-foreground/70 text-sm">Быстрая связь с командой</p>
+                      <h3 className="font-bold mb-1 text-sm md:text-base">Discord</h3>
+                      <p className="text-foreground/70 text-xs md:text-sm">Быстрая связь с командой</p>
                     </div>
                   </div>
                 </Card>
               </AnimatedCard>
               <AnimatedCard delay={100}>
                 <Card 
-                  className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
+                  className="p-4 md:p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
                   onClick={() => window.location.href = '/forum'}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon name="Mail" className="text-accent" size={24} />
+                  <div className="flex items-start gap-3 md:gap-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon name="Mail" className="text-accent" size={20} />
+                      <Icon name="Mail" className="text-accent hidden md:block" size={24} />
                     </div>
                     <div>
-                      <h3 className="font-bold mb-1">Форум</h3>
-                      <p className="text-foreground/70 text-sm">Официальные обращения</p>
+                      <h3 className="font-bold mb-1 text-sm md:text-base">Форум</h3>
+                      <p className="text-foreground/70 text-xs md:text-sm">Официальные обращения</p>
                     </div>
                   </div>
                 </Card>

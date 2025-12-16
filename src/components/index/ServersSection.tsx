@@ -15,14 +15,14 @@ const ServersSection = () => {
       <section className="py-20 relative z-10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Наши Сервера
             </h2>
-            <p className="text-foreground/70 text-lg">
+            <p className="text-foreground/70 text-base md:text-lg">
               Выбери свой сервер и начни приключение
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-20">
             <AnimatedCard delay={0}>
               <TooltipProvider>
                 <Tooltip>
