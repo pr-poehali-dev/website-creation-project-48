@@ -60,7 +60,7 @@ const IndexNavigation = ({ isLoggedIn: _isLoggedIn }: IndexNavigationProps) => {
               href="https://t.me/imunns" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full flex items-center justify-center bg-[#0088cc]/10 hover:bg-[#0088cc]/20 border border-[#0088cc]/30 hover:border-[#0088cc]/50 transition-all active-scale touch-optimized"
+              className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#0088cc]/10 hover:bg-[#0088cc]/20 border border-[#0088cc]/30 hover:border-[#0088cc]/50 transition-all active-scale touch-optimized"
               title="Telegram"
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-[#0088cc]">
@@ -71,7 +71,7 @@ const IndexNavigation = ({ isLoggedIn: _isLoggedIn }: IndexNavigationProps) => {
               href="https://vk.com/imunns" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full flex items-center justify-center bg-[#0077ff]/10 hover:bg-[#0077ff]/20 border border-[#0077ff]/30 hover:border-[#0077ff]/50 transition-all active-scale touch-optimized"
+              className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#0077ff]/10 hover:bg-[#0077ff]/20 border border-[#0077ff]/30 hover:border-[#0077ff]/50 transition-all active-scale touch-optimized"
               title="ВКонтакте"
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-[#0077ff]">
@@ -82,7 +82,7 @@ const IndexNavigation = ({ isLoggedIn: _isLoggedIn }: IndexNavigationProps) => {
               href="https://www.tiktok.com/@imunns" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br from-[#ff0050]/10 to-[#00f2ea]/10 hover:from-[#ff0050]/20 hover:to-[#00f2ea]/20 border border-[#ff0050]/30 hover:border-[#ff0050]/50 transition-all active-scale touch-optimized"
+              className="w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br from-[#ff0050]/10 to-[#00f2ea]/10 hover:from-[#ff0050]/20 hover:to-[#00f2ea]/20 border border-[#ff0050]/30 hover:border-[#ff0050]/50 transition-all active-scale touch-optimized"
               title="TikTok"
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4">
@@ -93,7 +93,7 @@ const IndexNavigation = ({ isLoggedIn: _isLoggedIn }: IndexNavigationProps) => {
               href="https://youtube.com/@imunns" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full flex items-center justify-center bg-[#ff0000]/10 hover:bg-[#ff0000]/20 border border-[#ff0000]/30 hover:border-[#ff0000]/50 transition-all active-scale touch-optimized"
+              className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#ff0000]/10 hover:bg-[#ff0000]/20 border border-[#ff0000]/30 hover:border-[#ff0000]/50 transition-all active-scale touch-optimized"
               title="YouTube"
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-[#ff0000]">
