@@ -13,7 +13,7 @@ const AnimatedCard = ({ children, className = '', delay = 0 }: AnimatedCardProps
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ${className}`}
+      className={`transition-all duration-700 touch-optimized ${className}`}
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',

@@ -3,7 +3,8 @@ import Icon from "@/components/ui/icon";
 import { sounds } from "@/utils/sounds";
 import SnowDriftText from "@/components/SnowDriftText";
 import { useAuth } from "@/contexts/AuthContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSwipe } from "@/hooks/useSwipe";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,6 +21,21 @@ interface IndexNavigationProps {
 const IndexNavigation = ({ isLoggedIn: _isLoggedIn }: IndexNavigationProps) => {
   const { user, isAuthenticated, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const swipeHandlers = useSwipe({
+    onSwipeRight: () => mobileMenuOpen && setMobileMenuOpen(false),
+  });
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.addEventListener('touchstart', swipeHandlers.onTouchStart as any);
+      document.addEventListener('touchend', swipeHandlers.onTouchEnd as any);
+      return () => {
+        document.removeEventListener('touchstart', swipeHandlers.onTouchStart as any);
+        document.removeEventListener('touchend', swipeHandlers.onTouchEnd as any);
+      };
+    }
+  }, [mobileMenuOpen]);
   return (
     <nav className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50 relative">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -42,7 +58,7 @@ const IndexNavigation = ({ isLoggedIn: _isLoggedIn }: IndexNavigationProps) => {
           <Button 
             variant="outline" 
             size="icon" 
-            className="border-purple-500/50 hover:bg-purple-500/10 rounded-full h-9 w-9 relative overflow-hidden group animate-pulse hover:animate-none transition-all hover:scale-110" 
+            className="border-purple-500/50 hover:bg-purple-500/10 rounded-full h-9 w-9 relative overflow-hidden group animate-pulse hover:animate-none transition-all hover:scale-110 active-scale touch-optimized" 
             onClick={() => {
               sounds.click();
               setTimeout(() => window.location.href = '/minigames', 100);
@@ -120,15 +136,15 @@ const IndexNavigation = ({ isLoggedIn: _isLoggedIn }: IndexNavigationProps) => {
       {mobileMenuOpen && (
         <>
           <div
-            className="fixed inset-0 bg-background/95 backdrop-blur-sm z-40 md:hidden"
+            className="fixed inset-0 bg-background/95 backdrop-blur-sm z-40 md:hidden touch-optimized"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="fixed top-16 left-0 right-0 bg-card/95 backdrop-blur-lg border-b border-border/50 z-40 animate-in slide-in-from-top md:hidden">
+          <div className="fixed top-16 left-0 right-0 bg-card/95 backdrop-blur-lg border-b border-border/50 z-40 animate-in slide-in-from-top md:hidden swipe-smooth">
             <div className="container mx-auto px-4 py-6 space-y-3">
-              <a href="/forum" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Форум</a>
-              <a href="/jobs" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Работа</a>
-              <a href="/admin" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Администрация</a>
-              <a href="/rules" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Правила</a>
+              <a href="/forum" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all active-scale touch-feedback" onClick={() => setMobileMenuOpen(false)}>Форум</a>
+              <a href="/jobs" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all active-scale touch-feedback" onClick={() => setMobileMenuOpen(false)}>Работа</a>
+              <a href="/admin" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all active-scale touch-feedback" onClick={() => setMobileMenuOpen(false)}>Администрация</a>
+              <a href="/rules" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all active-scale touch-feedback" onClick={() => setMobileMenuOpen(false)}>Правила</a>
             </div>
           </div>
         </>

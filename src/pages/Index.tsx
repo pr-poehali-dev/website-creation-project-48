@@ -11,14 +11,16 @@ import NewYearTimer from "@/components/NewYearTimer";
 import { useEffect, useState } from "react";
 import { API_URLS } from "@/config/api";
 import { useAuth } from "@/contexts/AuthContext";
+import { usePullToRefresh } from "@/hooks/usePullToRefresh";
+import PullToRefreshIndicator from "@/components/PullToRefreshIndicator";
 
 const Index = () => {
   const [onlinePlayers, setOnlinePlayers] = useState(0);
   const [serverStatus, setServerStatus] = useState<'loading' | 'online' | 'offline'>('loading');
   const { isAuthenticated } = useAuth();
 
-  useEffect(() => {
-    const fetchServerStatus = async () => {
+  const fetchServerStatus = async () => {
+    setServerStatus('loading');
       try {
         const response = await fetch(`${API_URLS.minecraftStatus}?host=imunnsrp.ru&port=25565`);
         
@@ -43,6 +45,9 @@ const Index = () => {
       }
     };
 
+  const { isRefreshing, pullDistance, threshold } = usePullToRefresh(fetchServerStatus);
+
+  useEffect(() => {
     fetchServerStatus();
     const interval = setInterval(fetchServerStatus, 60000);
 
@@ -54,6 +59,11 @@ const Index = () => {
       <SpaceBackground />
       <Fireworks />
       <Snowflakes />
+      <PullToRefreshIndicator 
+        pullDistance={pullDistance} 
+        threshold={threshold} 
+        isRefreshing={isRefreshing} 
+      />
       <IndexNavigation isLoggedIn={isAuthenticated} />
 
       <HeroSection 

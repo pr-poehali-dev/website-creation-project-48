@@ -47,18 +47,18 @@ const HeroSection = ({ isLoggedIn, serverStatus, onlinePlayers }: HeroSectionPro
           </div>
           <div className="flex gap-3 md:gap-4 justify-center flex-wrap px-4">
             {isLoggedIn ? (
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-base md:text-lg px-6 md:px-8" onClick={() => window.location.href = '/profile'}>
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-base md:text-lg px-6 md:px-8 active-scale touch-optimized" onClick={() => window.location.href = '/profile'}>
                 <Icon name="User" className="mr-2" size={18} />
                 <span className="hidden sm:inline">Личный кабинет</span>
                 <span className="sm:hidden">Профиль</span>
               </Button>
             ) : (
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-base md:text-lg px-6 md:px-8" onClick={() => window.location.href = '/login'}>
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-base md:text-lg px-6 md:px-8 active-scale touch-optimized" onClick={() => window.location.href = '/login'}>
                 <Icon name="LogIn" className="mr-2" size={18} />
                 Вход
               </Button>
             )}
-            <Button size="lg" variant="outline" className="border-primary/50 hover:bg-primary/10 text-base md:text-lg px-6 md:px-8" asChild>
+            <Button size="lg" variant="outline" className="border-primary/50 hover:bg-primary/10 text-base md:text-lg px-6 md:px-8 active-scale touch-optimized" asChild>
               <a href="https://t.me/imunns" target="_blank" rel="noopener noreferrer">
                 <Icon name="Users" className="mr-2" size={18} />
                 <span className="hidden sm:inline">Сообщество</span>
