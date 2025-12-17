@@ -68,7 +68,7 @@ const IndexNavigation = ({ isLoggedIn: _isLoggedIn }: IndexNavigationProps) => {
               </svg>
             </a>
             <a 
-              href="https://vk.com/imunns" 
+              href="https://vk.com/imunnsroleplay" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-8 h-8 rounded-full flex items-center justify-center bg-[#0077ff]/10 hover:bg-[#0077ff]/20 border border-[#0077ff]/30 hover:border-[#0077ff]/50 transition-all active-scale touch-optimized"
