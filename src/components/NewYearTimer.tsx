@@ -33,17 +33,13 @@ const NewYearTimer = () => {
 
   return (
     <div className="bg-gradient-to-r from-red-600/20 via-green-600/20 to-red-600/20 border border-yellow-400/50 rounded-2xl p-6 backdrop-blur-sm shadow-[0_0_40px_rgba(234,179,8,0.3)]">
-      <div className="flex items-center justify-center gap-2 mb-4">
-        <Icon name="Gift" size={32} className="text-yellow-400 animate-pulse" />
+      <div className="flex items-center justify-center gap-2 mb-6">
+        <Icon name="Clock" size={32} className="text-yellow-400 animate-pulse" />
         <h3 className="text-2xl font-bold bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-200 bg-clip-text text-transparent">
-          🎄 Новогодняя распродажа! 🎄
+          🎄 До Нового Года 🎄
         </h3>
-        <Icon name="Gift" size={32} className="text-yellow-400 animate-pulse" />
+        <Icon name="Clock" size={32} className="text-yellow-400 animate-pulse" />
       </div>
-      
-      <p className="text-center text-lg mb-6 text-foreground/90">
-        Скидки до <span className="text-3xl font-bold text-red-400">50%</span> на весь мерч!
-      </p>
 
       <div className="grid grid-cols-4 gap-4 mb-4">
         <div className="bg-background/50 backdrop-blur rounded-lg p-3 text-center border border-primary/30">
@@ -64,9 +60,7 @@ const NewYearTimer = () => {
         </div>
       </div>
 
-      <p className="text-center text-sm text-foreground/70">
-        ⏰ До конца акции осталось
-      </p>
+
     </div>
   );
 };
