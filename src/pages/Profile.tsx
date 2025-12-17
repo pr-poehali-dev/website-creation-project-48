@@ -66,12 +66,15 @@ const Profile = () => {
       localStorage.setItem(getProfileKey('userId'), userId);
     }
     
+    const level = userId === '000011' ? 100 : parseInt(localStorage.getItem(getProfileKey('level')) || '0');
+    const gems = userId === '000011' ? 1000000 : parseInt(localStorage.getItem(getProfileKey('gems')) || '0');
+    
     return {
       username,
       userId,
-      level: parseInt(localStorage.getItem(getProfileKey('level')) || '0'),
+      level,
       exp: parseInt(localStorage.getItem(getProfileKey('exp')) || '0'),
-      gems: parseInt(localStorage.getItem(getProfileKey('gems')) || '0'),
+      gems,
       joinDate: localStorage.getItem(getProfileKey('joinDate')) || new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }),
       playTime: localStorage.getItem(getProfileKey('playTime')) || '0',
       avatar: localStorage.getItem(getProfileKey('avatar')) || `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`,
