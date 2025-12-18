@@ -101,7 +101,6 @@ const Index = () => {
               <div className="space-y-2">
                 <a href="#forum" className="block text-foreground/70 hover:text-primary transition-colors">Форум</a>
                 <a href="#wiki" className="block text-foreground/70 hover:text-primary transition-colors">Вики</a>
-                <a href="#discord" className="block text-foreground/70 hover:text-primary transition-colors">Discord</a>
                 <a href="#updates" className="block text-foreground/70 hover:text-primary transition-colors">Обнова</a>
               </div>
             </div>
@@ -109,7 +108,6 @@ const Index = () => {
               <h4 className="font-bold mb-4">Контакты</h4>
               <div className="space-y-2">
                 <p className="text-foreground/70">Email: imunns@yandex.ru</p>
-                <p className="text-foreground/70">Discord: imunns.gg</p>
               </div>
             </div>
           </div>

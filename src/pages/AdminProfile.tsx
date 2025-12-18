@@ -32,11 +32,10 @@ const adminsData: Record<string, AdminData> = {
     color: "primary",
     stats: [
       { label: "На сервере с", value: "2025 года", icon: "Calendar" },
-      { label: "Discord", value: "@den_master", icon: "MessageCircle" },
       { label: "Telegram", value: "@denmaster_rp", icon: "Send" },
+      { label: "Email", value: "den@imunns.ru", icon: "Mail" },
     ],
     achievements: [
-      "Discord: @den_master",
       "Telegram: @denmaster_rp",
       "VK: vk.com/denmaster",
       "Email: den@imunns.ru",

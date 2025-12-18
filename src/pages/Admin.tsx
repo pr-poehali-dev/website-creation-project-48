@@ -205,24 +205,7 @@ const Admin = () => {
 
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">Связаться с администрацией</h2>
-            <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
-              <AnimatedCard delay={0}>
-                <Card 
-                  className="p-4 md:p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
-                  onClick={() => window.open('https://t.me/imunns', '_blank')}
-                >
-                  <div className="flex items-start gap-3 md:gap-4">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon name="MessageSquare" className="text-primary" size={20} />
-                      <Icon name="MessageSquare" className="text-primary hidden md:block" size={24} />
-                    </div>
-                    <div>
-                      <h3 className="font-bold mb-1 text-sm md:text-base">Discord</h3>
-                      <p className="text-foreground/70 text-xs md:text-sm">Быстрая связь с командой</p>
-                    </div>
-                  </div>
-                </Card>
-              </AnimatedCard>
+            <div className="grid sm:grid-cols-1 gap-4 md:gap-6 max-w-md mx-auto">
               <AnimatedCard delay={100}>
                 <Card 
                   className="p-4 md:p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
