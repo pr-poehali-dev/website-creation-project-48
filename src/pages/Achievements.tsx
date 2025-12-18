@@ -258,10 +258,10 @@ const Achievements = () => {
             {achievements.map((achievement, index) => (
               <AnimatedCard key={achievement.id} delay={index * 50}>
                 <Card 
-                  className={`p-6 bg-card/50 backdrop-blur border-border/50 transition-all h-full ${
+                  className={`p-6 bg-card/50 backdrop-blur transition-all h-full relative ${
                     achievement.unlocked 
-                      ? `border-${achievement.color}/50 hover:shadow-[0_0_30px_rgba(${achievement.color === 'primary' ? '168,85,247' : '236,72,153'},0.4)]`
-                      : 'opacity-60 grayscale hover:grayscale-0 hover:opacity-100'
+                      ? `border-${achievement.color} shadow-[0_0_20px_rgba(168,85,247,0.5)] animate-pulse-glow`
+                      : 'opacity-60 grayscale hover:grayscale-0 hover:opacity-100 border-border/50'
                   }`}
                 >
                   <div className="flex items-start gap-4 mb-4">
