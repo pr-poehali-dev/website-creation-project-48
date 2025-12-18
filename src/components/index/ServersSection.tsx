@@ -226,25 +226,7 @@ const ServersSection = () => {
         </div>
       </section>
 
-      <section id="discord" className="py-20">
-        <div className="container mx-auto px-4">
-          <AnimatedCard>
-            <Card className="p-12 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 backdrop-blur border-primary/30">
-              <div className="text-center space-y-6">
-                <Icon name="MessageCircle" className="text-primary mx-auto" size={64} />
-                <h2 className="text-4xl font-bold">Присоединяйся к Discord</h2>
-                <p className="text-foreground/80 text-lg max-w-2xl mx-auto">
-                  Общайся с игроками в реальном времени, участвуй в событиях и получай актуальную информацию
-                </p>
-                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8">
-                  <Icon name="ExternalLink" className="mr-2" size={20} />
-                  Открыть Discord
-                </Button>
-              </div>
-            </Card>
-          </AnimatedCard>
-        </div>
-      </section>
+
 
       <section id="admin" className="py-20">
         <div className="container mx-auto px-4">
