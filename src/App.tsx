@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import MeteorBackground from "./components/MeteorBackground";
-import NewYearMusic from "./components/NewYearMusic";
 import Index from "./pages/Index";
 import Forum from "./pages/Forum";
 import Shop from "./pages/Shop";
@@ -36,7 +35,6 @@ const App = () => (
     <AuthProvider>
       <TooltipProvider>
         <MeteorBackground />
-        <NewYearMusic />
         <Toaster />
         <Sonner />
         <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
