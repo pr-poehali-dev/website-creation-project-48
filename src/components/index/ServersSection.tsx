@@ -29,7 +29,7 @@ const ServersSection = () => {
                   <TooltipTrigger asChild>
                     <Card 
                       className="p-6 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] transition-all h-full cursor-pointer"
-                      onClick={() => window.location.href = '/login'}
+                      onClick={() => window.location.href = '/buy'}
                     >
                       <div className="flex items-center justify-between mb-4">
                         <Icon name="Server" className="text-primary" size={32} />
@@ -61,7 +61,7 @@ const ServersSection = () => {
                   <TooltipTrigger asChild>
                     <Card 
                       className="p-6 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all h-full cursor-pointer"
-                      onClick={() => window.location.href = '/login'}
+                      onClick={() => window.location.href = '/buy'}
                     >
                       <div className="flex items-center justify-between mb-4">
                         <Icon name="Server" className="text-accent" size={32} />
@@ -90,7 +90,7 @@ const ServersSection = () => {
                   <TooltipTrigger asChild>
                     <Card 
                       className="p-6 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] transition-all h-full cursor-pointer"
-                      onClick={() => window.location.href = '/login'}
+                      onClick={() => window.location.href = '/buy'}
                     >
                       <div className="flex items-center justify-between mb-4">
                         <Icon name="Server" className="text-primary" size={32} />
@@ -119,7 +119,7 @@ const ServersSection = () => {
                   <TooltipTrigger asChild>
                     <Card 
                       className="p-6 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all h-full cursor-pointer"
-                      onClick={() => window.location.href = '/login'}
+                      onClick={() => window.location.href = '/buy'}
                     >
                       <div className="flex items-center justify-between mb-4">
                         <Icon name="Server" className="text-accent" size={32} />
