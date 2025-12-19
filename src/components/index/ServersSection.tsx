@@ -37,9 +37,15 @@ const ServersSection = () => {
                       </div>
                       <h3 className="text-2xl font-bold mb-2">Imunns role play</h3>
                       <p className="text-foreground/70 mb-4">Добро пожаловать на наш уникальный Minecraft-сервер с роле-плей системой! </p>
-                      <div className="flex items-center gap-2 text-sm">
-                        <Icon name="Users" size={16} className="text-primary" />
-                        <span className="text-foreground/80">Онлайн: 247</span>
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2 text-sm">
+                          <Icon name="Users" size={16} className="text-primary" />
+                          <span className="text-foreground/80">Онлайн: 247</span>
+                        </div>
+                        <Button size="sm" className="bg-primary hover:bg-primary/90">
+                          <Icon name="ShoppingCart" size={14} className="mr-1" />
+                          Купить
+                        </Button>
                       </div>
                     </Card>
                   </TooltipTrigger>
@@ -69,9 +75,15 @@ const ServersSection = () => {
                       </div>
                       <h3 className="text-2xl font-bold mb-2">ISWAR</h3>
                       <p className="text-foreground/70 mb-4">PvP арена и турниры</p>
-                      <div className="flex items-center gap-2 text-sm">
-                        <Icon name="Users" size={16} className="text-accent" />
-                        <span className="text-foreground/80">Онлайн: 189</span>
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2 text-sm">
+                          <Icon name="Users" size={16} className="text-accent" />
+                          <span className="text-foreground/80">Онлайн: 189</span>
+                        </div>
+                        <Button size="sm" className="bg-accent hover:bg-accent/90">
+                          <Icon name="ShoppingCart" size={14} className="mr-1" />
+                          Купить
+                        </Button>
                       </div>
                     </Card>
                   </TooltipTrigger>
@@ -98,9 +110,15 @@ const ServersSection = () => {
                       </div>
                       <h3 className="text-2xl font-bold mb-2">Сервер #3</h3>
                       <p className="text-foreground/70 mb-4">Ролевой сервер</p>
-                      <div className="flex items-center gap-2 text-sm">
-                        <Icon name="Users" size={16} className="text-primary" />
-                        <span className="text-foreground/80">Онлайн: 156</span>
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2 text-sm">
+                          <Icon name="Users" size={16} className="text-primary" />
+                          <span className="text-foreground/80">Онлайн: 156</span>
+                        </div>
+                        <Button size="sm" className="bg-primary hover:bg-primary/90">
+                          <Icon name="ShoppingCart" size={14} className="mr-1" />
+                          Купить
+                        </Button>
                       </div>
                     </Card>
                   </TooltipTrigger>
@@ -127,9 +145,15 @@ const ServersSection = () => {
                       </div>
                       <h3 className="text-2xl font-bold mb-2">Сервер #4</h3>
                       <p className="text-foreground/70 mb-4">Тестовый сервер</p>
-                      <div className="flex items-center gap-2 text-sm">
-                        <Icon name="Users" size={16} className="text-accent" />
-                        <span className="text-foreground/80">Онлайн: 43</span>
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2 text-sm">
+                          <Icon name="Users" size={16} className="text-accent" />
+                          <span className="text-foreground/80">Онлайн: 43</span>
+                        </div>
+                        <Button size="sm" className="bg-accent hover:bg-accent/90">
+                          <Icon name="ShoppingCart" size={14} className="mr-1" />
+                          Купить
+                        </Button>
                       </div>
                     </Card>
                   </TooltipTrigger>
