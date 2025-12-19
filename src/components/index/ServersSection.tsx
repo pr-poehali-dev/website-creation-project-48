@@ -42,9 +42,16 @@ const ServersSection = () => {
                           <Icon name="Users" size={16} className="text-primary" />
                           <span className="text-foreground/80">Онлайн: 247</span>
                         </div>
-                        <Button size="sm" className="bg-primary hover:bg-primary/90">
+                        <Button 
+                          size="sm" 
+                          className="bg-primary hover:bg-primary/90"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open('https://boosty.to/imunnsrp', '_blank');
+                          }}
+                        >
                           <Icon name="ShoppingCart" size={14} className="mr-1" />
-                          Купить
+                          Boosty
                         </Button>
                       </div>
                     </Card>
@@ -80,9 +87,16 @@ const ServersSection = () => {
                           <Icon name="Users" size={16} className="text-accent" />
                           <span className="text-foreground/80">Онлайн: 189</span>
                         </div>
-                        <Button size="sm" className="bg-accent hover:bg-accent/90">
+                        <Button 
+                          size="sm" 
+                          className="bg-accent hover:bg-accent/90"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open('https://boosty.to/imunnsrp', '_blank');
+                          }}
+                        >
                           <Icon name="ShoppingCart" size={14} className="mr-1" />
-                          Купить
+                          Boosty
                         </Button>
                       </div>
                     </Card>
@@ -115,9 +129,16 @@ const ServersSection = () => {
                           <Icon name="Users" size={16} className="text-primary" />
                           <span className="text-foreground/80">Онлайн: 156</span>
                         </div>
-                        <Button size="sm" className="bg-primary hover:bg-primary/90">
+                        <Button 
+                          size="sm" 
+                          className="bg-primary hover:bg-primary/90"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open('https://boosty.to/imunnsrp', '_blank');
+                          }}
+                        >
                           <Icon name="ShoppingCart" size={14} className="mr-1" />
-                          Купить
+                          Boosty
                         </Button>
                       </div>
                     </Card>
@@ -150,9 +171,16 @@ const ServersSection = () => {
                           <Icon name="Users" size={16} className="text-accent" />
                           <span className="text-foreground/80">Онлайн: 43</span>
                         </div>
-                        <Button size="sm" className="bg-accent hover:bg-accent/90">
+                        <Button 
+                          size="sm" 
+                          className="bg-accent hover:bg-accent/90"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open('https://boosty.to/imunnsrp', '_blank');
+                          }}
+                        >
                           <Icon name="ShoppingCart" size={14} className="mr-1" />
-                          Купить
+                          Boosty
                         </Button>
                       </div>
                     </Card>
