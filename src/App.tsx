@@ -14,6 +14,10 @@ import Jobs from "./pages/Jobs";
 import Admin from "./pages/Admin";
 import AdminProfile from "./pages/AdminProfile";
 import Rules from "./pages/Rules";
+import GeneralRules from "./pages/rules/GeneralRules";
+import RpRules from "./pages/rules/RpRules";
+import CommunicationRules from "./pages/rules/CommunicationRules";
+import GameplayRules from "./pages/rules/GameplayRules";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ResetPassword from "./pages/ResetPassword";
@@ -48,6 +52,10 @@ const App = () => (
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/:username" element={<AdminProfile />} />
           <Route path="/rules" element={<Rules />} />
+          <Route path="/rules/general" element={<GeneralRules />} />
+          <Route path="/rules/rp" element={<RpRules />} />
+          <Route path="/rules/communication" element={<CommunicationRules />} />
+          <Route path="/rules/gameplay" element={<GameplayRules />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ResetPassword />} />

@@ -14,6 +14,7 @@ const Rules = () => {
       title: "Общие правила",
       icon: "BookOpen",
       color: "primary",
+      link: "/rules/general",
       rules: [
         "Уважайте других игроков и администрацию",
         "Запрещены оскорбления, мат и токсичное поведение",
@@ -26,6 +27,7 @@ const Rules = () => {
       title: "Правила РП",
       icon: "Users",
       color: "accent",
+      link: "/rules/rp",
       rules: [
         "Соблюдайте роль своего персонажа",
         "Не используйте мета-информацию (MetaGaming)",
@@ -38,6 +40,7 @@ const Rules = () => {
       title: "Правила общения",
       icon: "MessageSquare",
       color: "primary",
+      link: "/rules/communication",
       rules: [
         "Используйте голосовой чат для РП",
         "Не спамьте в чате",
@@ -50,6 +53,7 @@ const Rules = () => {
       title: "Игровой процесс",
       icon: "Gamepad2",
       color: "accent",
+      link: "/rules/gameplay",
       rules: [
         "Не создавайте лаги намеренно",
         "Запрещено гриферство",
@@ -132,12 +136,18 @@ const Rules = () => {
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
             {rulesCategories.map((category, index) => (
               <AnimatedCard key={index} delay={100 + index * 100}>
-                <Card className={`p-8 bg-card/50 backdrop-blur border-border/50 hover:border-${category.color}/50 hover:shadow-[0_0_30px_rgba(${category.color === 'primary' ? '168,85,247' : '236,72,153'},0.4)] transition-all h-full`}>
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className={`w-14 h-14 bg-${category.color}/20 rounded-lg flex items-center justify-center`}>
-                      <Icon name={category.icon as any} className={`text-${category.color}`} size={28} />
+                <Card 
+                  className={`p-8 bg-card/50 backdrop-blur border-border/50 hover:border-${category.color}/50 hover:shadow-[0_0_30px_rgba(${category.color === 'primary' ? '168,85,247' : '236,72,153'},0.4)] transition-all h-full cursor-pointer group`}
+                  onClick={() => window.location.href = category.link}
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-14 h-14 bg-${category.color}/20 rounded-lg flex items-center justify-center`}>
+                        <Icon name={category.icon as any} className={`text-${category.color}`} size={28} />
+                      </div>
+                      <h2 className="text-2xl font-bold">{category.title}</h2>
                     </div>
-                    <h2 className="text-2xl font-bold">{category.title}</h2>
+                    <Icon name="ChevronRight" className={`text-${category.color} group-hover:translate-x-1 transition-transform`} size={24} />
                   </div>
                   <ul className="space-y-3">
                     {category.rules.map((rule, idx) => (
@@ -147,6 +157,12 @@ const Rules = () => {
                       </li>
                     ))}
                   </ul>
+                  <div className="mt-6 pt-4 border-t border-border/30">
+                    <span className={`text-${category.color} text-sm font-semibold flex items-center gap-2`}>
+                      Читать подробнее
+                      <Icon name="ArrowRight" size={16} />
+                    </span>
+                  </div>
                 </Card>
               </AnimatedCard>
             ))}
