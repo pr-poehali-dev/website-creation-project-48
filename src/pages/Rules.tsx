@@ -11,7 +11,7 @@ import NewYearTimer from "@/components/NewYearTimer";
 const Rules = () => {
   const rulesCategories = [
     {
-      title: "Общие правила",
+      title: "Правила проекта Imunns",
       icon: "BookOpen",
       color: "primary",
       link: "/rules/general",
@@ -37,7 +37,7 @@ const Rules = () => {
       ]
     },
     {
-      title: "Правила общения",
+      title: "Игровой чат",
       icon: "MessageSquare",
       color: "primary",
       link: "/rules/communication",

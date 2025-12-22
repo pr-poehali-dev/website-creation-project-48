@@ -113,7 +113,7 @@ const GeneralRules = () => {
                 <Icon name="BookOpen" className="text-primary" size={64} />
               </div>
               <h1 className="text-4xl md:text-5xl font-black mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Общие правила
+                Правила проекта Imunns
               </h1>
               <p className="text-lg text-foreground/70">
                 Основные правила поведения на сервере

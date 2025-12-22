@@ -104,7 +104,7 @@ const CommunicationRules = () => {
                 <Icon name="MessageSquare" className="text-primary" size={64} />
               </div>
               <h1 className="text-4xl md:text-5xl font-black mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Правила общения
+                Игровой чат
               </h1>
               <p className="text-lg text-foreground/70">
                 Правила использования чатов и голосового общения
