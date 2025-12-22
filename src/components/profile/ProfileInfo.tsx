@@ -164,9 +164,17 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
             </div>
 
             {user.minecraftStats && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                <div className="bg-red-500/10 rounded-lg p-3 text-center">
-                  <div className="flex items-center justify-center gap-1 mb-1">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-xs md:text-sm font-medium text-muted-foreground">Статистика с сервера</label>
+                  <div className="flex items-center gap-1 text-xs text-green-500">
+                    <Icon name="RefreshCw" size={12} className="animate-spin-slow" />
+                    <span>Обновляется</span>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                  <div className="bg-red-500/10 rounded-lg p-3 text-center">
+                    <div className="flex items-center justify-center gap-1 mb-1">
                     <Icon name="Skull" size={16} className="text-red-400" />
                     <span className="text-lg font-bold">{user.minecraftStats.kills}</span>
                   </div>
@@ -193,6 +201,7 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
                   </div>
                   <p className="text-xs text-muted-foreground">Часов</p>
                 </div>
+              </div>
               </div>
             )}
 

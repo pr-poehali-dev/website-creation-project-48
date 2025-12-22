@@ -82,6 +82,12 @@ const Profile = () => {
     };
 
     fetchMinecraftStats();
+
+    const statsInterval = setInterval(() => {
+      fetchMinecraftStats();
+    }, 5 * 60 * 1000);
+
+    return () => clearInterval(statsInterval);
   }, [authUser, isAuthenticated]);
 
   const getProfileKey = (key: string) => {
