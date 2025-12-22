@@ -1,0 +1,21 @@
+{
+  "tests": [
+    {
+      "name": "Link Minecraft nickname",
+      "method": "POST",
+      "path": "/",
+      "headers": {
+        "X-User-Id": "1"
+      },
+      "body": {
+        "minecraft_nickname": "TestPlayer123"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "minecraft_nickname": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

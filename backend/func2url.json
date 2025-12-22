@@ -1,4 +1,6 @@
 {
+  "link-minecraft": "https://functions.poehali.dev/7cf6e151-ccda-43d2-b84d-e501f4e0f0ad",
+  "get-minecraft-stats": "https://functions.poehali.dev/1abf4743-7cec-4499-ba65-5e5fd96e949d",
   "update-profile": "https://functions.poehali.dev/dd58dbc7-c964-49c3-9170-3eaa7ca04eb0",
   "get-profile": "https://functions.poehali.dev/6c6ea4a5-9ef6-465d-9005-8da6bf34e9d3",
   "auth-register": "https://functions.poehali.dev/d6cb896c-6933-4be3-96dd-9e68283e9193",

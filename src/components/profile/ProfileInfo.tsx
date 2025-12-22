@@ -13,6 +13,13 @@ interface User {
   avatar: string;
   bio: string;
   selectedServer: string;
+  minecraft_nickname?: string | null;
+  minecraftStats?: {
+    kills: number;
+    deaths: number;
+    balance: number;
+    playtime_hours: number;
+  } | null;
 }
 
 interface ProfileInfoProps {
@@ -25,9 +32,10 @@ interface ProfileInfoProps {
   onDeleteProfile: () => void;
   onShowSettings: () => void;
   onShowFriends: () => void;
+  onLinkMinecraft: () => void;
 }
 
-const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onShowRewards, onDeleteProfile, onShowSettings, onShowFriends }: ProfileInfoProps) => {
+const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onShowRewards, onDeleteProfile, onShowSettings, onShowFriends, onLinkMinecraft }: ProfileInfoProps) => {
   return (
     <Card className="p-4 md:p-8 bg-card/80 backdrop-blur border-primary/20 shadow-2xl">
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
@@ -139,17 +147,67 @@ const ProfileInfo = ({ user, expProgress, maxLevel, onEditAvatar, onEditBio, onS
             </div>
           </div>
 
-          <div>
-            <div className="flex justify-between items-center mb-2">
-              <label className="text-xs md:text-sm font-medium text-muted-foreground">О себе</label>
-              <Button onClick={onEditBio} variant="ghost" size="sm" className="h-8">
-                <Icon name="Pencil" size={14} className="mr-1" />
-                <span className="hidden sm:inline">Изменить</span>
-              </Button>
+          <div className="space-y-3">
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <label className="text-xs md:text-sm font-medium text-muted-foreground">Minecraft никнейм</label>
+                {!user.minecraft_nickname && (
+                  <Button onClick={onLinkMinecraft} variant="ghost" size="sm" className="h-8">
+                    <Icon name="Link" size={14} className="mr-1" />
+                    <span className="hidden sm:inline">Привязать</span>
+                  </Button>
+                )}
+              </div>
+              <p className="text-sm md:text-base text-foreground bg-muted/50 rounded-lg p-2 md:p-3">
+                {user.minecraft_nickname || "Никнейм не привязан"}
+              </p>
             </div>
-            <p className="text-sm md:text-base text-foreground bg-muted/50 rounded-lg p-2 md:p-3 min-h-[50px] md:min-h-[60px]">
-              {user.bio || "Расскажите о себе..."}
-            </p>
+
+            {user.minecraftStats && (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                <div className="bg-red-500/10 rounded-lg p-3 text-center">
+                  <div className="flex items-center justify-center gap-1 mb-1">
+                    <Icon name="Skull" size={16} className="text-red-400" />
+                    <span className="text-lg font-bold">{user.minecraftStats.kills}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">Убийств</p>
+                </div>
+                <div className="bg-gray-500/10 rounded-lg p-3 text-center">
+                  <div className="flex items-center justify-center gap-1 mb-1">
+                    <Icon name="X" size={16} className="text-gray-400" />
+                    <span className="text-lg font-bold">{user.minecraftStats.deaths}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">Смертей</p>
+                </div>
+                <div className="bg-yellow-500/10 rounded-lg p-3 text-center">
+                  <div className="flex items-center justify-center gap-1 mb-1">
+                    <Icon name="Coins" size={16} className="text-yellow-400" />
+                    <span className="text-lg font-bold">{user.minecraftStats.balance.toLocaleString()}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">Деньги</p>
+                </div>
+                <div className="bg-blue-500/10 rounded-lg p-3 text-center">
+                  <div className="flex items-center justify-center gap-1 mb-1">
+                    <Icon name="Clock" size={16} className="text-blue-400" />
+                    <span className="text-lg font-bold">{user.minecraftStats.playtime_hours}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">Часов</p>
+                </div>
+              </div>
+            )}
+
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <label className="text-xs md:text-sm font-medium text-muted-foreground">О себе</label>
+                <Button onClick={onEditBio} variant="ghost" size="sm" className="h-8">
+                  <Icon name="Pencil" size={14} className="mr-1" />
+                  <span className="hidden sm:inline">Изменить</span>
+                </Button>
+              </div>
+              <p className="text-sm md:text-base text-foreground bg-muted/50 rounded-lg p-2 md:p-3 min-h-[50px] md:min-h-[60px]">
+                {user.bio || "Расскажите о себе..."}
+              </p>
+            </div>
           </div>
         </div>
       </div>

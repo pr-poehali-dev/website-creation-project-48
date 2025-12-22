@@ -17,6 +17,9 @@ const Profile = () => {
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [minecraftStats, setMinecraftStats] = useState<any>(null);
+  const [showMinecraftLinkDialog, setShowMinecraftLinkDialog] = useState(false);
+  const [minecraftNickname, setMinecraftNickname] = useState('');
 
   useEffect(() => {
     if (!isAuthenticated || !authUser) {
@@ -46,6 +49,39 @@ const Profile = () => {
     };
 
     fetchProfile();
+
+    const fetchMinecraftStats = async () => {
+      try {
+        const response = await fetch('https://functions.poehali.dev/1abf4743-7cec-4499-ba65-5e5fd96e949d', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-User-Id': authUser.id.toString()
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setMinecraftStats(data);
+          if (data.linked && data.minecraft_nickname) {
+            setUser((prev: any) => ({
+              ...prev,
+              minecraft_nickname: data.minecraft_nickname,
+              minecraftStats: {
+                kills: data.kills,
+                deaths: data.deaths,
+                balance: data.balance,
+                playtime_hours: data.playtime_hours
+              }
+            }));
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching Minecraft stats:', error);
+      }
+    };
+
+    fetchMinecraftStats();
   }, [authUser, isAuthenticated]);
 
   const getProfileKey = (key: string) => {
@@ -166,6 +202,43 @@ const Profile = () => {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showSettingsDialog, setShowSettingsDialog] = useState(false);
   const [showFriendsDialog, setShowFriendsDialog] = useState(false);
+
+  const handleLinkMinecraft = async () => {
+    if (!authUser || !minecraftNickname.trim()) return;
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/7cf6e151-ccda-43d2-b84d-e501f4e0f0ad', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-User-Id': authUser.id.toString()
+        },
+        body: JSON.stringify({
+          minecraft_nickname: minecraftNickname.trim()
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setUser((prev: any) => ({
+          ...prev,
+          minecraft_nickname: data.minecraft_nickname
+        }));
+        setShowMinecraftLinkDialog(false);
+        setMinecraftNickname('');
+        
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } else {
+        alert(data.error || 'Ошибка привязки никнейма');
+      }
+    } catch (error) {
+      console.error('Error linking Minecraft:', error);
+      alert('Ошибка соединения с сервером');
+    }
+  };
   const [bioText, setBioText] = useState(user.bio);
   const [selectedServer, setSelectedServer] = useState(() => {
     return parseInt(user.selectedServer);
@@ -323,6 +396,7 @@ const Profile = () => {
             setShowSettingsDialog(true);
           }}
           onShowFriends={() => setShowFriendsDialog(true)}
+          onLinkMinecraft={() => setShowMinecraftLinkDialog(true)}
         />
 
         <ProfileStats 
@@ -366,6 +440,42 @@ const Profile = () => {
         onClose={() => setShowFriendsDialog(false)}
         userId={user.userId}
       />
+
+      {showMinecraftLinkDialog && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-card rounded-lg p-6 max-w-md w-full border border-primary/20">
+            <h3 className="text-2xl font-bold mb-4 text-foreground">Привязать Minecraft никнейм</h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              Введите ваш игровой никнейм для синхронизации статистики с сервера
+            </p>
+            <input
+              type="text"
+              value={minecraftNickname}
+              onChange={(e) => setMinecraftNickname(e.target.value)}
+              placeholder="Ваш никнейм"
+              className="w-full px-4 py-2 rounded-lg bg-muted border border-border focus:outline-none focus:border-primary mb-4"
+            />
+            <div className="flex gap-2">
+              <button
+                onClick={handleLinkMinecraft}
+                disabled={!minecraftNickname.trim()}
+                className="flex-1 bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Привязать
+              </button>
+              <button
+                onClick={() => {
+                  setShowMinecraftLinkDialog(false);
+                  setMinecraftNickname('');
+                }}
+                className="flex-1 bg-muted text-foreground px-4 py-2 rounded-lg hover:bg-muted/80"
+              >
+                Отмена
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
