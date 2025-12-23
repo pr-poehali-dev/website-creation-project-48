@@ -31,7 +31,6 @@ const Admin = () => {
           </a>
           <div className="hidden md:flex items-center gap-2">
             <a href="/forum" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Форум</a>
-            <a href="/stats" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Топ игроков</a>
             <a href="/jobs" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Работа</a>
             <a href="/admin" className="px-4 py-2 rounded-full text-sm font-semibold bg-primary/10 border border-primary/40 text-foreground hover:bg-primary/15 transition-all">Администрация</a>
             <a href="/rules" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Правила</a>
@@ -70,7 +69,6 @@ const Admin = () => {
             <div className="fixed top-16 left-0 right-0 bg-card/95 backdrop-blur-lg border-b border-border/50 z-40 animate-in slide-in-from-top md:hidden">
               <div className="container mx-auto px-4 py-6 space-y-3">
                 <a href="/forum" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Форум</a>
-                <a href="/stats" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Топ игроков</a>
                 <a href="/jobs" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Работа</a>
                 <a href="/admin" className="block py-3 px-4 rounded-lg text-foreground bg-primary/10 border border-primary/40 hover:bg-primary/15 transition-all" onClick={() => setMobileMenuOpen(false)}>Администрация</a>
                 <a href="/rules" className="block py-3 px-4 rounded-lg text-foreground hover:bg-primary/10 transition-all" onClick={() => setMobileMenuOpen(false)}>Правила</a>
