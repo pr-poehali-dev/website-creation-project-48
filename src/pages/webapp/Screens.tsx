@@ -25,6 +25,8 @@ const Screens = () => {
     description: "",
     image_url: "",
   });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string>("");
   const { toast } = useToast();
 
   const servers = [
@@ -58,6 +60,40 @@ const Screens = () => {
     loadScreenshots(selectedServer);
   }, [selectedServer]);
 
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: "Ошибка",
+        description: "Выберите файл изображения",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      toast({
+        title: "Ошибка",
+        description: "Размер файла не должен превышать 10 МБ",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setSelectedFile(file);
+    
+    // Create preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreviewUrl(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleUpload = async () => {
     const userId = localStorage.getItem("userId");
     const username = localStorage.getItem("username");
@@ -73,10 +109,10 @@ const Screens = () => {
       return;
     }
 
-    if (!uploadData.title || !uploadData.image_url) {
+    if (!uploadData.title || !selectedFile) {
       toast({
         title: "Ошибка",
-        description: "Заполните название и ссылку на изображение",
+        description: "Заполните название и выберите изображение",
         variant: "destructive",
       });
       return;
@@ -84,6 +120,42 @@ const Screens = () => {
 
     setLoading(true);
     try {
+      // First, upload image to S3
+      const reader = new FileReader();
+      reader.readAsDataURL(selectedFile);
+      
+      const imageBase64 = await new Promise<string>((resolve) => {
+        reader.onloadend = () => resolve(reader.result as string);
+      });
+
+      const uploadResponse = await fetch(
+        "https://functions.poehali.dev/d20af29d-16c3-4dcd-a301-d02c1f0422fd",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            image: imageBase64,
+          }),
+        }
+      );
+
+      if (!uploadResponse.ok) {
+        const error = await uploadResponse.json();
+        toast({
+          title: "Ошибка загрузки",
+          description: error.error || "Не удалось загрузить изображение",
+          variant: "destructive",
+        });
+        setLoading(false);
+        return;
+      }
+
+      const uploadResult = await uploadResponse.json();
+      const imageUrl = uploadResult.url;
+
+      // Then, save screenshot data
       const response = await fetch(
         "https://functions.poehali.dev/4547bc93-b031-4f90-affa-2025df5e20dc",
         {
@@ -97,7 +169,7 @@ const Screens = () => {
             server_id: selectedServer,
             title: uploadData.title,
             description: uploadData.description,
-            image_url: uploadData.image_url,
+            image_url: imageUrl,
           }),
         }
       );
@@ -109,6 +181,8 @@ const Screens = () => {
         });
         setUploadModalOpen(false);
         setUploadData({ title: "", description: "", image_url: "" });
+        setSelectedFile(null);
+        setPreviewUrl("");
         loadScreenshots(selectedServer);
       } else {
         const error = await response.json();
@@ -270,21 +344,31 @@ const Screens = () => {
 
               <div>
                 <label className="block text-sm font-medium mb-2">
-                  Ссылка на изображение
+                  Изображение
                 </label>
+                <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer"
+                     onClick={() => document.getElementById('file-input')?.click()}>
+                  {previewUrl ? (
+                    <div className="space-y-3">
+                      <img src={previewUrl} alt="Preview" className="max-h-48 mx-auto rounded-lg" />
+                      <p className="text-sm text-foreground/70">{selectedFile?.name}</p>
+                      <p className="text-xs text-foreground/50">{(selectedFile!.size / 1024 / 1024).toFixed(2)} МБ</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      <Icon name="Upload" size={48} className="text-foreground/30 mx-auto" />
+                      <p className="text-foreground/70">Нажмите для выбора файла</p>
+                      <p className="text-sm text-foreground/50">JPG, PNG, GIF до 10 МБ</p>
+                    </div>
+                  )}
+                </div>
                 <input
-                  type="url"
-                  value={uploadData.image_url}
-                  onChange={(e) =>
-                    setUploadData({ ...uploadData, image_url: e.target.value })
-                  }
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-primary transition-colors"
-                  placeholder="https://example.com/image.jpg"
-                  required
+                  id="file-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileSelect}
+                  className="hidden"
                 />
-                <p className="text-xs text-foreground/50 mt-1">
-                  Загрузите изображение на любой хостинг (Imgur, Discord и т.д.)
-                </p>
               </div>
 
               <div className="flex gap-3 pt-4">
