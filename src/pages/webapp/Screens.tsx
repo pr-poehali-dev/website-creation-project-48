@@ -40,7 +40,7 @@ const Screens = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://functions.poehali.dev/4547bc93-b031-4f90-affa-2025df5e20dc?server_id=${serverId}`
+        `https://functions.poehali.dev/bc6705e5-4fca-4a0e-95cc-24fbe627eef2?server_id=${serverId}&status=approved`
       );
       const data = await response.json();
       setScreenshots(data);
@@ -157,7 +157,7 @@ const Screens = () => {
 
       // Then, save screenshot data
       const response = await fetch(
-        "https://functions.poehali.dev/4547bc93-b031-4f90-affa-2025df5e20dc",
+        "https://functions.poehali.dev/bc6705e5-4fca-4a0e-95cc-24fbe627eef2",
         {
           method: "POST",
           headers: {
