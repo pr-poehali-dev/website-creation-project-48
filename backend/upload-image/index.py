@@ -57,12 +57,10 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'body': json.dumps({'error': 'Image too large. Max 10MB'})
             }
         
-        s3_key = os.environ.get('S3_ACCESS_KEY_ID')
-        s3_secret = os.environ.get('S3_SECRET_ACCESS_KEY')
-        s3_bucket = os.environ.get('S3_BUCKET_NAME')
-        s3_endpoint = os.environ.get('S3_ENDPOINT_URL')
+        s3_key = os.environ.get('AWS_ACCESS_KEY_ID')
+        s3_secret = os.environ.get('AWS_SECRET_ACCESS_KEY')
         
-        if not all([s3_key, s3_secret, s3_bucket, s3_endpoint]):
+        if not s3_key or not s3_secret:
             return {
                 'statusCode': 500,
                 'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
@@ -71,10 +69,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         
         s3_client = boto3.client(
             's3',
-            endpoint_url=s3_endpoint,
+            endpoint_url='https://bucket.poehali.dev',
             aws_access_key_id=s3_key,
-            aws_secret_access_key=s3_secret,
-            region_name='ru-central1'
+            aws_secret_access_key=s3_secret
         )
         
         file_name = f"screenshots/{uuid.uuid4()}.{file_extension}"
@@ -89,14 +86,13 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         content_type = content_types.get(file_extension.lower(), 'image/jpeg')
         
         s3_client.put_object(
-            Bucket=s3_bucket,
+            Bucket='files',
             Key=file_name,
             Body=image_bytes,
-            ContentType=content_type,
-            ACL='public-read'
+            ContentType=content_type
         )
         
-        public_url = f"{s3_endpoint}/{s3_bucket}/{file_name}"
+        public_url = f"https://cdn.poehali.dev/projects/{s3_key}/bucket/{file_name}"
         
         return {
             'statusCode': 200,

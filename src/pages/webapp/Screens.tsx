@@ -129,7 +129,7 @@ const Screens = () => {
       });
 
       const uploadResponse = await fetch(
-        "https://functions.poehali.dev/d20af29d-16c3-4dcd-a301-d02c1f0422fd",
+        "https://functions.poehali.dev/4454d3cd-9691-49f8-a3a2-bd1cc619abb8",
         {
           method: "POST",
           headers: {
