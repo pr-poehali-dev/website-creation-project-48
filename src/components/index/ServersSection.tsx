@@ -245,9 +245,9 @@ const ServersSection = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <AnimatedCard delay={0}>
               <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full">
-                <Icon name="Book" className="text-primary mb-4" size={32} />
-                <h3 className="text-xl font-bold mb-2">Квесты</h3>
-                <p className="text-foreground/70">Гайды по прохождению сюжетных заданий</p>
+                <Icon name="Blocks" className="text-primary mb-4" size={32} />
+                <h3 className="text-xl font-bold mb-2">Моды</h3>
+                <p className="text-foreground/70">Список модификаций на сервере</p>
               </Card>
             </AnimatedCard>
             <AnimatedCard delay={100}>
