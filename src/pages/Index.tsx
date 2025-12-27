@@ -64,16 +64,6 @@ const Index = () => {
         threshold={threshold} 
         isRefreshing={isRefreshing} 
       />
-      
-      {/* Пиксельный снеговик - новогоднее украшение */}
-      <div className="fixed bottom-8 right-8 z-50 animate-bounce-slow pointer-events-none">
-        <img 
-          src="https://cdn.poehali.dev/files/b2f336f5fc660c0d1886fe90f221ad2f.jpg" 
-          alt="Новогодний снеговик"
-          className="w-32 h-auto drop-shadow-2xl"
-        />
-      </div>
-      
       <IndexNavigation isLoggedIn={isAuthenticated} />
 
       <HeroSection 
