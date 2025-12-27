@@ -244,10 +244,13 @@ const ServersSection = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <AnimatedCard delay={0}>
-              <Card className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full">
-                <Icon name="Blocks" className="text-primary mb-4" size={32} />
+              <Card 
+                className="p-6 bg-gradient-to-br from-card/50 to-primary/5 backdrop-blur border-border/50 hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full cursor-pointer"
+                onClick={() => window.open('https://disk.yandex.ru/d/3CuMT2_cBmxMZA', '_blank')}
+              >
+                <Icon name="Download" className="text-primary mb-4" size={32} />
                 <h3 className="text-xl font-bold mb-2">Моды</h3>
-                <p className="text-foreground/70">Список модификаций на сервере</p>
+                <p className="text-foreground/70">Скачать сборку модов (35.9 MB)</p>
               </Card>
             </AnimatedCard>
             <AnimatedCard delay={100}>
