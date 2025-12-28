@@ -60,7 +60,7 @@ const ServersSection = () => {
                     <p className="font-semibold mb-2 text-base">🎮 Основной сервер</p>
                     <p className="text-sm text-foreground/90 mb-3">Добро пожаловать на наш уникальный Minecraft-сервер с роле-плей системой! Здесь у вас есть возможность стать кем угодно — будь то могущественный маг, отважный воин, талантливый фермер или бизнесмен. </p>
                     <div className="space-y-1 border-t border-border/30 pt-2">
-                      <p className="text-sm text-foreground/80"><span className="font-semibold">IP:</span> play.imunns.ru</p>
+                      <p className="text-sm text-foreground/80"><span className="font-semibold">IP:</span> imunnsrp.my-craft.cc</p>
                       <p className="text-sm text-foreground/80"><span className="font-semibold">Версия:</span> 1.20.1</p>
                       <p className="text-sm text-foreground/80"><span className="font-semibold">Режим:</span> RolePlay</p>
                     </div>

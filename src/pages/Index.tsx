@@ -23,7 +23,7 @@ const Index = () => {
   const fetchServerStatus = async () => {
     setServerStatus('loading');
       try {
-        const response = await fetch(`${API_URLS.minecraftStatus}?host=imunnsrp.ru&port=25565`);
+        const response = await fetch(`${API_URLS.minecraftStatus}?host=imunnsrp.my-craft.cc&port=25565`);
         
         if (response.status === 402) {
           setServerStatus('offline');
