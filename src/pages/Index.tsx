@@ -8,6 +8,7 @@ import Icon from "@/components/ui/icon";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
 import NewYearTimer from "@/components/NewYearTimer";
+import LiveServerStats from "@/components/stats/LiveServerStats";
 import { useEffect, useState } from "react";
 import { API_URLS } from "@/config/api";
 import { useAuth } from "@/contexts/AuthContext";
@@ -77,6 +78,22 @@ const Index = () => {
           <NewYearTimer />
         </div>
       </div>
+
+      <section className="py-12 relative z-10">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Статистика серверов
+            </h2>
+            <p className="text-foreground/70 text-base md:text-lg">
+              Актуальная информация в реальном времени
+            </p>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <LiveServerStats />
+          </div>
+        </div>
+      </section>
 
       <ServersSection />
 
