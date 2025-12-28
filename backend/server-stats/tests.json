@@ -1,0 +1,11 @@
+{
+  "tests": [
+    {
+      "name": "Get server stats",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "bodyMatcher": "skip"
+    }
+  ]
+}
