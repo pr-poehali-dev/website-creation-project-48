@@ -16,13 +16,13 @@ const ServersSection = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Наши Сервера
+              Наш Сервер
             </h2>
             <p className="text-foreground/70 text-base md:text-lg">
-              Выбери свой сервер и начни приключение
+              Присоединяйся к приключению
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-20">
+          <div className="max-w-md mx-auto mb-20">
             <AnimatedCard delay={0}>
               <TooltipProvider>
                 <Tooltip>
@@ -64,132 +64,6 @@ const ServersSection = () => {
                       <p className="text-sm text-foreground/80"><span className="font-semibold">Версия:</span> 1.20.1</p>
                       <p className="text-sm text-foreground/80"><span className="font-semibold">Режим:</span> RolePlay</p>
                     </div>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </AnimatedCard>
-            <AnimatedCard delay={100}>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Card 
-                      className="p-6 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all h-full cursor-pointer"
-                      onClick={() => window.location.href = '/buy'}
-                    >
-                      <div className="flex items-center justify-between mb-4">
-                        <Icon name="Server" className="text-accent" size={32} />
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2">ISWAR</h3>
-                      <p className="text-foreground/70 mb-4">PvP арена и турниры</p>
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2 text-sm">
-                          <Icon name="Users" size={16} className="text-accent" />
-                          <span className="text-foreground/80">Онлайн: 189</span>
-                        </div>
-                        <Button 
-                          size="sm" 
-                          className="bg-accent hover:bg-accent/90"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open('https://boosty.to/imunnsrp', '_blank');
-                          }}
-                        >
-                          <Icon name="ShoppingCart" size={14} className="mr-1" />
-                          Boosty
-                        </Button>
-                      </div>
-                    </Card>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" className="max-w-xs bg-card/95 backdrop-blur border-accent/50 shadow-[0_0_20px_rgba(236,72,153,0.4)]">
-                    <p className="font-semibold mb-1">⚔️ PvP Сервер</p>
-                    <p className="text-sm text-foreground/80">IP: pvp.imunns.ru</p>
-                    <p className="text-sm text-foreground/80">Версия: 1.20.1</p>
-                    <p className="text-sm text-foreground/80">Режим: PvP Arena</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </AnimatedCard>
-            <AnimatedCard delay={200}>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Card 
-                      className="p-6 bg-gradient-to-br from-card/50 to-primary/10 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] transition-all h-full cursor-pointer"
-                      onClick={() => window.location.href = '/buy'}
-                    >
-                      <div className="flex items-center justify-between mb-4">
-                        <Icon name="Server" className="text-primary" size={32} />
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2">Сервер #3</h3>
-                      <p className="text-foreground/70 mb-4">Ролевой сервер</p>
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2 text-sm">
-                          <Icon name="Users" size={16} className="text-primary" />
-                          <span className="text-foreground/80">Онлайн: 156</span>
-                        </div>
-                        <Button 
-                          size="sm" 
-                          className="bg-primary hover:bg-primary/90"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open('https://boosty.to/imunnsrp', '_blank');
-                          }}
-                        >
-                          <Icon name="ShoppingCart" size={14} className="mr-1" />
-                          Boosty
-                        </Button>
-                      </div>
-                    </Card>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" className="max-w-xs bg-card/95 backdrop-blur border-primary/50 shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-                    <p className="font-semibold mb-1">🎭 Ролевой Сервер</p>
-                    <p className="text-sm text-foreground/80">IP: rp.imunns.ru</p>
-                    <p className="text-sm text-foreground/80">Версия: 1.19.4</p>
-                    <p className="text-sm text-foreground/80">Режим: Hardcore RP</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </AnimatedCard>
-            <AnimatedCard delay={300}>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Card 
-                      className="p-6 bg-gradient-to-br from-card/50 to-accent/10 backdrop-blur border-border/50 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all h-full cursor-pointer"
-                      onClick={() => window.location.href = '/buy'}
-                    >
-                      <div className="flex items-center justify-between mb-4">
-                        <Icon name="Server" className="text-accent" size={32} />
-                        <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2">Сервер #4</h3>
-                      <p className="text-foreground/70 mb-4">Тестовый сервер</p>
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2 text-sm">
-                          <Icon name="Users" size={16} className="text-accent" />
-                          <span className="text-foreground/80">Онлайн: 43</span>
-                        </div>
-                        <Button 
-                          size="sm" 
-                          className="bg-accent hover:bg-accent/90"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open('https://boosty.to/imunnsrp', '_blank');
-                          }}
-                        >
-                          <Icon name="ShoppingCart" size={14} className="mr-1" />
-                          Boosty
-                        </Button>
-                      </div>
-                    </Card>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" className="max-w-xs bg-card/95 backdrop-blur border-accent/50 shadow-[0_0_20px_rgba(236,72,153,0.4)]">
-                    <p className="font-semibold mb-1">🧪 Тестовый Сервер</p>
-                    <p className="text-sm text-foreground/80">IP: test.imunns.ru</p>
-                    <p className="text-sm text-foreground/80">Версия: 1.21-snapshot</p>
-                    <p className="text-sm text-foreground/80">Режим: Experimental</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
