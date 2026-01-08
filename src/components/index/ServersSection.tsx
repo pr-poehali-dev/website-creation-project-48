@@ -89,40 +89,6 @@ const ServersSection = () => {
               </TooltipProvider>
             </AnimatedCard>
           </div>
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Форум
-            </h2>
-            <p className="text-foreground/70 text-lg">
-              Общайся с игроками, делись опытом и находи новых друзей
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            <AnimatedCard delay={0}>
-              <Card 
-                className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full cursor-pointer"
-                onClick={() => window.location.href = '/forum'}
-              >
-                <Icon name="MessageSquare" className="text-primary mb-4" size={32} />
-                <h3 className="text-xl font-bold mb-2">Обсуждения</h3>
-                <p className="text-foreground/70">Последние темы и горячие обсуждения сообщества</p>
-              </Card>
-            </AnimatedCard>
-            <AnimatedCard delay={100}>
-              <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all h-full">
-                <Icon name="HelpCircle" className="text-accent mb-4" size={32} />
-                <h3 className="text-xl font-bold mb-2">Помощь</h3>
-                <p className="text-foreground/70">Получи ответы на вопросы от опытных игроков</p>
-              </Card>
-            </AnimatedCard>
-            <AnimatedCard delay={200}>
-              <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all h-full">
-                <Icon name="Trophy" className="text-primary mb-4" size={32} />
-                <h3 className="text-xl font-bold mb-2">Достижения</h3>
-                <p className="text-foreground/70">Делись своими успехами и историями</p>
-              </Card>
-            </AnimatedCard>
-          </div>
         </div>
       </section>
 
