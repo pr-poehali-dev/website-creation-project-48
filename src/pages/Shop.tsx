@@ -8,7 +8,7 @@ import SpaceBackground from "@/components/SpaceBackground";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
 import SnowText from "@/components/SnowText";
-import NewYearTimer from "@/components/NewYearTimer";
+
 
 interface CartItem {
   id: number;
@@ -234,10 +234,6 @@ const Shop = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-full mb-8">
               <Icon name="Truck" size={16} className="text-primary" />
               <span className="text-sm text-foreground/70">Бесплатная доставка от 3000₽</span>
-            </div>
-            
-            <div className="max-w-4xl mx-auto mt-8">
-              <NewYearTimer />
             </div>
           </div>
 

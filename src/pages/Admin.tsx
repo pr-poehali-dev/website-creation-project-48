@@ -7,7 +7,7 @@ import AnimatedCard from "@/components/AnimatedCard";
 import SpaceBackground from "@/components/SpaceBackground";
 import Fireworks from "@/components/Fireworks";
 import Snowflakes from "@/components/Snowflakes";
-import NewYearTimer from "@/components/NewYearTimer";
+
 
 const Admin = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -97,10 +97,6 @@ const Admin = () => {
             <p className="text-foreground/70 text-base md:text-lg">
               Команда, которая делает сервер лучше каждый день
             </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto mb-8 md:mb-12">
-            <NewYearTimer />
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
