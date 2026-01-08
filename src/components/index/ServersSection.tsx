@@ -42,7 +42,7 @@ const ServersSection = () => {
                         <Icon name="Globe" size={18} className="text-primary" />
                         <div className="flex-1">
                           <p className="text-xs text-foreground/60 mb-0.5">IP адрес сервера</p>
-                          <p className="text-sm font-mono font-semibold text-foreground">imunnsrp.my-craft.cc</p>
+                          <p className="text-sm font-mono font-semibold text-foreground">185.9.145.175:26068</p>
                           <p className="text-xs text-foreground/50 mt-1">Версия: 1.20.1</p>
                         </div>
                         <Button
@@ -51,7 +51,7 @@ const ServersSection = () => {
                           className="h-8 w-8 p-0"
                           onClick={(e) => {
                             e.stopPropagation();
-                            navigator.clipboard.writeText('imunnsrp.my-craft.cc');
+                            navigator.clipboard.writeText('185.9.145.175:26068');
                           }}
                         >
                           <Icon name="Copy" size={14} />
