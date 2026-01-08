@@ -37,6 +37,26 @@ const ServersSection = () => {
                       </div>
                       <h3 className="text-2xl font-bold mb-2">Imunns role play</h3>
                       <p className="text-foreground/70 mb-4">Добро пожаловать на наш уникальный Minecraft-сервер с роле-плей системой! </p>
+                      
+                      <div className="flex items-center gap-2 mb-4 p-3 bg-background/30 rounded-lg border border-primary/20">
+                        <Icon name="Globe" size={18} className="text-primary" />
+                        <div className="flex-1">
+                          <p className="text-xs text-foreground/60 mb-0.5">IP адрес сервера</p>
+                          <p className="text-sm font-mono font-semibold text-foreground">imunnsrp.my-craft.cc</p>
+                        </div>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="h-8 w-8 p-0"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigator.clipboard.writeText('imunnsrp.my-craft.cc');
+                          }}
+                        >
+                          <Icon name="Copy" size={14} />
+                        </Button>
+                      </div>
+                      
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2 text-sm">
                           <Icon name="Users" size={16} className="text-primary" />
