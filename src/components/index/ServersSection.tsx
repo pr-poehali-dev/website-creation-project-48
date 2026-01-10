@@ -57,6 +57,25 @@ const ServersSection = () => {
                           <Icon name="Copy" size={14} />
                         </Button>
                       </div>
+
+                      <div className="flex items-center gap-2 mb-4 p-3 bg-background/30 rounded-lg border border-primary/20">
+                        <Icon name="UserPlus" size={18} className="text-primary" />
+                        <div className="flex-1">
+                          <p className="text-xs text-foreground/60 mb-0.5">Добавить друга</p>
+                          <p className="text-sm font-mono font-semibold text-foreground">ImUnNsRp</p>
+                        </div>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="h-8 w-8 p-0"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigator.clipboard.writeText('ImUnNsRp');
+                          }}
+                        >
+                          <Icon name="Copy" size={14} />
+                        </Button>
+                      </div>
                       
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2 text-sm">
