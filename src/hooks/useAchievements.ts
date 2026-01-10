@@ -13,16 +13,17 @@ export const useAchievements = () => {
   const [claimedCount, setClaimedCount] = useState(0);
   const [playerNickname, setPlayerNickname] = useState<string | null>(null);
 
-  const [achievements, setAchievements] = useState<Achievement[]>(() => {
-    const saved = localStorage.getItem('achievements');
-    return saved ? JSON.parse(saved) : initialAchievements;
-  });
+  const [achievements, setAchievements] = useState<Achievement[]>(initialAchievements);
 
   useEffect(() => {
     const nickname = localStorage.getItem('minecraft_nickname');
-    if (nickname) {
+    const isLocked = localStorage.getItem('minecraft_nickname_locked');
+    
+    if (nickname && isLocked === 'true') {
       setPlayerNickname(nickname);
       loadServerAchievements(nickname);
+    } else {
+      setAchievements(initialAchievements);
     }
   }, []);
 
@@ -31,15 +32,13 @@ export const useAchievements = () => {
       const serverData = await achievementsApi.getPlayerAchievements(nickname);
       const merged = achievementsApi.mergeAchievements(initialAchievements, serverData);
       setAchievements(merged);
-      localStorage.setItem('achievements', JSON.stringify(merged));
     } catch (error) {
       console.error('Failed to load server achievements:', error);
+      setAchievements(initialAchievements);
     }
   };
 
   useEffect(() => {
-    localStorage.setItem('achievements', JSON.stringify(achievements));
-    
     const claimed = achievements.filter(a => a.claimed).length;
     setClaimedCount(claimed);
     
@@ -58,7 +57,7 @@ export const useAchievements = () => {
   const totalCount = achievements.length;
 
   const claimReward = async (achievement: Achievement) => {
-    if (!achievement.unlocked || achievement.claimed) return;
+    if (!achievement.unlocked || achievement.claimed || !playerNickname) return;
     
     setCurrentReward(achievement);
     setShowRewardModal(true);
@@ -69,18 +68,28 @@ export const useAchievements = () => {
       )
     );
 
-    if (playerNickname) {
-      try {
-        await achievementsApi.claimAchievement(playerNickname, achievement.id);
-      } catch (error) {
-        console.error('Failed to sync claim to server:', error);
-      }
+    try {
+      await achievementsApi.claimAchievement(playerNickname, achievement.id);
+    } catch (error) {
+      console.error('Failed to sync claim to server:', error);
+      setAchievements(prev => 
+        prev.map(a => 
+          a.id === achievement.id ? { ...a, claimed: false } : a
+        )
+      );
     }
   };
 
-  const handleNicknameSet = (nickname: string) => {
+  const handleNicknameSet = async (nickname: string) => {
+    const isLocked = localStorage.getItem('minecraft_nickname_locked');
+    
+    if (isLocked === 'true' && playerNickname && playerNickname !== nickname) {
+      console.error('Nickname already locked');
+      return;
+    }
+    
     setPlayerNickname(nickname);
-    loadServerAchievements(nickname);
+    await loadServerAchievements(nickname);
   };
 
   return {
