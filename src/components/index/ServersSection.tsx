@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
@@ -10,6 +11,33 @@ import {
 } from "@/components/ui/tooltip";
 
 const ServersSection = () => {
+  const [serverStatus, setServerStatus] = useState({
+    online: false,
+    players: 0,
+    max_players: 0,
+    version: 'Загрузка...'
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchServerStatus = async () => {
+      try {
+        const response = await fetch('https://functions.poehali.dev/f7cdc492-b60d-44fb-b955-fa8795f2ea43');
+        const data = await response.json();
+        setServerStatus(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to fetch server status:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchServerStatus();
+    const interval = setInterval(fetchServerStatus, 30000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <section className="py-20 relative z-10">
@@ -43,7 +71,12 @@ const ServersSection = () => {
                         <div className="flex-1">
                           <p className="text-xs text-foreground/60 mb-0.5">IP адрес сервера</p>
                           <p className="text-sm font-mono font-semibold text-foreground">185.9.145.175:26068</p>
-                          <p className="text-xs text-foreground/50 mt-1">Версия: 1.20.1</p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <div className={`w-2 h-2 rounded-full ${serverStatus.online ? 'bg-green-400 animate-pulse' : 'bg-red-400'}`}></div>
+                            <p className="text-xs text-foreground/50">
+                              {loading ? 'Проверка...' : serverStatus.online ? `Онлайн: ${serverStatus.players}/${serverStatus.max_players} · ${serverStatus.version}` : 'Оффлайн'}
+                            </p>
+                          </div>
                         </div>
                         <Button
                           size="sm"
@@ -80,7 +113,9 @@ const ServersSection = () => {
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2 text-sm">
                           <Icon name="Users" size={16} className="text-primary" />
-                          <span className="text-foreground/80">Онлайн: 247</span>
+                          <span className="text-foreground/80">
+                            {loading ? 'Загрузка...' : serverStatus.online ? `Онлайн: ${serverStatus.players}` : 'Сервер оффлайн'}
+                          </span>
                         </div>
                         <Button 
                           size="sm" 

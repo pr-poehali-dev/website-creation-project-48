@@ -1,0 +1,16 @@
+{
+  "tests": [
+    {
+      "name": "Get Minecraft server status",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "online": "boolean",
+        "players": "number",
+        "max_players": "number"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
