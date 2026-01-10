@@ -20,7 +20,8 @@ const Achievements = () => {
     categories,
     unlockedCount,
     totalCount,
-    claimReward
+    claimReward,
+    handleNicknameSet
   } = useAchievements();
 
   return (
@@ -34,6 +35,7 @@ const Achievements = () => {
         totalGems={totalGems}
         totalExp={totalExp}
         totalCoins={totalCoins}
+        onNicknameSet={handleNicknameSet}
       />
 
       <AchievementsList

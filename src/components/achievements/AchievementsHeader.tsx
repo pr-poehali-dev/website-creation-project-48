@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import NicknameInput from "./NicknameInput";
 
 interface AchievementsHeaderProps {
   unlockedCount: number;
@@ -9,6 +10,7 @@ interface AchievementsHeaderProps {
   totalGems: number;
   totalExp: number;
   totalCoins: number;
+  onNicknameSet: (nickname: string) => void;
 }
 
 const AchievementsHeader = ({
@@ -17,7 +19,8 @@ const AchievementsHeader = ({
   claimedCount,
   totalGems,
   totalExp,
-  totalCoins
+  totalCoins,
+  onNicknameSet
 }: AchievementsHeaderProps) => {
   return (
     <>
@@ -65,6 +68,10 @@ const AchievementsHeader = ({
             <p className="text-foreground/70 text-lg">
               Открыто {unlockedCount} из {totalCount} достижений · Получено наград: {claimedCount}
             </p>
+            
+            <div className="mt-6">
+              <NicknameInput onNicknameSet={onNicknameSet} />
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
               <Card className="p-4 bg-gradient-to-br from-purple-500/20 to-purple-600/10 border-purple-400/50">

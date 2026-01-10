@@ -1,0 +1,46 @@
+{
+  "tests": [
+    {
+      "name": "Get achievements for player",
+      "method": "GET",
+      "path": "/?nickname=TestPlayer",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "nickname": "string",
+        "achievements": "array"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Update player achievement",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "nickname": "TestPlayer",
+        "achievement_id": 1,
+        "unlocked": true,
+        "progress": 100
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Claim achievement reward",
+      "method": "PUT",
+      "path": "/",
+      "body": {
+        "nickname": "TestPlayer",
+        "achievement_id": 1,
+        "claimed": true
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

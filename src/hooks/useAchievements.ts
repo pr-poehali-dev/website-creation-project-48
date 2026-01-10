@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Achievement } from "@/types/Achievement";
 import { initialAchievements } from "@/data/achievementsData";
+import { achievementsApi } from "@/services/achievementsApi";
 
 export const useAchievements = () => {
   const [selectedCategory, setSelectedCategory] = useState("Все");
@@ -10,11 +11,31 @@ export const useAchievements = () => {
   const [totalExp, setTotalExp] = useState(0);
   const [totalCoins, setTotalCoins] = useState(0);
   const [claimedCount, setClaimedCount] = useState(0);
+  const [playerNickname, setPlayerNickname] = useState<string | null>(null);
 
   const [achievements, setAchievements] = useState<Achievement[]>(() => {
     const saved = localStorage.getItem('achievements');
     return saved ? JSON.parse(saved) : initialAchievements;
   });
+
+  useEffect(() => {
+    const nickname = localStorage.getItem('minecraft_nickname');
+    if (nickname) {
+      setPlayerNickname(nickname);
+      loadServerAchievements(nickname);
+    }
+  }, []);
+
+  const loadServerAchievements = async (nickname: string) => {
+    try {
+      const serverData = await achievementsApi.getPlayerAchievements(nickname);
+      const merged = achievementsApi.mergeAchievements(initialAchievements, serverData);
+      setAchievements(merged);
+      localStorage.setItem('achievements', JSON.stringify(merged));
+    } catch (error) {
+      console.error('Failed to load server achievements:', error);
+    }
+  };
 
   useEffect(() => {
     localStorage.setItem('achievements', JSON.stringify(achievements));
@@ -36,7 +57,7 @@ export const useAchievements = () => {
   const unlockedCount = achievements.filter(a => a.unlocked).length;
   const totalCount = achievements.length;
 
-  const claimReward = (achievement: Achievement) => {
+  const claimReward = async (achievement: Achievement) => {
     if (!achievement.unlocked || achievement.claimed) return;
     
     setCurrentReward(achievement);
@@ -47,6 +68,19 @@ export const useAchievements = () => {
         a.id === achievement.id ? { ...a, claimed: true } : a
       )
     );
+
+    if (playerNickname) {
+      try {
+        await achievementsApi.claimAchievement(playerNickname, achievement.id);
+      } catch (error) {
+        console.error('Failed to sync claim to server:', error);
+      }
+    }
+  };
+
+  const handleNicknameSet = (nickname: string) => {
+    setPlayerNickname(nickname);
+    loadServerAchievements(nickname);
   };
 
   return {
@@ -63,6 +97,7 @@ export const useAchievements = () => {
     categories,
     unlockedCount,
     totalCount,
-    claimReward
+    claimReward,
+    handleNicknameSet
   };
 };
