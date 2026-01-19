@@ -5,8 +5,6 @@ import HeroSection from "@/components/index/HeroSection";
 import ServersSection from "@/components/index/ServersSection";
 import PromoSection from "@/components/index/PromoSection";
 import Icon from "@/components/ui/icon";
-import Fireworks from "@/components/Fireworks";
-import Snowflakes from "@/components/Snowflakes";
 
 import { useEffect, useState } from "react";
 import { API_URLS } from "@/config/api";
@@ -57,8 +55,6 @@ const Index = () => {
   return (
     <div className="min-h-screen relative bg-gradient-to-br from-blue-900/30 via-purple-800/20 to-indigo-900/30">
       <SpaceBackground />
-      <Fireworks />
-      <Snowflakes />
       <PullToRefreshIndicator 
         pullDistance={pullDistance} 
         threshold={threshold} 
