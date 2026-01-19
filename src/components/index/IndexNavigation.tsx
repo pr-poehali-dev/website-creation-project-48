@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 import { sounds } from "@/utils/sounds";
-import SnowDriftText from "@/components/SnowDriftText";
 import { useAuth } from "@/contexts/AuthContext";
 import { useState, useEffect } from "react";
 import { useSwipe } from "@/hooks/useSwipe";
@@ -43,10 +42,10 @@ const IndexNavigation = ({ isLoggedIn: _isLoggedIn }: IndexNavigationProps) => {
           <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
             <Icon name="Crown" className="text-white" size={20} />
           </div>
-          <SnowDriftText className="text-lg md:text-2xl font-bold bg-gradient-to-r from-blue-200 via-white to-blue-200 bg-clip-text text-transparent">
-            <span className="hidden sm:inline">🎄 ImunnS RolePlay ❄️</span>
+          <span className="text-lg md:text-2xl font-bold bg-gradient-to-r from-blue-200 via-white to-blue-200 bg-clip-text text-transparent">
+            <span className="hidden sm:inline">ImunnS RolePlay</span>
             <span className="sm:hidden">ImunnS RP</span>
-          </SnowDriftText>
+          </span>
         </div>
         <div className="hidden md:flex items-center gap-2">
           <a href="/forum" className="px-4 py-2 rounded-full text-sm font-semibold text-foreground bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">Форум</a>
